@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manifestación: La ciencia detrás del deseo · Infografías</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM TOKENS — Infografías (warm pastel edition)
+       ============================================================ */
+    :root {
+      --paper:          #FBF7F1;
+      --paper-sunk:     #F4EEE4;
+      --surface:        #FFFDFA;
+      --surface-2:      #F8F2E9;
+      --border:         #EBE3D7;
+      --border-strong:  #DCD1C0;
+      --ink:            #3B3540;
+      --ink-soft:       #6B636F;
+      --ink-faint:      #9A9099;
+
+      --deep:           #262029;
+      --ghost:          #F3EDE4;
+      --ghost-soft:     #C9C0BC;
+
+      --concept:        #B59ED0;
+      --concept-tint:   #EDE4F4;
+      --concept-deep:   #6E5891;
+
+      --data:           #92ABD0;
+      --data-tint:      #E4EAF3;
+      --data-deep:      #4F6489;
+
+      --action:         #A0C4A8;
+      --action-tint:    #E6F0E6;
+      --action-deep:    #5C8266;
+
+      --attention:      #E8C485;
+      --attention-tint: #F8EFD9;
+      --attention-deep: #A77F3C;
+
+      --alert:          #DD9A8B;
+      --alert-tint:     #F6E2DC;
+      --alert-deep:     #A65C4C;
+
+      --brand:          var(--concept);
+      --brand-deep:     var(--concept-deep);
+      --brand-tint:     var(--concept-tint);
+      --surface-card:   var(--surface);
+      --text-strong:    var(--ink);
+      --text-body:      var(--ink-soft);
+      --text-muted:     var(--ink-faint);
+
+      --font-display:  'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+      --font-body:     'Spectral', Georgia, serif;
+      --font-mono:     'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+      --space-1: 4px;  --space-2: 8px;   --space-3: 12px;
+      --space-4: 16px; --space-5: 20px;  --space-6: 24px;
+      --space-8: 32px; --space-10: 40px; --space-12: 48px;
+      --space-16: 64px; --space-20: 80px; --space-24: 96px;
+
+      --pad-card:    var(--space-6);
+      --pad-card-lg: var(--space-8);
+      --container-story: 720px;
+
+      --radius-xs:   6px;  --radius-sm:  10px; --radius-md: 16px;
+      --radius-lg:   22px; --radius-xl:  30px; --radius-pill: 999px;
+
+      --shadow-sm: 0 2px 6px rgba(74,58,44,.06), 0 1px 2px rgba(74,58,44,.05);
+      --shadow-md: 0 6px 20px rgba(74,58,44,.08), 0 2px 6px rgba(74,58,44,.05);
+      --shadow-lg: 0 18px 48px rgba(74,58,44,.12), 0 6px 16px rgba(74,58,44,.06);
+
+      --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-fast:  140ms;
+      --dur-base:  240ms;
+      --dur-slow:  420ms;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :root { --dur-fast: 0ms; --dur-base: 0ms; --dur-slow: 0ms; }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .stage {
+      max-width: var(--container-story);
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    .section {
+      padding: var(--space-16) 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .section:last-child { border-bottom: none; }
+
+    /* Topbar */
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: color-mix(in oklch, var(--paper) 88%, transparent);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner {
+      max-width: var(--container-story);
+      margin: 0 auto;
+      padding: 12px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-display); font-weight: 800;
+      font-size: 17px; letter-spacing: -0.02em; color: var(--ink);
+    }
+    .brand-seal {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--concept); position: relative; flex-shrink: 0;
+    }
+    .brand-seal::after {
+      content: ""; position: absolute; inset: 5px;
+      border-radius: 50%; border: 1.5px solid var(--paper);
+    }
+
+    /* Scroll progress */
+    .progress-bar {
+      position: fixed; left: 0; right: 0; top: 0; height: 3px;
+      background: var(--concept); transform-origin: 0 50%;
+      transform: scaleX(0); z-index: 30;
+    }
+
+    /* Scroll cue */
+    .scroll-cue {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-faint); margin-top: 40px;
+    }
+    @keyframes bob {
+      0%,100% { transform: translateY(0); }
+      50%      { transform: translateY(5px); }
+    }
+    .scroll-cue-arrow { animation: bob 1.6s var(--ease-in-out) infinite; }
+
+    /* Utilities */
+    .reveal { opacity: 0; transform: translateY(24px); }
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .two-col  { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    .eyebrow  {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--concept-deep);
+    }
+
+    @media (max-width: 560px) {
+      .stat-row, .two-col { grid-template-columns: 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .scroll-cue-arrow { animation: none; }
+    }
+
+    .footer {
+      text-align: center;
+      padding: var(--space-16) 0 var(--space-24);
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="pf"></div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="brand">
+      <div class="brand-seal"></div>
+      infografías<span style="color:var(--concept)">.</span>
+    </div>
+    <div id="series-progress"></div>
+  </div>
+</div>
+
+<main class="stage" id="root"></main>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.js"></script>
+
+<script type="text/babel">
+const M = window.Motion || {};
+
+/* ============================================================
+   DESIGN SYSTEM COMPONENTS
+   ============================================================ */
+
+function Badge({ children, accent = 'concept', variant = 'soft', dot = false, style = {} }) {
+  const tint = `var(--${accent}-tint)`;
+  const deep = `var(--${accent}-deep)`;
+  const base = `var(--${accent})`;
+  const vs = {
+    soft:    { background: tint, color: deep, border: '1px solid transparent' },
+    solid:   { background: base, color: '#fff', border: '1px solid transparent' },
+    outline: { background: 'transparent', color: deep, border: `1px solid ${base}` },
+  };
+  return (
+    <span style={{ display:'inline-flex', alignItems:'center', gap:6, fontFamily:'var(--font-mono)', fontSize:11, fontWeight:500, letterSpacing:'0.1em', textTransform:'uppercase', padding:'4px 10px', borderRadius:'var(--radius-pill)', whiteSpace:'nowrap', ...vs[variant], ...style }}>
+      {dot && <span style={{ width:6, height:6, borderRadius:'50%', background: variant === 'solid' ? '#fff' : base }} />}
+      {children}
+    </span>
+  );
+}
+
+function Card({ children, accent = null, edge = false, elevation = 'sm', padding = 'var(--pad-card)', interactive = false, style = {}, ...rest }) {
+  const [hov, setHov] = React.useState(false);
+  const shad = { none:'none', sm:'var(--shadow-sm)', md:'var(--shadow-md)', lg:'var(--shadow-lg)' };
+  const lift = interactive && hov;
+  return (
+    <div onMouseEnter={() => interactive && setHov(true)} onMouseLeave={() => interactive && setHov(false)}
+      style={{ position:'relative', background:'var(--surface-card)', borderRadius:'var(--radius-lg)', boxShadow: lift ? shad.md : shad[elevation], border:'1px solid var(--border)', padding, overflow:'hidden', transform: lift ? 'translateY(-2px)' : 'translateY(0)', transition:'transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out)', ...style }} {...rest}>
+      {edge && accent && <span style={{ position:'absolute', left:0, top:0, bottom:0, width:4, background:`var(--${accent})` }} />}
+      {children}
+    </div>
+  );
+}
+
+function StatBadge({ value, unit = '', label = '', prefix = '', accent = 'data', size = 'md', align = 'left', style = {} }) {
+  const deep = `var(--${accent}-deep)`;
+  const s = { sm:{fig:36,unit:16,label:12}, md:{fig:56,unit:20,label:13}, lg:{fig:84,unit:28,label:15} }[size] || { fig:56, unit:20, label:13 };
+  return (
+    <div style={{ display:'flex', flexDirection:'column', alignItems: align==='center'?'center':'flex-start', textAlign:align, gap:4, ...style }}>
+      <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize:s.fig, lineHeight:1, letterSpacing:'-0.03em', color:deep, fontVariantNumeric:'tabular-nums', display:'flex', alignItems:'baseline', gap:4 }}>
+        {prefix && <span style={{ fontSize:s.unit, fontWeight:600 }}>{prefix}</span>}
+        {value}
+        {unit && <span style={{ fontFamily:'var(--font-mono)', fontSize:s.unit, fontWeight:500, color:`var(--${accent})` }}>{unit}</span>}
+      </div>
+      {label && <div style={{ fontFamily:'var(--font-body)', fontSize:s.label, color:'var(--text-body)', lineHeight:1.4, maxWidth:'28ch' }}>{label}</div>}
+    </div>
+  );
+}
+
+function DataCard({ role = null, roleLabel = '', icon = null, title, children, footer = null, elevation = 'sm', style = {} }) {
+  const accent = role || 'concept';
+  return (
+    <div style={{ position:'relative', background:'var(--surface-card)', borderRadius:'var(--radius-lg)', boxShadow: elevation==='none'?'none':`var(--shadow-${elevation})`, border:'1px solid var(--border)', padding:'var(--pad-card-lg)', display:'flex', flexDirection:'column', gap:14, ...style }}>
+      <div style={{ display:'flex', alignItems:'center', gap:12, justifyContent:'space-between' }}>
+        {roleLabel ? <Badge accent={accent} dot>{roleLabel}</Badge> : <span />}
+        {icon && <span style={{ display:'inline-flex', alignItems:'center', justifyContent:'center', width:40, height:40, borderRadius:'var(--radius-md)', background:`var(--${accent}-tint)`, color:`var(--${accent}-deep)`, fontSize:20 }}>{icon}</span>}
+      </div>
+      <h3 style={{ margin:0, fontFamily:'var(--font-display)', fontWeight:700, fontSize:22, lineHeight:1.2, letterSpacing:'-0.01em', color:'var(--text-strong)' }}>{title}</h3>
+      {children && <div style={{ fontFamily:'var(--font-body)', fontSize:16, lineHeight:1.6, color:'var(--text-body)' }}>{children}</div>}
+      {footer && <div style={{ marginTop:2, paddingTop:14, borderTop:'1px solid var(--border)', fontFamily:'var(--font-mono)', fontSize:12, color:'var(--text-muted)', letterSpacing:'0.02em' }}>{footer}</div>}
+    </div>
+  );
+}
+
+function ComparisonGrid({ left, right, style = {} }) {
+  const Col = ({ data }) => {
+    const a = data.accent || 'concept';
+    return (
+      <div style={{ background:`var(--${a}-tint)`, borderRadius:'var(--radius-md)', border:`1px solid color-mix(in oklch, var(--${a}) 30%, transparent)`, padding:'var(--pad-card)', display:'flex', flexDirection:'column', gap:12 }}>
+        <div style={{ display:'flex', alignItems:'center', gap:8 }}>
+          {data.icon && <span style={{ fontSize:18 }}>{data.icon}</span>}
+          <span style={{ fontFamily:'var(--font-mono)', fontSize:12, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:`var(--${a}-deep)` }}>{data.title}</span>
+        </div>
+        <ul style={{ margin:0, padding:0, listStyle:'none', display:'flex', flexDirection:'column', gap:8 }}>
+          {(data.items||[]).map((it,i) => (
+            <li key={i} style={{ display:'flex', gap:8, alignItems:'flex-start', fontFamily:'var(--font-body)', fontSize:15, lineHeight:1.5, color:'var(--text-strong)' }}>
+              <span style={{ color:`var(--${a}-deep)`, flexShrink:0, marginTop:1 }}>{data.bullet||'•'}</span>
+              <span>{it}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+  return (
+    <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:14, alignItems:'stretch', ...style }}>
+      <Col data={left} /><Col data={right} />
+    </div>
+  );
+}
+
+function TimelineRow({ index = null, marker = null, title, children, accent = 'concept', last = false, style = {} }) {
+  return (
+    <div style={{ display:'grid', gridTemplateColumns:'44px 1fr', gap:16, ...style }}>
+      <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
+        <span style={{ flexShrink:0, width:36, height:36, borderRadius:'50%', background:`var(--${accent}-tint)`, color:`var(--${accent}-deep)`, border:`1.5px solid var(--${accent})`, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontWeight:700, fontSize:15 }}>
+          {marker != null ? marker : index}
+        </span>
+        {!last && <span style={{ flex:1, width:2, marginTop:4, background:`linear-gradient(var(--${accent}), var(--border))`, minHeight:24 }} />}
+      </div>
+      <div style={{ paddingBottom: last ? 0 : 28 }}>
+        <h4 style={{ margin:'6px 0 6px', fontFamily:'var(--font-display)', fontWeight:700, fontSize:18, color:'var(--text-strong)', letterSpacing:'-0.01em' }}>{title}</h4>
+        {children && <div style={{ fontFamily:'var(--font-body)', fontSize:15, lineHeight:1.6, color:'var(--text-body)' }}>{children}</div>}
+      </div>
+    </div>
+  );
+}
+
+function Checkpoint({ question, answer, accent = 'attention', prompt = 'Toca para revelar', style = {} }) {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div style={{ background:'var(--surface-card)', border:`1px solid var(--${accent})`, borderRadius:'var(--radius-lg)', padding:'var(--pad-card-lg)', boxShadow:'var(--shadow-sm)', ...style }}>
+      <div style={{ display:'inline-flex', alignItems:'center', gap:6, fontFamily:'var(--font-mono)', fontSize:11, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:`var(--${accent}-deep)`, marginBottom:10 }}>
+        <span style={{ fontSize:14 }}>?</span> Checkpoint
+      </div>
+      <p style={{ margin:'0 0 16px', fontFamily:'var(--font-display)', fontWeight:700, fontSize:20, lineHeight:1.3, color:'var(--text-strong)' }}>{question}</p>
+      {!open
+        ? <button onClick={() => setOpen(true)} style={{ display:'inline-flex', alignItems:'center', gap:8, background:`var(--${accent}-tint)`, color:`var(--${accent}-deep)`, border:'none', fontFamily:'var(--font-display)', fontWeight:600, fontSize:14, padding:'10px 18px', borderRadius:'var(--radius-pill)', cursor:'pointer', transition:'background var(--dur-base) var(--ease-out)' }}>
+            {prompt} <span aria-hidden="true">↓</span>
+          </button>
+        : <div style={{ background:`var(--${accent}-tint)`, borderRadius:'var(--radius-md)', padding:'14px 16px', fontFamily:'var(--font-body)', fontSize:16, lineHeight:1.6, color:'var(--text-strong)', borderLeft:`3px solid var(--${accent})` }}>
+            {answer}
+          </div>
+      }
+    </div>
+  );
+}
+
+function ProgressDots({ total = 5, current = 1, accent = 'concept', label = '' }) {
+  return (
+    <div style={{ display:'flex', alignItems:'center', gap:10 }}>
+      <div style={{ display:'flex', gap:5 }}>
+        {Array.from({length:total}).map((_,i) => (
+          <span key={i} style={{ width: i+1===current?18:8, height:8, borderRadius:'var(--radius-pill)', background: i+1===current?`var(--${accent}-deep)`:i+1<current?`var(--${accent})`:'var(--border)', transition:`all var(--dur-base) var(--ease-out)` }} />
+        ))}
+      </div>
+      {label && <span style={{ fontFamily:'var(--font-mono)', fontSize:11, color:'var(--ink-faint)', letterSpacing:'0.08em' }}>{label}</span>}
+    </div>
+  );
+}
+
+/* DeltaExplainer — plain-language interpretation of effect sizes */
+function DeltaExplainer({ d, interpretation, strength, note = null, style = {} }) {
+  const cfg = { large:{ color:'action', label:'Efecto grande' }, medium:{ color:'attention', label:'Efecto moderado' }, small:{ color:'alert', label:'Efecto pequeño, casi imperceptible' } }[strength] || { color:'attention', label:'Moderado' };
+  return (
+    <div style={{ background:`var(--${cfg.color}-tint)`, border:`1px solid color-mix(in oklch, var(--${cfg.color}) 40%, transparent)`, borderRadius:'var(--radius-md)', padding:'14px 18px', display:'flex', flexDirection:'column', gap:8, ...style }}>
+      <div style={{ display:'flex', alignItems:'center', gap:10, flexWrap:'wrap' }}>
+        <span style={{ fontFamily:'var(--font-mono)', fontSize:18, fontWeight:600, color:`var(--${cfg.color}-deep)`, letterSpacing:'-0.01em' }}>d = {d}</span>
+        <Badge accent={cfg.color} dot>{cfg.label}</Badge>
+      </div>
+      <p style={{ fontFamily:'var(--font-body)', fontSize:14, lineHeight:1.55, color:'var(--text-body)', margin:0 }}>{interpretation}</p>
+      {note && <p style={{ fontFamily:'var(--font-mono)', fontSize:11, color:'var(--text-muted)', margin:0, letterSpacing:'0.02em' }}>{note}</p>}
+    </div>
+  );
+}
+
+/* Kicker label */
+function Kicker({ children, accent = 'concept' }) {
+  return <p style={{ fontFamily:'var(--font-mono)', fontSize:12, letterSpacing:'0.12em', textTransform:'uppercase', color:`var(--${accent}-deep)`, margin:'0 0 10px', fontWeight:600 }}>{children}</p>;
+}
+
+/* H2 */
+function H2({ children }) {
+  return <h2 style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:'clamp(22px,4vw,32px)', lineHeight:1.15, letterSpacing:'-0.02em', color:'var(--ink)', margin:'0 0 8px', textWrap:'balance' }}>{children}</h2>;
+}
+
+/* Lead paragraph */
+function Lead({ children, style = {} }) {
+  return <p style={{ fontFamily:'var(--font-body)', fontSize:16, lineHeight:1.65, color:'var(--ink-soft)', maxWidth:'58ch', margin:'0 0 20px', ...style }}>{children}</p>;
+}
+
+/* Scroll-linked reveal with Motion.dev */
+function Reveal({ children, delay = 0, y = 24 }) {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el || !M.inView || !M.animate) { if (el) { el.style.opacity=1; el.style.transform='none'; } return; }
+    const stop = M.inView(el, () => {
+      M.animate(el, { opacity:[0,1], transform:[`translateY(${y}px)`,'translateY(0px)'] }, { type:'spring', stiffness:260, damping:22, delay });
+    }, { margin:'-80px' });
+    return stop;
+  }, []);
+  return <div ref={ref} className="reveal">{children}</div>;
+}
+
+/* ============================================================
+   INFOGRAPHIC
+   ============================================================ */
+function Infografia() {
+  const h1Style = { fontFamily:'var(--font-display)', fontWeight:800, fontSize:'clamp(36px,8vw,66px)', lineHeight:1.02, letterSpacing:'-0.03em', color:'var(--ink)', margin:'14px 0 0', textWrap:'balance' };
+  const pStyle  = { fontFamily:'var(--font-body)', fontSize:16, lineHeight:1.65, color:'var(--ink-soft)', maxWidth:'58ch' };
+
+  return (
+    <>
+      {/* ── HERO ────────────────────────────────────────── */}
+      <section className="section" style={{ paddingTop:'var(--space-20)', borderBottom:'none' }}>
+        <Reveal>
+          <span style={{ display:'inline-block', width:46, height:46, borderRadius:'50%', background:'var(--concept)', position:'relative', boxShadow:'var(--shadow-sm)' }}>
+            <span style={{ position:'absolute', inset:11, borderRadius:'50%', border:'2.5px solid var(--paper)', display:'block' }} />
+          </span>
+          <div className="eyebrow" style={{ marginTop:20 }}>Serie · Manifestación · 01</div>
+          <h1 style={h1Style}>
+            Manifestación:<br />
+            <em style={{ fontStyle:'normal', color:'var(--concept-deep)' }}>la ciencia</em> detrás del deseo
+          </h1>
+          <p style={{ fontFamily:'var(--font-body)', fontSize:19, lineHeight:1.6, color:'var(--ink-soft)', maxWidth:'54ch', margin:'20px 0 0' }}>
+            La versión popular vende una promesa bonita. La ciencia cognitiva tiene una respuesta más honesta — y más poderosa. Aquí separamos lo que funciona de lo que no, con los estudios que lo demuestran.
+          </p>
+          <div className="scroll-cue"><span className="scroll-cue-arrow">↓</span> Desplázate para aprender</div>
+        </Reveal>
+      </section>
+
+      {/* ── CÓMO LEER LOS DATOS ────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="data">Antes de empezar</Kicker>
+          <H2>¿Cómo leer los números de un estudio?</H2>
+          <Lead>En esta infografía usamos métricas de investigación. No hace falta ser científico — aquí está la traducción al lenguaje de todos los días.</Lead>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <div style={{ display:'flex', flexDirection:'column', gap:10 }}>
+            <Card elevation="sm" padding="var(--pad-card)">
+              <div style={{ display:'flex', alignItems:'flex-start', gap:14, flexWrap:'wrap' }}>
+                <div style={{ flexShrink:0 }}>
+                  <span style={{ fontFamily:'var(--font-mono)', fontSize:16, fontWeight:600, color:'var(--data-deep)', display:'block', marginBottom:4 }}>d = X</span>
+                  <Badge accent="data">Tamaño del efecto</Badge>
+                </div>
+                <div style={{ flex:1, minWidth:200 }}>
+                  <p style={{ ...pStyle, fontSize:15, margin:'0 0 10px' }}>
+                    Imagina dos grupos de 100 personas: uno usa la técnica, el otro no. <strong style={{ color:'var(--ink)' }}>d = 0.65</strong> significa que el grupo que la usó logró sus metas a una tasa significativamente mayor. <strong style={{ color:'var(--ink)' }}>d = 0.08</strong> significa que la diferencia fue tan pequeña que en la vida real no notarías nada.
+                  </p>
+                  <div style={{ display:'flex', gap:6, flexWrap:'wrap' }}>
+                    <span style={{ fontFamily:'var(--font-mono)', fontSize:11, padding:'3px 8px', borderRadius:'var(--radius-pill)', background:'var(--alert-tint)', color:'var(--alert-deep)' }}>d &lt; 0.2 → inapreciable</span>
+                    <span style={{ fontFamily:'var(--font-mono)', fontSize:11, padding:'3px 8px', borderRadius:'var(--radius-pill)', background:'var(--attention-tint)', color:'var(--attention-deep)' }}>d ≈ 0.5 → moderado</span>
+                    <span style={{ fontFamily:'var(--font-mono)', fontSize:11, padding:'3px 8px', borderRadius:'var(--radius-pill)', background:'var(--action-tint)', color:'var(--action-deep)' }}>d ≥ 0.65 → grande ✓</span>
+                  </div>
+                </div>
+              </div>
+            </Card>
+            <Card elevation="sm" padding="var(--pad-card)">
+              <div style={{ display:'flex', alignItems:'flex-start', gap:14, flexWrap:'wrap' }}>
+                <div style={{ flexShrink:0 }}>
+                  <span style={{ fontFamily:'var(--font-mono)', fontSize:16, fontWeight:600, color:'var(--data-deep)', display:'block', marginBottom:4 }}>r = X</span>
+                  <Badge accent="data">Correlación</Badge>
+                </div>
+                <p style={{ ...pStyle, fontSize:15, margin:0, flex:1, minWidth:200 }}>
+                  Muestra si dos cosas se mueven juntas (va de −1 a +1). <strong style={{ color:'var(--ink)' }}>r = −0.19</strong> entre materialismo y bienestar significa: cuando uno sube, el otro baja — consistente en cientos de estudios, aunque no fuerte.
+                </p>
+              </div>
+            </Card>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── LO QUE NO FUNCIONA ─────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="alert">Lo que no funciona</Kicker>
+          <H2>Tres mitos que la ciencia desmontó</H2>
+          <Lead>No para desanimarte — sino para que no pierdas tiempo con lo que no mueve la aguja.</Lead>
+        </Reveal>
+        <div style={{ display:'flex', flexDirection:'column', gap:14 }}>
+          {[
+            {
+              title: '«Pide al universo y atraerás lo que deseas»',
+              footer: 'Dixon, Hornsey & Hartley · Personality and Social Psychology Bulletin, 2023 · 1.023 participantes',
+              body: (
+                <p style={{ margin:0 }}>
+                  En un estudio con más de 1.000 personas, quienes creían en la manifestación «mágica» se sentían más confiados — pero <strong>no tenían mejores resultados reales</strong>. Por cada punto extra en su «escala de manifestación», había <strong>40% más probabilidad de haber quebrado económicamente</strong> y 30% más inclinación a inversiones de alto riesgo. La confianza subió; los resultados, no.
+                </p>
+              ),
+            },
+            {
+              title: 'Fantasear vívidamente con el resultado ya logrado',
+              footer: 'Oettingen · NYU/Hamburgo · más de 20 años de investigación replicada en cuatro muestras distintas',
+              body: (
+                <p style={{ margin:0 }}>
+                  Cuanto más vívida es la fantasía del «ya lo logré», <strong>peores son los resultados reales</strong>. Los participantes perdieron menos peso, se recuperaron más lento, conseguieron salarios iniciales más bajos. ¿Por qué? La fantasía da un anticipo placentero que el cerebro confunde con lograr la meta — y <em>baja la energía para el esfuerzo real</em>. La visualización sí funciona, pero de otra manera (ver Técnica 2).
+                </p>
+              ),
+            },
+            {
+              title: '«Soy increíble» y otras afirmaciones vacías',
+              footer: 'Wood, Perunovic & Lee · Psychological Science, 2009',
+              body: (
+                <p style={{ margin:0 }}>
+                  Repetir eslóganes positivos puede hacerte sentir <strong>peor</strong> si hay baja autoestima en ese dominio. La mente los rechaza porque no los cree — y el contraste entre el eslogan y la realidad interna duele. «Benefician a algunos, pero perjudican justo a quienes más las necesitan.» Las afirmaciones sí funcionan — pero con una fórmula distinta (ver Técnica 4).
+                </p>
+              ),
+            },
+          ].map((item, i) => (
+            <Reveal key={i} delay={i * 0.06}>
+              <DataCard role="alert" roleLabel={`Mito ${i+1}`} icon="✕" title={item.title} footer={item.footer} elevation="sm">
+                {item.body}
+              </DataCard>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── TÉCNICA 1: WOOP ────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="action">Lo que sí funciona · Técnica 1</Kicker>
+          <H2>WOOP — del sueño a la acción</H2>
+          <Lead>El método más respaldado de la psicología para convertir deseos en resultados. Creado por Gabriele Oettingen (NYU), combina la motivación del sueño con el contraste realista.</Lead>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <DeltaExplainer
+            d="0.65"
+            strength="large"
+            interpretation="En el meta-análisis de Gollwitzer & Sheeran con 8.461 personas y 94 pruebas independientes, quienes hicieron el plan «si... entonces...» de WOOP lograron sus metas a una tasa significativamente mayor. Es uno de los efectos más robustos de la psicología social — y en 2024 se replicó en 642 pruebas adicionales."
+            note="Gollwitzer & Sheeran · Advances in Experimental Social Psychology, 2006"
+            style={{ marginBottom:20 }}
+          />
+        </Reveal>
+        <Reveal delay={0.1}>
+          <Card elevation="sm" padding="var(--space-8)">
+            <TimelineRow index="W" accent="action" title="Wish — el deseo">
+              Una meta <strong>retadora pero realista</strong>, en un plazo concreto. Escríbela en 3–6 palabras. No «quiero ser feliz» — sino «conseguir trabajo remoto en 3 meses».
+            </TimelineRow>
+            <TimelineRow index="O" accent="action" title="Outcome — el mejor resultado">
+              Imagina vívidamente la <em>emoción</em> del mejor resultado posible. Solo una cosa. Saboréala unos segundos — no horas.
+            </TimelineRow>
+            <TimelineRow index="O" accent="action" title="Obstacle — el obstáculo interno">
+              <strong>El paso que casi todos se saltan — y el que lo hace funcionar.</strong> ¿Qué <em>en ti</em> te frena de verdad? No «no tengo tiempo» — sino «la procrastinación», «el miedo al rechazo», «me distraigo con el móvil».
+            </TimelineRow>
+            <TimelineRow marker="P" accent="action" title="Plan — si... entonces..." last>
+              <strong>«Si aparece [obstáculo], entonces haré [acción concreta].»</strong> Esta respuesta automática es la que dispara el efecto d = 0.65. Vaga no sirve — debe ser específica.
+            </TimelineRow>
+          </Card>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <div style={{ background:'var(--action-tint)', border:'1px solid color-mix(in oklch, var(--action) 40%, transparent)', borderRadius:'var(--radius-md)', padding:'var(--pad-card)', marginTop:16 }}>
+            <p style={{ fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--action-deep)', marginBottom:10, fontWeight:600 }}>Ejemplo real</p>
+            <div style={{ display:'flex', flexDirection:'column', gap:6 }}>
+              {[['W','Enviar 10 aplicaciones de trabajo esta semana'],['O','El alivio y orgullo de tener una entrevista confirmada'],['O','La procrastinación: abro redes y pasan horas'],['P','Si siento ganas de abrir Instagram, entonces dejo el móvil en otra habitación y abro el portal de empleo']].map(([l,t]) => (
+                <div key={l} style={{ display:'flex', gap:10, alignItems:'flex-start' }}>
+                  <span style={{ fontFamily:'var(--font-mono)', fontSize:14, fontWeight:700, color:'var(--action-deep)', width:18, flexShrink:0, paddingTop:1 }}>{l}</span>
+                  <span style={{ fontFamily:'var(--font-body)', fontSize:15, lineHeight:1.5, color:'var(--ink)' }}>{t}</span>
+                </div>
+              ))}
+            </div>
+            <p style={{ fontFamily:'var(--font-mono)', fontSize:11, color:'var(--action-deep)', marginTop:12, letterSpacing:'0.05em' }}>Tarda 3–5 minutos · app y kit gratuitos en woopmylife.org</p>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── TÉCNICA 2: VISUALIZACIÓN ───────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="action">Lo que sí funciona · Técnica 2</Kicker>
+          <H2>Visualiza el proceso, no el trofeo</H2>
+          <Lead>La visualización sí funciona — pero en la dirección opuesta a como te la vendieron.</Lead>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <ComparisonGrid
+            left={{ title:'Visualización de resultado', accent:'alert', icon:'✕', bullet:'×', items:[
+              'Te imaginas ya con el trabajo, la pareja, el logro',
+              'Se siente inspirador — pero reduce el impulso de actuar',
+              'El cerebro confunde el anticipo con el logro real',
+            ]}}
+            right={{ title:'Visualización de proceso', accent:'action', icon:'✓', bullet:'→', items:[
+              'Te imaginas haciendo los pasos: enviando, estudiando, entrenando',
+              'Activa la planificación y reduce la ansiedad de rendimiento',
+              'Los estudiantes que lo hicieron estudiaron más y sacaron mejores notas',
+            ]}}
+          />
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p style={{ fontFamily:'var(--font-mono)', fontSize:12, color:'var(--ink-faint)', marginTop:12, letterSpacing:'0.04em' }}>
+            Pham & Taylor · UCLA, 1999 · grupos de estudiantes con examen próximo
+          </p>
+        </Reveal>
+      </section>
+
+      {/* ── TÉCNICA 3: IDENTIDAD ───────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="concept">Lo que sí funciona · Técnica 3</Kicker>
+          <H2>Cambia la identidad, no solo la meta</H2>
+          <Lead>Las metas de resultado se agotan al lograrse o al fallar. Las de identidad se sostienen solas — porque cada día buscas actuar en coherencia con quien crees ser.</Lead>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <DataCard role="concept" roleLabel="Identidad" icon="◎"
+            title="Cada acción es un voto"
+            footer="James Clear · Atomic Habits · conecta con la autoeficacia de Bandura (experiencias de dominio)"
+            elevation="md">
+            No «quiero programar más» — sino «soy alguien que construye». Antes de cada acción: <em>¿qué haría la persona que quiero ser?</em> Cada acción pequeña es un voto. No necesitas unanimidad — solo mayoría. Un mal día no rompe nada.
+          </DataCard>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div className="two-col" style={{ marginTop:16 }}>
+            {[
+              ['Quiero perder peso','Soy alguien que se mueve y cuida su cuerpo'],
+              ['Quiero conseguir trabajo','Soy alguien que construye carrera activamente'],
+              ['Quiero meditar más','Soy una persona que practica la presencia'],
+              ['Quiero ganar dinero','Soy alguien que crea valor y lo intercambia bien'],
+            ].map(([before, after], i) => (
+              <div key={i} style={{ background:'var(--concept-tint)', borderRadius:'var(--radius-md)', padding:'var(--space-4) var(--space-5)', border:'1px solid color-mix(in oklch, var(--concept) 25%, transparent)' }}>
+                <p style={{ fontFamily:'var(--font-mono)', fontSize:11, color:'var(--alert-deep)', marginBottom:3, letterSpacing:'0.06em', textTransform:'uppercase' }}>Antes</p>
+                <p style={{ fontFamily:'var(--font-body)', fontSize:13, color:'var(--ink-soft)', marginBottom:8, lineHeight:1.4 }}>{before}</p>
+                <p style={{ fontFamily:'var(--font-mono)', fontSize:11, color:'var(--action-deep)', marginBottom:3, letterSpacing:'0.06em', textTransform:'uppercase' }}>Identidad</p>
+                <p style={{ fontFamily:'var(--font-body)', fontSize:14, color:'var(--ink)', fontWeight:500, lineHeight:1.4, margin:0 }}>{after}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── TÉCNICA 4: AFIRMACIONES ────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="attention">Lo que sí funciona · Técnica 4</Kicker>
+          <H2>Afirmaciones: la versión que sí funciona</H2>
+          <Lead>La solución no es más afirmaciones — sino afirmaciones diferentes. Afirmar <strong>valores</strong> que de verdad importan protege la integridad del yo sin exigir creer una mentira. (Claude Steele, 1988)</Lead>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <ComparisonGrid
+            left={{ title:'Afirmación vacía', accent:'alert', icon:'✕', bullet:'✕', items:[
+              '«Soy increíble y merezco todo»',
+              '«El dinero fluye hacia mí»',
+              '«Soy digno de amor»',
+              'Si no lo crees, tu mente lo rechaza — y el contraste duele',
+            ]}}
+            right={{ title:'Valor + evidencia', accent:'action', icon:'✓', bullet:'✓', items:[
+              '«Valoro el oficio y la disciplina»',
+              '«Hoy avancé mi proyecto → soy alguien que construye»',
+              '«Estoy construyendo relaciones más profundas»',
+              'Anca en algo real — la mente no puede rechazarlo',
+            ]}}
+          />
+        </Reveal>
+        <Reveal delay={0.1}>
+          <Card elevation="sm" style={{ marginTop:16 }} padding="var(--pad-card)">
+            <p style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:16, color:'var(--ink)', marginBottom:8 }}>La fórmula:</p>
+            <p style={{ fontFamily:'var(--font-body)', fontSize:17, lineHeight:1.5, color:'var(--ink-soft)', fontStyle:'italic', margin:0 }}>
+              «Valoro <span style={{ color:'var(--attention-deep)', fontStyle:'normal', fontWeight:600 }}>[algo que de verdad me importa]</span>. Hoy lo demostré cuando <span style={{ color:'var(--action-deep)', fontStyle:'normal', fontWeight:600 }}>[evidencia concreta del día]</span>.»
+            </p>
+            <p style={{ fontFamily:'var(--font-mono)', fontSize:11, color:'var(--ink-faint)', marginTop:10, letterSpacing:'0.04em' }}>Si una afirmación te genera resistencia o te hace sentir peor: cámbiala. Es la señal de que tu mente la rechaza.</p>
+          </Card>
+        </Reveal>
+      </section>
+
+      {/* ── TÉCNICA 5: GRATITUD + JOURNALING ──────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="action">Lo que sí funciona · Técnica 5</Kicker>
+          <H2>Gratitud y journaling: el par ganador</H2>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <div className="stat-row" style={{ marginBottom:20 }}>
+            <StatBadge value="3" unit=" cosas" label="concretas del día. Así funciona el diario de gratitud — específico, no genérico. «Estoy agradecido por la vida» no sella nada." accent="action" size="lg" />
+            <StatBadge value="20" unit=" min" label="de journaling expresivo, 3 días seguidos, con beneficios medibles en salud física y bienestar emocional." accent="concept" size="lg" />
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div style={{ display:'flex', flexDirection:'column', gap:12 }}>
+            <DataCard role="action" roleLabel="Gratitud" icon="◐"
+              title="3 cosas específicas al final del día"
+              footer="Emmons & McCullough · Journal of Personality & Social Psychology, 2003"
+              elevation="sm">
+              No «estoy agradecido por mi vida» — sino «hoy avancé el proyecto 2 horas y eso me da orgullo». La especificidad conecta gratitud con identidad: <em>soy alguien que avanza</em>.
+            </DataCard>
+            <DataCard role="concept" roleLabel="Journaling" icon="◎"
+              title="Escribir desde el yo futuro o procesar el día"
+              footer="Pennebaker · múltiples estudios desde 1986 · beneficios en salud física y mental"
+              elevation="sm">
+              Escribe para procesar emoción, no para tener el texto perfecto. O escribe <em>desde la perspectiva del yo que ya eres en el futuro</em> — pero describe los <strong>hábitos</strong> de ese yo, no el trofeo: «Me levanto, medito, programo enfocado dos horas antes de abrir el correo».
+            </DataCard>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── BONUS: DIMENSIÓN CONTEMPLATIVA ────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="concept">Bonus — desear desde la plenitud</Kicker>
+          <H2>Donde la ciencia y la meditación convergen</H2>
+          <Lead>Un meta-análisis de 753 estudios encontró que el materialismo se asocia con menor bienestar (<strong>r = −0.19</strong> — "mientras más se busca desde la carencia, menos bienestar"). Crear desde la plenitud no es lujo espiritual: es más eficaz.</Lead>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <DataCard role="concept" roleLabel="No-apego" icon="◎"
+            title="Taṇhā vs. chanda — desear sin aferrarse"
+            footer="Dittmar et al. · JPSP, 2014 · 753 tamaños de efecto · Bhagavad Gita 2.47 · Teoría de Autodeterminación (Deci & Ryan)"
+            elevation="md">
+            <p style={{ margin:'0 0 12px' }}>El budismo no condena el deseo — condena el <em>aferramiento</em>. <strong>Chanda</strong> es aspiración sana (intención clara); <strong>taṇhā</strong> es la sed que sufre (desear desde la carencia).</p>
+            <p style={{ margin:0 }}>Paradoja verificada: el no-apego <em>mejora</em> la acción — porque elimina la ansiedad que sabotea el desempeño. «Tienes derecho a la acción, no a sus frutos» (Gita 2.47) no es resignación: es entrega total + ecuanimidad ante el resultado.</p>
+          </DataCard>
+        </Reveal>
+      </section>
+
+      {/* ── RITUAL DIARIO ──────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="action">El método · Ritual diario</Kicker>
+          <H2>20–30 minutos. Mañana y noche.</H2>
+          <Lead>Todas las técnicas anteriores, integradas en un ritual repartible. La clave: sembrar intención en la mañana y cosechar evidencia en la noche.</Lead>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <Badge accent="action" dot style={{ marginBottom:12 }}>Bloque matutino · 8–12 min</Badge>
+          <Card elevation="sm" padding="var(--space-8)" style={{ marginBottom:20 }}>
+            <TimelineRow index={1} accent="action" title="Asentamiento (2 min)">Respira y aterriza. Estado de plenitud, no de carencia.</TimelineRow>
+            <TimelineRow index={2} accent="action" title="Identidad + afirmación (2 min)">Tu mantra + «soy alguien que…» + un valor con evidencia de ayer.</TimelineRow>
+            <TimelineRow index={3} accent="action" title="Visualización de proceso (3–4 min)">Los <em>pasos</em> de hoy, no el trofeo. Con emoción, centrado en el hacer.</TimelineRow>
+            <TimelineRow index={4} accent="action" title="Micro-WOOP del día (2 min)" last>Un deseo del día → mejor resultado → obstáculo interno → si...entonces. Por escrito.</TimelineRow>
+          </Card>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <Badge accent="concept" dot style={{ marginBottom:12 }}>Bloque nocturno · 8–12 min</Badge>
+          <Card elevation="sm" padding="var(--space-8)" style={{ marginBottom:16 }}>
+            <TimelineRow index={5} accent="concept" title="Gratitud (3 min)">3 cosas concretas del día. Incluye evidencia de tu identidad: «hoy programé 2h enfocado → soy alguien disciplinado».</TimelineRow>
+            <TimelineRow index={6} accent="concept" title="Journaling del yo futuro o revisión (3–4 min)">Escribe desde quien ya eres, o re-imagina una escena del día como hubieras querido reaccionar.</TimelineRow>
+            <TimelineRow marker="◎" accent="concept" title="Meditación de asentamiento (3–5 min)" last>Suelta el resultado. La intención está sembrada — descansa en la plenitud.</TimelineRow>
+          </Card>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <div style={{ background:'var(--attention-tint)', border:'1px solid color-mix(in oklch, var(--attention) 40%, transparent)', borderRadius:'var(--radius-md)', padding:'var(--pad-card)' }}>
+            <p style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:15, color:'var(--attention-deep)', marginBottom:6 }}>Señal de alarma</p>
+            <p style={{ fontFamily:'var(--font-body)', fontSize:15, lineHeight:1.5, color:'var(--ink-soft)', margin:0 }}>Si en 4–6 semanas no hay acción medible — aplicaciones enviadas, pasos dados, código escrito — el ritual se volvió «fantasía relajante». Solución: reduce visualización, aumenta WOOP y los planes si-entonces.</p>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── CHECKPOINT ─────────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="attention">Checkpoint · Generación activa</Kicker>
+          <Checkpoint
+            question="¿Qué parte de WOOP es la que casi todos se saltan — y la que lo hace funcionar de verdad?"
+            answer="El obstáculo interno. No «no tengo tiempo» ni «el mercado está difícil», sino qué en ti te frena: la procrastinación, el miedo al rechazo, la duda sobre si mereces lo que deseas. Identificar ese obstáculo interno activa el plan automático — donde vive el efecto d = 0.65."
+            accent="attention"
+          />
+        </Reveal>
+      </section>
+
+      {/* ── CIERRE ─────────────────────────────────────── */}
+      <section className="section" style={{ borderBottom:'none' }}>
+        <Reveal>
+          <Card accent="concept" edge elevation="lg" padding="var(--space-10)">
+            <Kicker accent="concept">Lo que te llevas</Kicker>
+            <h2 style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:'clamp(22px,4vw,30px)', lineHeight:1.15, letterSpacing:'-0.02em', color:'var(--ink)', margin:'12px 0 16px', textWrap:'balance' }}>
+              Manifesta siendo, no solo queriendo.
+            </h2>
+            <div style={{ display:'flex', flexDirection:'column', gap:9, marginBottom:24 }}>
+              {[
+                ['✕','alert','No: fantasear con el resultado ya logrado y esperar que el universo actúe'],
+                ['✓','action','Sí: WOOP — deseo + contraste + obstáculo interno + plan si-entonces (d = 0.65)'],
+                ['✓','action','Sí: visualizar el proceso, no el trofeo (Pham & Taylor, 1999)'],
+                ['✓','concept','Sí: identidad primero («soy alguien que…»), luego acción consistente'],
+                ['✓','attention','Sí: afirmaciones de valores + evidencia real, no eslóganes vacíos'],
+                ['✓','concept','Sí: querer desde la plenitud, no desde la carencia'],
+              ].map(([icon, accent, text], i) => (
+                <div key={i} style={{ display:'flex', gap:10, alignItems:'flex-start' }}>
+                  <span style={{ color:`var(--${accent}-deep)`, fontWeight:700, flexShrink:0, paddingTop:1 }}>{icon}</span>
+                  <span style={{ fontFamily:'var(--font-body)', fontSize:15, lineHeight:1.5, color:'var(--ink-soft)' }}>{text}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ display:'flex', gap:12, flexWrap:'wrap', alignItems:'center' }}>
+              <Badge accent="action" dot>Episodio completado</Badge>
+              <span style={{ fontFamily:'var(--font-mono)', fontSize:11, color:'var(--ink-faint)', letterSpacing:'0.06em' }}>
+                Siguiente: El espaciado óptimo →
+              </span>
+            </div>
+          </Card>
+        </Reveal>
+      </section>
+
+      <div className="footer">
+        <div className="eyebrow" style={{ color:'var(--ink-faint)' }}>Hecho con Motion.dev · Infografías Design System · 2026</div>
+        <p style={{ fontFamily:'var(--font-body)', fontSize:12, color:'var(--ink-faint)', marginTop:8, lineHeight:1.6, maxWidth:'58ch', margin:'8px auto 0' }}>
+          Fuentes: Oettingen (2014) · Gollwitzer & Sheeran (2006) · Pham & Taylor (1999) · Wood, Perunovic & Lee (2009) · Dixon, Hornsey & Hartley (2023) · Emmons & McCullough (2003) · Pennebaker (1997) · Dittmar et al. (2014) · James Clear (2018) · Steele (1988)
+        </p>
+      </div>
+    </>
+  );
+}
+
+function SeriesProgress() {
+  return <ProgressDots total={5} current={1} accent="concept" label="1 / 5" />;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Infografia />);
+ReactDOM.createRoot(document.getElementById('series-progress')).render(<SeriesProgress />);
+
+// Scroll progress bar
+const pf = document.getElementById('pf');
+function onScroll() {
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  pf.style.transform = `scaleX(${max > 0 ? h.scrollTop / max : 0})`;
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
+</body>
+</html>
