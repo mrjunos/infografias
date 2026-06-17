@@ -19,84 +19,167 @@ La premisa central: una infografía bien diseñada no es solo estética — es u
 
 | Capa | Tecnología | Rol |
 |------|-----------|-----|
-| **Animación** | [Motion.dev](https://motion.dev/) | Motor principal de animación — spring physics, scroll-linked, gestures |
-| **Renderizado** | React + Vite | Componentes reutilizables del sistema de diseño |
-| **Estilos** | Tailwind CSS + CSS Custom Properties | Tokens de diseño y theming dinámico |
-| **Tipografía** | Variable Fonts (Google Fonts / local) | Expresividad tipográfica con un solo archivo |
+| **Animación** | [Motion.dev](https://motion.dev/) | Motor principal — spring physics, scroll-linked reveals, gestures |
+| **Renderizado** | React 18 + Vite | Componentes reutilizables del sistema de diseño |
+| **Estilos** | CSS Custom Properties | Tokens de diseño y theming dinámico (sin librerías externas) |
+| **Tipografía** | Bricolage Grotesque · Spectral · JetBrains Mono | Google Fonts CDN; auto-hosteable con `@font-face` |
 | **Exportación** | html-to-image / Puppeteer | De componente React a PNG/SVG estático |
-| **Datos** | JSON / MDX | Separación total entre contenido y presentación |
+| **Contenido** | JSON / MDX | Separación total entre contenido y presentación |
 
 ---
 
-## 🎮 Sistema de Diseño — Principios Fundacionales
+## 🎨 Sistema de Diseño — Fundamentos Visuales
 
-### 1. Gamificación del Aprendizaje
-Cada infografía aplica al menos **uno** de estos patrones:
+### 1. Paleta Semántica — Warm Pastel Edition
 
-- **Progressive Reveal** — la información aparece en capas conforme el usuario interactúa; no todo de golpe.
-- **Micro-achievements** — indicadores visuales que premian completar una "lectura" o llegar al final de un scroll.
-- **Knowledge Checkpoints** — preguntas cortas o elementos interactivos que confirman comprensión antes de seguir.
-- **Streaks & Series** — infografías agrupadas en series temáticas con progreso visual entre episodios.
-- **Easter Eggs** — detalles ocultos que recompensan la atención y la curiosidad.
+La paleta es **semántica**: cada color tiene un **rol cognitivo fijo** y no es decorativa.  
+Cada hue tiene tres pasos: `tint` (fondo suave) · `base` (tono de trabajo) · `deep` (texto e ícono).
 
-### 2. Técnicas de Sellado del Conocimiento
-Inspiradas en ciencias cognitivas y pedagogía:
+> **Nota de versión:** la paleta original del repo usaba colores saturados y dark-mode-first (Ultra Violet, Electric Blue, Neon Mint, Solar Yellow, Coral Fire sobre `#0D0D1A`). El design system evolucionó hacia una interpretación **warm pastel** — más elegante, fina y legible en modo claro — preservando los roles cognitivos de cada color.
 
-| Técnica | Implementación visual |
-|---------|----------------------|
-| **Espaciado (Spaced Repetition)** | Elementos clave reaparecen con variación a lo largo de la pieza |
-| **Efecto de Generación** | El usuario completa o predice antes de ver la respuesta |
-| **Codificación Dual** | Imagen + texto siempre juntos; nunca uno sin el otro |
-| **Chunking** | Información en bloques de máx. 5±2 elementos |
-| **Elaborative Interrogation** | Títulos formulados como preguntas que activan el sistema analítico |
-| **Principio de Contraste** | Lo más importante rompe el patrón visual para ser recordado |
+| Rol | Nombre | Base | Tint | Deep | Cuándo usarlo |
+|-----|--------|------|------|------|---------------|
+| **Concepto** | Lilac | `#B59ED0` | `#EDE4F4` | `#6E5891` | Ideas abstractas, teoría, definiciones |
+| **Dato** | Dusty Blue | `#92ABD0` | `#E4EAF3` | `#4F6489` | Estadísticas, hechos verificables, números |
+| **Acción** | Sage | `#A0C4A8` | `#E6F0E6` | `#5C8266` | Pasos, métodos, qué hacer |
+| **Atención** | Honey | `#E8C485` | `#F8EFD9` | `#A77F3C` | Puntos clave, advertencias, highlights |
+| **Alerta** | Clay Coral | `#DD9A8B` | `#F6E2DC` | `#A65C4C` | Mitos, errores comunes, contrastes |
 
-### 3. Sistema de Color — Paleta Semántica
+**Color de marca:** Concepto (lilac) `#B59ED0` / deep `#6E5891`.
 
-La paleta no es decorativa; **cada color tiene un rol cognitivo**:
+**Neutrales cálidos** (nunca grises fríos):
 
 ```
-🟣 Ultra Violet   #7B2FBE  → Conceptos abstractos, teoría, definiciones
-🔵 Electric Blue  #2979FF  → Datos, estadísticas, hechos verificables  
-🟢 Neon Mint      #00E5A0  → Acciones, pasos, "qué hacer"
-🟡 Solar Yellow   #FFD600  → Atención, advertencias, puntos clave
-🔴 Coral Fire     #FF4757  → Errores comunes, mitos, contrastes
-⬜ Deep Space     #0D0D1A  → Background base (modo oscuro-first)
-🤍 Ghost White    #F0F0FF  → Texto principal sobre fondo oscuro
+--paper:      #FBF7F1   ← fondo primario (ivory cálido)
+--surface:    #FFFDFA   ← superficie de tarjeta
+--border:     #EBE3D7   ← hairline borders
+--ink:        #3B3540   ← texto primario (warm plum-charcoal)
+--ink-soft:   #6B636F   ← texto secundario
+--ink-faint:  #9A9099   ← captions, disabled, meta
 ```
 
-Cada infografía puede tener su **accent color** temático, pero siempre sobre esta base semántica.
-
-### 4. Tipografía — Jerarquía en 4 Niveles
-
+**Deep mode** (herencia dark-mode-first, calentado):
 ```
-Level 1 — HERO      : Variable font, 48–96px, peso 900, tracking tight
-Level 2 — SECTION   : 24–36px, peso 700, mayúsculas con letter-spacing
-Level 3 — BODY      : 14–16px, peso 400, line-height 1.6, max 65ch
-Level 4 — CAPTION   : 11–12px, peso 300, italic, color secundario
+--deep:   #262029   ← warm "deep space"
+--ghost:  #F3EDE4   ← texto sobre deep
 ```
 
-### 5. Animación con Motion.dev — Filosofía
+### 2. Tipografía — Jerarquía en 4 Niveles
+
+| Nivel | Fuente | Tamaño | Peso | Uso |
+|-------|--------|--------|------|-----|
+| **Hero** | Bricolage Grotesque | clamp(38–76px) | 800 | Títulos principales, números grandes |
+| **Section** | Bricolage Grotesque | clamp(22–34px) | 700 | Títulos de sección |
+| **Body** | Spectral | 16–17px | 400 | Cuerpo de texto, máx. 65ch |
+| **Caption / Label** | JetBrains Mono | 11–12px | 500 | Eyebrows, datos, fuentes, uppercase + wide tracking |
+
+- **Display:** tracking `−0.03em` a tamaños grandes; `text-wrap: balance`.
+- **Body:** `line-height: 1.65`, serif cálida para lectura larga.
+- **Mono:** `font-variant-numeric: tabular-nums`; siempre acompañado de texto (dual coding).
+
+### 3. Cards y Superficies
+
+- **Superficie:** `#FFFDFA` (surface-card) sobre fondo `#FBF7F1` (paper).
+- **Borde:** hairline `1px #EBE3D7`.
+- **Radio:** `22px` (lg) para cards grandes, `16px` (md) para chips y columnas, `999px` (pill) para badges.
+- **Sombra:** siempre warm-tinted (`rgba(74,58,44,…)`), nunca gris neutro:
+  ```
+  shadow-sm: 0 2px 6px rgba(74,58,44,.06), 0 1px 2px rgba(74,58,44,.05)
+  shadow-md: 0 6px 20px rgba(74,58,44,.08), 0 2px 6px rgba(74,58,44,.05)
+  shadow-lg: 0 18px 48px rgba(74,58,44,.12), 0 6px 16px rgba(74,58,44,.06)
+  ```
+- **Accent edge:** borde izquierdo de 4px en el color semántico del contenido — siempre con significado, nunca decorativo.
+
+### 4. Animación con Motion.dev — Filosofía
 
 > "La animación no decora — **guía la atención** y **señala relaciones** entre elementos."
 
-Principios de animación del sistema:
+**Spring-first.** El preset base para todo reveal:
 
-- **Spring first** — usar `type: "spring"` por defecto; curvas de easing solo para micro-interacciones
-- **Stagger narrativo** — los elementos aparecen en el orden en que deben leerse
-- **Scroll-linked reveals** — cada sección emerge conforme el usuario hace scroll, creando ritmo de lectura
-- **Physics = emoción** — alta tensión (stiff spring) para datos impactantes; baja tensión para transiciones suaves
-- **Reducir si es necesario** — respetar `prefers-reduced-motion` siempre
+```js
+{ type: 'spring', stiffness: 260, damping: 22 }
+```
+
+Presets del sistema:
+```js
+soft:   { type:'spring', stiffness:180, damping:22 }  // transiciones suaves
+base:   { type:'spring', stiffness:260, damping:20 }  // reveal estándar
+snappy: { type:'spring', stiffness:420, damping:30 }  // datos impactantes
+loose:  { type:'spring', stiffness:120, damping:18 }  // cierre / feature card
+```
+
+**Scroll-linked reveal** (patrón base de toda infografía):
 
 ```jsx
-// Patrón base de reveal para cualquier elemento
-<motion.div
-  initial={{ opacity: 0, y: 24 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ type: "spring", stiffness: 260, damping: 20 }}
-  viewport={{ once: true, margin: "-80px" }}
-/>
+function Reveal({ children, delay = 0, y = 24 }) {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el || !M.inView || !M.animate) { if (el) { el.style.opacity=1; el.style.transform='none'; } return; }
+    const stop = M.inView(el, () => {
+      M.animate(el,
+        { opacity:[0,1], transform:[`translateY(${y}px)`,'translateY(0px)'] },
+        { type:'spring', stiffness:260, damping:22, delay }
+      );
+    }, { margin:'-80px' });
+    return stop;
+  }, []);
+  return <div ref={ref} style={{ opacity:0, transform:`translateY(${y}px)` }}>{children}</div>;
+}
 ```
+
+**Reglas:**
+- **Stagger narrativo** — elementos aparecen en el orden de lectura; `delay` incremental de ~0.05–0.1s.
+- **Alta tensión para datos** (stiffness alto) — baja tensión para transiciones suaves.
+- **Siempre respetar `prefers-reduced-motion`** — collapsar duraciones a 0ms, mostrar estado final.
+- **Easing curves solo para micro-interacciones** (hover, press), nunca para reveals de contenido.
+
+**Hover/press:**
+- Botones primary: `base → deep` + shadow en hover; `scale(0.97)` en press.
+- Cards interactivas: `translateY(-2px)` en hover, shadow sube de sm a md.
+
+### 5. Iconografía
+
+No hay icon set bundled. El sistema usa:
+- **Glifos geométricos:** `●◎ ◐` para el seal mark de marca y conceptos
+- **Unicode tipográfico:** `✓ ✕ → ↓` para grids de contraste y navegación
+- **Dual coding siempre:** un ícono nunca aparece solo — siempre junto a texto
+
+Para sets más ricos: **Lucide** via CDN (stroke 1.5–2px, rounded) — tono cálido y fino.
+
+### 6. Principios de Contenido
+
+- **Idioma:** español, con términos técnicos en inglés donde es el estándar del campo.
+- **Voz:** segunda persona, directa y cálida. Los títulos son preguntas cuando activan el sistema analítico.
+- **Casing:** sentence case para headlines y body. UPPERCASE solo para eyebrows/labels con `letter-spacing: 0.14em`.
+- **Sin emoji** en las piezas publicadas.
+- **Números como personajes:** estadísticas grandes van en display font con la unidad en accent color.
+- **Chunking:** máx. 5±2 ideas por sección, oraciones cortas, espacio generoso entre bloques.
+
+---
+
+## 🎮 Sistema de Diseño — Principios Pedagógicos
+
+### Gamificación del Aprendizaje
+
+Cada infografía aplica al menos uno de estos patrones:
+
+- **Progressive Reveal** — la información aparece en capas conforme el usuario hace scroll.
+- **Micro-achievements** — indicadores visuales al completar una sección o llegar al final.
+- **Knowledge Checkpoints** — el usuario predice antes de ver la respuesta (efecto de generación).
+- **Streaks & Series** — infografías agrupadas en series con progreso visual entre episodios.
+- **Easter Eggs** — detalles ocultos que recompensan la atención.
+
+### Técnicas de Sellado del Conocimiento
+
+| Técnica | Implementación visual |
+|---------|----------------------|
+| **Codificación Dual** | Imagen + texto siempre juntos; el ícono acompaña al título de cada DataCard |
+| **Efecto de Generación** | Checkpoints: el usuario responde antes de ver la respuesta |
+| **Principio de Contraste** | ComparisonGrid: mito vs. realidad, antes vs. después |
+| **Chunking** | Máx. 5±2 items por sección o lista |
+| **Espaciado** | La estructura en series con episodios numerados |
+| **Interrogación Elaborativa** | Títulos formulados como preguntas |
 
 ---
 
@@ -104,32 +187,21 @@ Principios de animación del sistema:
 
 ```
 infografias/
-├── design-system/           # Sistema de diseño base
-│   ├── tokens/              # Colores, tipografía, espaciado como JSON/CSS vars
+├── design-system/           # Sistema de diseño base (próximo)
+│   ├── tokens/              # CSS Custom Properties (colors, type, spacing, effects, fonts)
 │   ├── components/          # Componentes React reutilizables
-│   │   ├── DataCard/
-│   │   ├── StatBadge/
-│   │   ├── TimelineRow/
-│   │   ├── ComparisonGrid/
-│   │   └── AnimatedChart/
-│   ├── layouts/             # Templates de layout por tipo de infografía
-│   │   ├── vertical-scroll/ # Formato story/carrusel
-│   │   ├── radial/          # Diagramas circulares / mindmaps
-│   │   └── timeline/        # Cronologías y procesos
+│   │   ├── core/            # Badge, Button, Card
+│   │   └── infographic/     # StatBadge, DataCard, TimelineRow, ComparisonGrid,
+│   │                        # Checkpoint, ProgressDots, DeltaExplainer
+│   ├── layouts/             # Templates de layout
 │   └── motion/              # Variantes de animación reutilizables
 │
 ├── infografias/             # Las piezas publicadas
-│   ├── [slug]/
-│   │   ├── index.tsx        # Componente de la infografía
-│   │   ├── data.json        # Contenido desacoplado
-│   │   └── preview.png      # Imagen estática exportada
-│   └── ...
+│   └── manifestacion/
+│       └── index.html       # Infografía #001 — Manifestación (standalone HTML)
 │
-├── scripts/                 # Automatización
-│   ├── export.ts            # HTML → PNG/SVG export
-│   └── new-infografia.ts    # CLI para scaffoldear una nueva pieza
-│
-└── docs/                    # Documentación del sistema de diseño
+├── scripts/                 # Automatización (exportación, scaffolding)
+└── docs/                    # Documentación del sistema
     ├── PRINCIPLES.md
     ├── COLOR.md
     └── MOTION.md
@@ -137,13 +209,21 @@ infografias/
 
 ---
 
-## 🚀 Roadmap — Primeras Infografías
+## 🗂️ Infografías publicadas
 
-- [ ] **Sistema de diseño v0** — tokens, componentes base, motion variants
-- [ ] **Infografía #001** — *(tema por definir)*
-- [ ] **Template export pipeline** — automatizar PNG/SVG desde componentes
-- [ ] **Storybook** — documentación visual del design system
-- [ ] **Serie: Aprendizaje Acelerado** — técnicas cognitivas con animación
+| # | Título | Serie | Archivo |
+|---|--------|-------|---------|
+| 01 | Manifestación: la ciencia detrás del deseo | Aprendizaje Acelerado | [`infografias/manifestacion/`](infografias/manifestacion/index.html) |
+
+---
+
+## 🚀 Roadmap
+
+- [x] **Infografía #001** — Manifestación: la ciencia detrás del deseo
+- [ ] **Design system v0** — tokens como archivos CSS, componentes React formales
+- [ ] **Template export pipeline** — PNG/SVG desde componentes React
+- [ ] **Storybook** — documentación visual interactiva del design system
+- [ ] **Infografía #002** — Espaciado óptimo y memoria a largo plazo
 - [ ] **Serie: Ecosistema IA** — mapa del estado actual de la IA
 
 ---
