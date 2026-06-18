@@ -788,7 +788,11 @@ function Infografia() {
   );
 }
 
-function SeriesProgress(){ return <ProgressDots total={6} current={2} accent="data" label="02 / 06" />; }
+function SeriesProgress(){ return (
+  <span style={{ fontFamily:'var(--font-mono)', fontSize:11, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--data-deep)', background:'var(--data-tint)', padding:'4px 10px', borderRadius:'999px' }}>
+    Resistencia · 02
+  </span>
+); }
 
 ReactDOM.createRoot(document.getElementById('root')).render(<Infografia />);
 ReactDOM.createRoot(document.getElementById('series-progress')).render(<SeriesProgress />);
