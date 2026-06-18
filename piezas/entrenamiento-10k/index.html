@@ -1,0 +1,785 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>10K en 12 semanas · Infografías</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <style>
+    :root {
+      --paper:          #FBF7F1;
+      --paper-sunk:     #F4EEE4;
+      --surface:        #FFFDFA;
+      --surface-2:      #F8F2E9;
+      --border:         #EBE3D7;
+      --border-strong:  #DCD1C0;
+      --ink:            #3B3540;
+      --ink-soft:       #6B636F;
+      --ink-faint:      #9A9099;
+
+      --deep:           #262029;
+      --ghost:          #F3EDE4;
+
+      --concept:        #B59ED0;
+      --concept-tint:   #EDE4F4;
+      --concept-deep:   #6E5891;
+
+      --data:           #92ABD0;
+      --data-tint:      #E4EAF3;
+      --data-deep:      #4F6489;
+
+      --action:         #A0C4A8;
+      --action-tint:    #E6F0E6;
+      --action-deep:    #5C8266;
+
+      --attention:      #E8C485;
+      --attention-tint: #F8EFD9;
+      --attention-deep: #A77F3C;
+
+      --alert:          #DD9A8B;
+      --alert-tint:     #F6E2DC;
+      --alert-deep:     #A65C4C;
+
+      --brand:          var(--action);
+      --brand-deep:     var(--action-deep);
+      --brand-tint:     var(--action-tint);
+      --surface-card:   var(--surface);
+      --text-strong:    var(--ink);
+      --text-body:      var(--ink-soft);
+      --text-muted:     var(--ink-faint);
+
+      --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+      --font-body:    'Spectral', Georgia, serif;
+      --font-mono:    'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+      --space-1: 4px;  --space-2: 8px;   --space-3: 12px;
+      --space-4: 16px; --space-5: 20px;  --space-6: 24px;
+      --space-8: 32px; --space-10: 40px; --space-12: 48px;
+      --space-16: 64px; --space-20: 80px; --space-24: 96px;
+
+      --pad-card:    var(--space-6);
+      --pad-card-lg: var(--space-8);
+      --container-story: 720px;
+
+      --radius-xs: 6px;   --radius-sm: 10px; --radius-md: 16px;
+      --radius-lg: 22px;  --radius-xl: 30px; --radius-pill: 999px;
+
+      --shadow-sm: 0 2px 6px rgba(74,58,44,.06), 0 1px 2px rgba(74,58,44,.05);
+      --shadow-md: 0 6px 20px rgba(74,58,44,.08), 0 2px 6px rgba(74,58,44,.05);
+      --shadow-lg: 0 18px 48px rgba(74,58,44,.12), 0 6px 16px rgba(74,58,44,.06);
+
+      --ease-out:    cubic-bezier(0.22, 1, 0.36, 1);
+      --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+      --dur-fast: 140ms; --dur-base: 240ms; --dur-slow: 420ms;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      :root { --dur-fast: 0ms; --dur-base: 0ms; --dur-slow: 0ms; }
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      background: var(--paper);
+      color: var(--ink);
+      font-family: var(--font-body);
+      font-size: 16px;
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .stage { max-width: var(--container-story); margin: 0 auto; padding: 0 24px; }
+
+    .section { padding: var(--space-16) 0; border-bottom: 1px solid var(--border); }
+    .section:last-child { border-bottom: none; }
+
+    .topbar {
+      position: sticky; top: 0; z-index: 20;
+      background: color-mix(in oklch, var(--paper) 88%, transparent);
+      backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--border);
+    }
+    .topbar-inner {
+      max-width: var(--container-story); margin: 0 auto;
+      padding: 12px 24px;
+      display: flex; align-items: center; justify-content: space-between; gap: 16px;
+    }
+    .brand {
+      display: flex; align-items: center; gap: 10px;
+      font-family: var(--font-display); font-weight: 800;
+      font-size: 17px; letter-spacing: -0.02em; color: var(--ink);
+      text-decoration: none;
+    }
+    .brand-seal {
+      width: 22px; height: 22px; border-radius: 50%;
+      background: var(--action); position: relative; flex-shrink: 0;
+    }
+    .brand-seal::after {
+      content: ""; position: absolute; inset: 5px;
+      border-radius: 50%; border: 1.5px solid var(--paper);
+    }
+
+    .progress-bar {
+      position: fixed; left: 0; right: 0; top: 0; height: 3px;
+      background: var(--action); transform-origin: 0 50%;
+      transform: scaleX(0); z-index: 30;
+    }
+
+    .scroll-cue {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-family: var(--font-mono); font-size: 11px;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      color: var(--ink-faint); margin-top: 40px;
+    }
+    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+    .scroll-cue-arrow { animation: bob 1.6s var(--ease-in-out) infinite; }
+
+    .reveal { opacity: 0; transform: translateY(24px); }
+    .eyebrow {
+      font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+      letter-spacing: 0.14em; text-transform: uppercase; color: var(--action-deep);
+    }
+    .stat-row { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .four-col { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+    .two-col  { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+    .chartcard {
+      background: var(--surface-card); border: 1px solid var(--border);
+      border-radius: var(--radius-lg); box-shadow: var(--shadow-md);
+      padding: 24px 26px;
+    }
+    .chartcard .ttl {
+      font-family: var(--font-display); font-weight: 700; font-size: 20px;
+      letter-spacing: -0.01em; color: var(--text-strong); margin: 0 0 2px;
+    }
+    .chartcard .sub {
+      font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--text-muted); margin: 0 0 18px;
+    }
+    .chartcard .note {
+      font-family: var(--font-body); font-style: italic; font-size: 14px;
+      color: var(--text-body); margin: 16px 0 0; max-width: 60ch;
+    }
+
+    .week-pill {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-family: var(--font-mono); font-size: 11px; font-weight: 600;
+      letter-spacing: 0.1em; text-transform: uppercase;
+      background: var(--action-tint); color: var(--action-deep);
+      padding: 3px 10px; border-radius: var(--radius-pill);
+    }
+
+    .footer { text-align: center; padding: var(--space-16) 0 var(--space-24); }
+
+    @media (max-width: 560px) {
+      .stat-row, .two-col { grid-template-columns: 1fr; }
+      .four-col { grid-template-columns: 1fr 1fr; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .reveal { opacity: 1 !important; transform: none !important; }
+      .scroll-cue-arrow { animation: none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="pf"></div>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../../">
+      <div class="brand-seal"></div>
+      infografías<span style="color:var(--action)">.</span>
+    </a>
+    <div id="series-progress"></div>
+  </div>
+</div>
+
+<main class="stage" id="root"></main>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16/dist/plot.umd.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.js"></script>
+
+<script type="text/babel">
+const M = window.Motion || {};
+const P = window.Plot;
+const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+/* ============================================================
+   DESIGN SYSTEM COMPONENTS
+   ============================================================ */
+
+function Badge({ children, accent = 'action', variant = 'soft', dot = false, style = {} }) {
+  const tint = `var(--${accent}-tint)`;
+  const deep = `var(--${accent}-deep)`;
+  const base = `var(--${accent})`;
+  const vs = {
+    soft:    { background: tint, color: deep, border: '1px solid transparent' },
+    solid:   { background: base, color: '#fff', border: '1px solid transparent' },
+    outline: { background: 'transparent', color: deep, border: `1px solid ${base}` },
+  };
+  return (
+    <span style={{ display:'inline-flex', alignItems:'center', gap:6, fontFamily:'var(--font-mono)', fontSize:11, fontWeight:500, letterSpacing:'0.1em', textTransform:'uppercase', padding:'4px 10px', borderRadius:'var(--radius-pill)', whiteSpace:'nowrap', ...vs[variant], ...style }}>
+      {dot && <span style={{ width:6, height:6, borderRadius:'50%', background: variant === 'solid' ? '#fff' : base }} />}
+      {children}
+    </span>
+  );
+}
+
+function Card({ children, accent = null, edge = false, elevation = 'sm', padding = 'var(--pad-card)', interactive = false, style = {}, ...rest }) {
+  const [hov, setHov] = React.useState(false);
+  const shad = { none:'none', sm:'var(--shadow-sm)', md:'var(--shadow-md)', lg:'var(--shadow-lg)' };
+  const lift = interactive && hov;
+  return (
+    <div onMouseEnter={() => interactive && setHov(true)} onMouseLeave={() => interactive && setHov(false)}
+      style={{ position:'relative', background:'var(--surface-card)', borderRadius:'var(--radius-lg)', boxShadow: lift ? shad.md : shad[elevation], border:'1px solid var(--border)', padding, overflow:'hidden', transform: lift ? 'translateY(-2px)' : 'translateY(0)', transition:'transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out)', ...style }} {...rest}>
+      {edge && accent && <span style={{ position:'absolute', left:0, top:0, bottom:0, width:4, background:`var(--${accent})` }} />}
+      {children}
+    </div>
+  );
+}
+
+function StatBadge({ value, unit = '', label = '', prefix = '', accent = 'action', size = 'md', align = 'left', style = {} }) {
+  const deep = `var(--${accent}-deep)`;
+  const s = { sm:{fig:36,unit:16,label:12}, md:{fig:56,unit:20,label:13}, lg:{fig:72,unit:24,label:14} }[size] || { fig:56,unit:20,label:13 };
+  return (
+    <div style={{ display:'flex', flexDirection:'column', alignItems: align==='center'?'center':'flex-start', textAlign:align, gap:4, ...style }}>
+      <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize:s.fig, lineHeight:1, letterSpacing:'-0.03em', color:deep, fontVariantNumeric:'tabular-nums', display:'flex', alignItems:'baseline', gap:4 }}>
+        {prefix && <span style={{ fontSize:s.unit, fontWeight:600 }}>{prefix}</span>}
+        {value}
+        {unit && <span style={{ fontFamily:'var(--font-mono)', fontSize:s.unit, fontWeight:500, color:`var(--${accent})` }}>{unit}</span>}
+      </div>
+      {label && <div style={{ fontFamily:'var(--font-body)', fontSize:s.label, color:'var(--text-body)', lineHeight:1.4, maxWidth:'24ch' }}>{label}</div>}
+    </div>
+  );
+}
+
+function DataCard({ role = null, roleLabel = '', icon = null, title, children, footer = null, elevation = 'sm', style = {} }) {
+  const accent = role || 'action';
+  return (
+    <div style={{ position:'relative', background:'var(--surface-card)', borderRadius:'var(--radius-lg)', boxShadow: elevation==='none'?'none':`var(--shadow-${elevation})`, border:'1px solid var(--border)', padding:'var(--pad-card-lg)', display:'flex', flexDirection:'column', gap:14, ...style }}>
+      <div style={{ display:'flex', alignItems:'center', gap:12, justifyContent:'space-between' }}>
+        {roleLabel ? <Badge accent={accent} dot>{roleLabel}</Badge> : <span />}
+        {icon && <span style={{ display:'inline-flex', alignItems:'center', justifyContent:'center', width:40, height:40, borderRadius:'var(--radius-md)', background:`var(--${accent}-tint)`, color:`var(--${accent}-deep)`, fontSize:20 }}>{icon}</span>}
+      </div>
+      <h3 style={{ margin:0, fontFamily:'var(--font-display)', fontWeight:700, fontSize:22, lineHeight:1.2, letterSpacing:'-0.01em', color:'var(--text-strong)' }}>{title}</h3>
+      {children && <div style={{ fontFamily:'var(--font-body)', fontSize:16, lineHeight:1.6, color:'var(--text-body)' }}>{children}</div>}
+      {footer && <div style={{ marginTop:2, paddingTop:14, borderTop:'1px solid var(--border)', fontFamily:'var(--font-mono)', fontSize:12, color:'var(--text-muted)', letterSpacing:'0.02em' }}>{footer}</div>}
+    </div>
+  );
+}
+
+function ComparisonGrid({ left, right, style = {} }) {
+  const Col = ({ data }) => {
+    const a = data.accent || 'action';
+    return (
+      <div style={{ background:`var(--${a}-tint)`, borderRadius:'var(--radius-md)', border:`1px solid color-mix(in oklch, var(--${a}) 30%, transparent)`, padding:'var(--pad-card)', display:'flex', flexDirection:'column', gap:12 }}>
+        <div style={{ display:'flex', alignItems:'center', gap:8 }}>
+          {data.icon && <span style={{ fontSize:18 }}>{data.icon}</span>}
+          <span style={{ fontFamily:'var(--font-mono)', fontSize:12, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:`var(--${a}-deep)` }}>{data.title}</span>
+        </div>
+        <ul style={{ margin:0, padding:0, listStyle:'none', display:'flex', flexDirection:'column', gap:8 }}>
+          {(data.items||[]).map((it,i) => (
+            <li key={i} style={{ display:'flex', gap:8, alignItems:'flex-start', fontFamily:'var(--font-body)', fontSize:15, lineHeight:1.5, color:'var(--text-strong)' }}>
+              <span style={{ color:`var(--${a}-deep)`, flexShrink:0, marginTop:1 }}>{data.bullet||'•'}</span>
+              <span>{it}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+  return (
+    <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:14, alignItems:'stretch', ...style }}>
+      <Col data={left} /><Col data={right} />
+    </div>
+  );
+}
+
+function TimelineRow({ index = null, marker = null, title, children, accent = 'action', last = false, style = {} }) {
+  return (
+    <div style={{ display:'grid', gridTemplateColumns:'44px 1fr', gap:16, ...style }}>
+      <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
+        <span style={{ flexShrink:0, width:36, height:36, borderRadius:'50%', background:`var(--${accent}-tint)`, color:`var(--${accent}-deep)`, border:`1.5px solid var(--${accent})`, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontWeight:700, fontSize:15 }}>
+          {marker != null ? marker : index}
+        </span>
+        {!last && <span style={{ flex:1, width:2, marginTop:4, background:`linear-gradient(var(--${accent}), var(--border))`, minHeight:24 }} />}
+      </div>
+      <div style={{ paddingBottom: last ? 0 : 28 }}>
+        <h4 style={{ margin:'6px 0 6px', fontFamily:'var(--font-display)', fontWeight:700, fontSize:18, color:'var(--text-strong)', letterSpacing:'-0.01em' }}>{title}</h4>
+        {children && <div style={{ fontFamily:'var(--font-body)', fontSize:15, lineHeight:1.6, color:'var(--text-body)' }}>{children}</div>}
+      </div>
+    </div>
+  );
+}
+
+function Checkpoint({ question, answer, accent = 'attention', prompt = 'Toca para revelar', style = {} }) {
+  const [open, setOpen] = React.useState(false);
+  return (
+    <div style={{ background:'var(--surface-card)', border:`1px solid var(--${accent})`, borderRadius:'var(--radius-lg)', padding:'var(--pad-card-lg)', boxShadow:'var(--shadow-sm)', ...style }}>
+      <div style={{ display:'inline-flex', alignItems:'center', gap:6, fontFamily:'var(--font-mono)', fontSize:11, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:`var(--${accent}-deep)`, marginBottom:10 }}>
+        <span style={{ fontSize:14 }}>?</span> Checkpoint
+      </div>
+      <p style={{ margin:'0 0 16px', fontFamily:'var(--font-display)', fontWeight:700, fontSize:20, lineHeight:1.3, color:'var(--text-strong)' }}>{question}</p>
+      {!open
+        ? <button onClick={() => setOpen(true)} style={{ display:'inline-flex', alignItems:'center', gap:8, background:`var(--${accent}-tint)`, color:`var(--${accent}-deep)`, border:'none', fontFamily:'var(--font-display)', fontWeight:600, fontSize:14, padding:'10px 18px', borderRadius:'var(--radius-pill)', cursor:'pointer', transition:'background var(--dur-base) var(--ease-out)' }}>
+            {prompt} <span aria-hidden="true">↓</span>
+          </button>
+        : <div style={{ background:`var(--${accent}-tint)`, borderRadius:'var(--radius-md)', padding:'14px 16px', fontFamily:'var(--font-body)', fontSize:16, lineHeight:1.6, color:'var(--text-strong)', borderLeft:`3px solid var(--${accent})` }}>
+            {answer}
+          </div>
+      }
+    </div>
+  );
+}
+
+function ProgressDots({ total = 5, current = 1, accent = 'action', label = '' }) {
+  return (
+    <div style={{ display:'flex', alignItems:'center', gap:10 }}>
+      <div style={{ display:'flex', gap:5 }}>
+        {Array.from({length:total}).map((_,i) => (
+          <span key={i} style={{ width: i+1===current?18:8, height:8, borderRadius:'var(--radius-pill)', background: i+1===current?`var(--${accent}-deep)`:i+1<current?`var(--${accent})`:'var(--border)', transition:`all var(--dur-base) var(--ease-out)` }} />
+        ))}
+      </div>
+      {label && <span style={{ fontFamily:'var(--font-mono)', fontSize:11, color:'var(--ink-faint)', letterSpacing:'0.08em' }}>{label}</span>}
+    </div>
+  );
+}
+
+function Reveal({ children, delay = 0, y = 24 }) {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el || !M.inView || !M.animate) { if (el) { el.style.opacity=1; el.style.transform='none'; } return; }
+    const stop = M.inView(el, () => {
+      M.animate(el, { opacity:[0,1], transform:[`translateY(${y}px)`,'translateY(0px)'] }, { type:'spring', stiffness:260, damping:22, delay });
+    }, { margin:'-80px' });
+    return stop;
+  }, []);
+  return <div ref={ref} className="reveal">{children}</div>;
+}
+
+function PlotFigure({ options, ariaLabel = '' }) {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    if (!ref.current || !P) return;
+    const chart = P.plot(options);
+    if (ariaLabel) chart.setAttribute('aria-label', ariaLabel);
+    ref.current.innerHTML = '';
+    ref.current.appendChild(chart);
+    return () => { if (ref.current) ref.current.innerHTML = ''; };
+  }, [options]);
+  return <div ref={ref} />;
+}
+
+function Kicker({ children, accent = 'action' }) {
+  return <p style={{ fontFamily:'var(--font-mono)', fontSize:12, letterSpacing:'0.12em', textTransform:'uppercase', color:`var(--${accent}-deep)`, margin:'0 0 10px', fontWeight:600 }}>{children}</p>;
+}
+
+function H2({ children }) {
+  return <h2 style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:'clamp(22px,4vw,32px)', lineHeight:1.15, letterSpacing:'-0.02em', color:'var(--ink)', margin:'0 0 8px', textWrap:'balance' }}>{children}</h2>;
+}
+
+function Lead({ children, style = {} }) {
+  return <p style={{ fontFamily:'var(--font-body)', fontSize:16, lineHeight:1.65, color:'var(--ink-soft)', maxWidth:'58ch', margin:'0 0 20px', ...style }}>{children}</p>;
+}
+
+/* ============================================================
+   DATA
+   ============================================================ */
+
+// Run-block and walk-block (minutes) per interval in each of the 12 weeks
+const blockData = [];
+const weeks = [
+  { run:2, walk:4 }, // 1
+  { run:2, walk:3 }, // 2
+  { run:3, walk:3 }, // 3
+  { run:3, walk:2 }, // 4
+  { run:4, walk:2 }, // 5
+  { run:5, walk:2 }, // 6
+  { run:6, walk:2 }, // 7
+  { run:8, walk:2 }, // 8
+  { run:10,walk:2 }, // 9
+  { run:12,walk:2 }, // 10
+  { run:15,walk:2 }, // 11
+  { run:5, walk:2 }, // 12 taper
+];
+weeks.forEach((w, i) => {
+  blockData.push({ semana: i+1, tipo: 'Carrera', min: w.run });
+  blockData.push({ semana: i+1, tipo: 'Caminata', min: w.walk });
+});
+
+// Session-2 distances (the longer weekly run) — km
+const distData = [
+  { semana:1,  km:2.74 },
+  { semana:2,  km:2.93 },
+  { semana:3,  km:3.64 },
+  { semana:4,  km:3.77 },
+  { semana:5,  km:4.63 },
+  { semana:6,  km:5.49 },
+  { semana:7,  km:7.40 },
+  { semana:8,  km:6.71 },
+  { semana:9,  km:8.14 },
+  { semana:10, km:9.57 },
+  { semana:11, km:9.37 },
+  { semana:12, km:10.00 },
+];
+
+/* ============================================================
+   INFOGRAPHIC
+   ============================================================ */
+function Infografia() {
+  const ACTION      = cssVar('--action');
+  const ACTION_DEEP = cssVar('--action-deep');
+  const ACTION_TINT = cssVar('--action-tint');
+  const BORDER      = cssVar('--border');
+  const RULE        = cssVar('--ink-faint');
+
+  const blockOpts = React.useMemo(() => ({
+    height: 240, marginLeft: 44,
+    x: { label: 'semana →', ticks: 12, tickFormat: d => d },
+    y: { label: '↑ min / bloque', grid: true },
+    color: {
+      legend: true,
+      domain: ['Caminata', 'Carrera'],
+      range:  [ACTION_TINT, ACTION_DEEP],
+    },
+    marks: [
+      P.barY(blockData, { x: 'semana', y: 'min', fill: 'tipo', order: ['Caminata', 'Carrera'] }),
+      P.ruleY([0]),
+      P.ruleX([11.5], { stroke: RULE, strokeDasharray: '3,4' }),
+    ],
+  }), [ACTION, ACTION_DEEP, ACTION_TINT, RULE]);
+
+  const distOpts = React.useMemo(() => ({
+    height: 220, marginLeft: 44,
+    x: { label: 'semana →', ticks: 12 },
+    y: { label: '↑ km (sesión larga)', grid: true },
+    marks: [
+      P.areaY(distData, { x:'semana', y:'km', fill:ACTION, fillOpacity:0.14, curve:'catmull-rom' }),
+      P.lineY(distData, { x:'semana', y:'km', stroke:ACTION_DEEP, strokeWidth:2.5, curve:'catmull-rom' }),
+      P.dot(distData, { x:'semana', y:'km', fill:ACTION_DEEP, r:4 }),
+      P.ruleX([11.5], { stroke:RULE, strokeDasharray:'3,4' }),
+      P.text([{ semana:11.5, km:5.5, t:'Taper' }], { x:'semana', y:'km', text:'t', dx:-6, textAnchor:'end', fill:RULE, fontSize:11, fontWeight:600 }),
+      P.ruleY([10], { stroke:RULE, strokeDasharray:'3,4' }),
+      P.text([{ semana:5, km:10.4, t:'10 km' }], { x:'semana', y:'km', text:'t', fill:RULE, fontSize:11, fontWeight:600 }),
+    ],
+  }), [ACTION, ACTION_DEEP, RULE]);
+
+  const h1Style = { fontFamily:'var(--font-display)', fontWeight:800, fontSize:'clamp(36px,8vw,64px)', lineHeight:1.02, letterSpacing:'-0.03em', color:'var(--ink)', margin:'14px 0 0', textWrap:'balance' };
+
+  return (
+    <>
+      {/* ── HERO ─────────────────────────────────────────── */}
+      <section className="section" style={{ paddingTop:'var(--space-20)', borderBottom:'none' }}>
+        <Reveal>
+          <span style={{ display:'inline-block', width:46, height:46, borderRadius:'50%', background:'var(--action)', position:'relative', boxShadow:'var(--shadow-sm)' }}>
+            <span style={{ position:'absolute', inset:11, borderRadius:'50%', border:'2.5px solid var(--paper)', display:'block' }} />
+          </span>
+          <div className="eyebrow" style={{ marginTop:20 }}>Serie · Resistencia · 01</div>
+          <h1 style={h1Style}>
+            10K en 12 semanas:<br />
+            <em style={{ fontStyle:'normal', color:'var(--action-deep)' }}>el método que protege</em>
+          </h1>
+          <p style={{ fontFamily:'var(--font-body)', fontSize:19, lineHeight:1.6, color:'var(--ink-soft)', maxWidth:'54ch', margin:'20px 0 0' }}>
+            Del primer trote de 2 minutos a cruzar la meta de los 10 kilómetros. Un plan de fisiología aplicada que entrena tu respiración, protege tus rodillas y elimina el miedo al esfuerzo.
+          </p>
+          <div className="scroll-cue"><span className="scroll-cue-arrow">↓</span> Desplázate para entrenar</div>
+        </Reveal>
+      </section>
+
+      {/* ── CIFRAS CLAVE ─────────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker>El plan en cuatro números</Kicker>
+        </Reveal>
+        <div className="four-col" style={{ marginTop:16 }}>
+          {[
+            { val:'12', unit:' sem', label:'de periodización progresiva', accent:'action' },
+            { val:'2',  unit:' ses', label:'de carrera por semana (mié y sáb)', accent:'action' },
+            { val:'3',  unit:' gym', label:'sesiones de fuerza semanal (lun, jue, dom)', accent:'data' },
+            { val:'480',unit:' m',  label:'por vuelta — el circuito exacto del plan', accent:'attention' },
+          ].map((d,i) => (
+            <Reveal key={i} delay={i*0.06}>
+              <div style={{ background:'var(--surface-card)', border:'1px solid var(--border)', borderRadius:'var(--radius-lg)', padding:'20px 18px', boxShadow:'var(--shadow-sm)' }}>
+                <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize:'clamp(32px,6vw,44px)', lineHeight:1, letterSpacing:'-0.03em', color:`var(--${d.accent}-deep)`, display:'flex', alignItems:'baseline', gap:4 }}>
+                  {d.val}<span style={{ fontFamily:'var(--font-mono)', fontSize:16, fontWeight:500, color:`var(--${d.accent})` }}>{d.unit}</span>
+                </div>
+                <p style={{ fontFamily:'var(--font-body)', fontSize:13, lineHeight:1.4, color:'var(--ink-soft)', marginTop:8 }}>{d.label}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── SEMANA TIPO ──────────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker>Distribución semanal</Kicker>
+          <H2>Cada semana, el mismo ritmo</H2>
+          <Lead>48 horas entre sesiones de impacto para que el tejido conectivo de la rodilla se regenere. Nunca correr dos días seguidos.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(7, 1fr)', gap:8 }}>
+            {[
+              { dia:'Lun', tipo:'Gimnasio', sub:'Fuerza', accent:'data' },
+              { dia:'Mar', tipo:'Descanso', sub:'Activo', accent:'concept' },
+              { dia:'Mié', tipo:'Carrera 1', sub:'Volumen bajo', accent:'action' },
+              { dia:'Jue', tipo:'Gimnasio', sub:'Unilateral', accent:'data' },
+              { dia:'Vie', tipo:'Descanso', sub:'Completo', accent:'concept' },
+              { dia:'Sáb', tipo:'Carrera 2', sub:'Sesión larga', accent:'action' },
+              { dia:'Dom', tipo:'Gimnasio', sub:'Funcional', accent:'data' },
+            ].map((d,i) => (
+              <div key={i} style={{ background: d.accent==='action' ? 'var(--action-tint)' : d.accent==='data' ? 'var(--data-tint)' : 'var(--paper-sunk)', border:`1px solid color-mix(in oklch, var(--${d.accent}) 30%, transparent)`, borderRadius:'var(--radius-md)', padding:'12px 10px', textAlign:'center', display:'flex', flexDirection:'column', gap:4 }}>
+                <span style={{ fontFamily:'var(--font-mono)', fontSize:10, fontWeight:600, letterSpacing:'0.12em', textTransform:'uppercase', color:`var(--${d.accent}-deep)` }}>{d.dia}</span>
+                <span style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:13, color:'var(--ink)', lineHeight:1.2 }}>{d.tipo}</span>
+                <span style={{ fontFamily:'var(--font-body)', fontSize:11, color:'var(--ink-faint)' }}>{d.sub}</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── CHART 1: PROGRESIÓN DEL BLOQUE ───────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker>La progresión</Kicker>
+          <H2>El bloque de carrera crece cada semana</H2>
+          <Lead>Empiezas con 2 minutos de carrera y 4 de caminata. Al final el bloque de carrera es 7 veces más largo. El cerebro aprende a no temer el esfuerzo porque cada paso es predecible.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <div className="chartcard">
+            <p className="ttl">Carrera vs. caminata por bloque de intervalo</p>
+            <p className="sub">minutos · semana 1 → 12 · la semana 12 es descarga</p>
+            <PlotFigure options={blockOpts} ariaLabel="Progresión semanal del bloque de carrera vs caminata" />
+            <p className="note">La línea punteada marca la semana 12: el taper reduce el volumen para llegar fresco al día de la carrera. La proporción de carrera sube de 33% a 88% a lo largo del plan.</p>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── LAS 4 FASES ──────────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker>Las cuatro fases</Kicker>
+          <H2>De la base al día de carrera</H2>
+          <Lead>El cuerpo no mejora con esfuerzo constante — mejora con carga creciente seguida de asimilación. Cuatro bloques, cada uno con un objetivo fisiológico claro.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <Card elevation="sm" padding="var(--space-8)">
+            <TimelineRow index={1} accent="action" title="Fundación · sem 1–3 · bloques de 2-3 min">
+              Acondicionamiento del tejido conectivo y reeducación respiratoria. La frecuencia vale más que la intensidad: que el cuerpo se acostumbre al impacto y aprenda la respiración diafragmática antes de exigirle más.
+            </TimelineRow>
+            <TimelineRow index={2} accent="data" title="Construcción · sem 4–6 · bloques de 3-5 min">
+              La proporción carrera/caminata supera el 60%. El diafragma ya conoce el esfuerzo; aquí se afinan los patrones rítmicos 3:2 y el control postural para proteger las rodillas.
+            </TimelineRow>
+            <TimelineRow index={3} accent="attention" title="Desarrollo · sem 7–11 · bloques de 6-15 min">
+              Bloques largos de carrera continua. El sistema cardiovascular se adapta con mayor rapidez que los tendones — respetar el plan evita lesiones por sobrecarga en esta fase crítica.
+            </TimelineRow>
+            <TimelineRow marker="✓" accent="alert" title="Taper + Carrera · sem 12" last>
+              Reducción deliberada al 30% del volumen. La forma física no se pierde en una semana — pero la fatiga acumulada sí se disipa. Llegas a la salida descansado y en el punto exacto de forma.
+            </TimelineRow>
+          </Card>
+        </Reveal>
+      </section>
+
+      {/* ── CHART 2: DISTANCIA ────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker>La distancia</Kicker>
+          <H2>Semana a semana, cada vez más lejos</H2>
+          <Lead>La sesión larga de cada semana crece de 2.7 km a 10 km. Los dientes de sierra en semanas 8 y 11 son las semanas de descarga: suben más alto porque el anterior te dejó asimilar.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <div className="chartcard">
+            <p className="ttl">Distancia de la sesión larga (sesión 2)</p>
+            <p className="sub">kilómetros · ritmo 7:00 min/km de carrera · 10:00 min/km de caminata</p>
+            <PlotFigure options={distOpts} ariaLabel="Progresión de distancia en la sesión larga semanal" />
+            <p className="note">La meta aparece como una línea horizontal en 10 km. La semana 12 la cruza — no como récord de velocidad, sino como resultado de 12 semanas de constancia.</p>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── RESPIRACIÓN ──────────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="concept">El control respiratorio</Kicker>
+          <H2>El patrón rítmico que elimina el flato</H2>
+          <Lead>El dolor abdominal (ETAP) no viene del bazo ni del hígado — viene de exhalar siempre en el mismo pie. Cambiar el patrón lo elimina.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <ComparisonGrid
+            left={{ title: 'Error: exhalación fija', accent: 'alert', icon: '✕', bullet: '×', items: [
+              'Exhalar siempre en el pie derecho → tracción repetida sobre los ligamentos del hígado',
+              'El diafragma sube cuando el pie derecho baja → fuerza opuesta → espasmo',
+              'La respiración de pecho agrava la isquemia diafragmática',
+            ]}}
+            right={{ title: 'Patrón 3:2 (sem 1–6)', accent: 'action', icon: '✓', bullet: '→', items: [
+              'Inhala en 3 apoyos (izq-der-izq), exhala en 2 apoyos (der-izq)',
+              'La exhalación alterna entre ambos pies: el impacto se distribuye',
+              'Practica primero caminando, luego en los bloques de carrera',
+            ]}}
+          />
+        </Reveal>
+        <Reveal delay={0.1}>
+          <DataCard role="concept" roleLabel="Semanas 7-12" icon="◐"
+            title="Patrón 2:1 para mayor demanda"
+            footer="American Lung Association · Runners Connect"
+            elevation="sm" style={{ marginTop:14 }}>
+            Cuando el bloque supera los 6 minutos y la frecuencia cardíaca sube, el 3:2 no ventila suficiente. El patrón 2:1 (inhala 2 apoyos, exhala 1) duplica la ventilación por minuto sin perder el alternado.
+          </DataCard>
+        </Reveal>
+        <Reveal delay={0.14}>
+          <div style={{ background:'var(--action-tint)', border:'1px solid color-mix(in oklch, var(--action) 40%, transparent)', borderRadius:'var(--radius-md)', padding:'var(--pad-card)', marginTop:14 }}>
+            <p style={{ fontFamily:'var(--font-mono)', fontSize:11, letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--action-deep)', marginBottom:10, fontWeight:600 }}>Protocolo de retrenamiento diario (2x al día, en reposo)</p>
+            <div style={{ display:'flex', flexDirection:'column', gap:6 }}>
+              {[
+                ['1','Túmbate boca arriba, rodillas flexionadas, mano en pecho y mano en abdomen'],
+                ['2','Inhala por la nariz 4 s: solo debe subir la mano del abdomen'],
+                ['3','Mantén 2 s'],
+                ['4','Exhala suave por nariz/boca 6 s: el vientre desciende'],
+              ].map(([n,t]) => (
+                <div key={n} style={{ display:'flex', gap:10, alignItems:'flex-start' }}>
+                  <span style={{ fontFamily:'var(--font-mono)', fontSize:13, fontWeight:700, color:'var(--action-deep)', width:18, flexShrink:0, paddingTop:1 }}>{n}</span>
+                  <span style={{ fontFamily:'var(--font-body)', fontSize:15, lineHeight:1.5, color:'var(--ink)' }}>{t}</span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── BIOMECÁNICA ──────────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="alert">Protección articular</Kicker>
+          <H2>El error que destruye las rodillas</H2>
+          <Lead>El <em>overstriding</em> — aterrizar el pie por delante del centro de gravedad — convierte las fuerzas de impacto en daño articular directo. La solución es sencilla: más pasos por minuto.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <ComparisonGrid
+            left={{ title: 'Overstriding', accent: 'alert', icon: '✕', bullet: '✕', items: [
+              'Pie aterriza adelantado → rodilla casi en extensión completa',
+              'Sin flexión de rodilla, los cuádriceps no absorben el impacto',
+              'La onda de choque viaja directo al cartílago y la rótula',
+              'Resultado: inflamación crónica y tendopatía rotuliana',
+            ]}}
+            right={{ title: 'Aterrizaje eficiente', accent: 'action', icon: '✓', bullet: '✓', items: [
+              'Pie cae debajo de las caderas → rodilla ligeramente flexionada',
+              'Los glúteos e isquiotibiales absorben el impacto de forma elástica',
+              'Aumentar la cadencia 5-10% reduce la carga en rodilla hasta un 20%',
+              'Objetivo progresivo: llegar a 170-180 pasos por minuto',
+            ]}}
+          />
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div style={{ background:'var(--attention-tint)', border:'1px solid color-mix(in oklch, var(--attention) 40%, transparent)', borderRadius:'var(--radius-md)', padding:'var(--pad-card)', marginTop:14 }}>
+            <p style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:15, color:'var(--attention-deep)', marginBottom:6 }}>Señal de alarma</p>
+            <p style={{ fontFamily:'var(--font-body)', fontSize:15, lineHeight:1.5, color:'var(--ink-soft)', margin:0 }}>Si sientes dolor de rodilla durante o después de correr, detente y revisa la cadencia antes de continuar. El dolor no es debilidad — es señal de que el impacto excede la capacidad actual del tejido.</p>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── PROTOCOLO ETAP ───────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="alert">Protocolo de crisis</Kicker>
+          <H2>El flato aparece. Estos 4 pasos lo eliminan.</H2>
+          <Lead>Aplicar estos pasos en orden tarda menos de 60 segundos. Detenerse de golpe es el único error real — eleva el pánico e impide que el diafragma se regule.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <Card elevation="sm" padding="var(--space-8)">
+            <TimelineRow index={1} accent="alert" title="Reduce el ritmo progresivamente">
+              Baja a caminata suave. No pares de golpe: la desaceleración brusca dispara la respuesta de pánico e impide la regulación diafragmática.
+            </TimelineRow>
+            <TimelineRow index={2} accent="alert" title="Presión y flexión del tronco">
+              Aplica presión con los dedos sobre la zona dolorosa e inclina el torso ligeramente hacia adelante mientras exhalas profundo. Alivia la tensión ligamentosa.
+            </TimelineRow>
+            <TimelineRow index={3} accent="alert" title="Invierte la sincronía del impacto">
+              Dolor en el lado derecho: exhala cuando aterriza el <strong>pie izquierdo</strong>. Dolor en el lado izquierdo: exhala cuando aterriza el <strong>pie derecho</strong>. Esto invierte las fuerzas de tracción sobre los ligamentos.
+            </TimelineRow>
+            <TimelineRow marker="✓" accent="alert" title="Respiración con labios fruncidos (soplo de vela)" last>
+              Inhala por nariz 3 s → exhala por labios fruncidos 5 s, como apagar una vela. Repite 3–5 veces. Restaura el CO₂ y disipa el espasmo diafragmático. Reanuda el trote suave.
+            </TimelineRow>
+          </Card>
+        </Reveal>
+      </section>
+
+      {/* ── CHECKPOINT ───────────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="attention">Checkpoint · Generación activa</Kicker>
+          <Checkpoint
+            question="¿Por qué el dolor de costado desaparece al exhalar en el pie opuesto al dolor?"
+            answer="Porque el dolor viene de la tracción mecánica sobre los ligamentos suspensorios del hígado (dolor derecho) o del estómago (dolor izquierdo). Esos órganos bajan con la gravedad al impactar el pie del mismo lado — justo cuando el diafragma sube al exhalar. Exhalar en el pie contrario invierte esa sincronía: el diafragma ya ha bajado antes de que el órgano sea empujado, eliminando la fuerza de tracción opuesta."
+            accent="attention"
+          />
+        </Reveal>
+      </section>
+
+      {/* ── CIERRE ───────────────────────────────────────── */}
+      <section className="section" style={{ borderBottom:'none' }}>
+        <Reveal>
+          <Card accent="action" edge elevation="lg" padding="var(--space-10)">
+            <Kicker accent="action">Lo que te llevas</Kicker>
+            <h2 style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:'clamp(22px,4vw,30px)', lineHeight:1.15, letterSpacing:'-0.02em', color:'var(--ink)', margin:'12px 0 16px', textWrap:'balance' }}>
+              12 semanas de constancia aburrida. Un 10K glorioso.
+            </h2>
+            <div style={{ display:'flex', flexDirection:'column', gap:9, marginBottom:24 }}>
+              {[
+                ['✓','action','2 sesiones de carrera + 3 de fuerza por semana — siempre con 48h de descanso entre impactos'],
+                ['✓','action','Bloque de carrera crece de 2 min a 15 min — el cerebro aprende a no temer el esfuerzo porque cada paso es predecible'],
+                ['✓','concept','Patrón 3:2 (sem 1-6) y 2:1 (sem 7-12): la respiración alterna el impacto y elimina el flato'],
+                ['✓','data','Cadencia progresiva hacia 170-180 SPM: pie bajo la cadera, rodilla flexionada, impacto elástico'],
+                ['✓','alert','Protocolo de 4 pasos para el flato: reduce ritmo → presión → invierte sincronía → soplo de vela'],
+                ['✓','attention','El taper no es pereza — es la herramienta que hace que el trabajo de 11 semanas se exprese en el día correcto'],
+              ].map(([icon, accent, text], i) => (
+                <div key={i} style={{ display:'flex', gap:10, alignItems:'flex-start' }}>
+                  <span style={{ color:`var(--${accent}-deep)`, fontWeight:700, flexShrink:0, paddingTop:1 }}>{icon}</span>
+                  <span style={{ fontFamily:'var(--font-body)', fontSize:15, lineHeight:1.5, color:'var(--ink-soft)' }}>{text}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ display:'flex', gap:12, flexWrap:'wrap', alignItems:'center' }}>
+              <Badge accent="action" dot>Episodio completado</Badge>
+              <span style={{ fontFamily:'var(--font-mono)', fontSize:11, color:'var(--ink-faint)', letterSpacing:'0.06em' }}>
+                Siguiente: Nutrición para el corredor →
+              </span>
+            </div>
+          </Card>
+        </Reveal>
+      </section>
+
+      <div className="footer">
+        <div className="eyebrow" style={{ color:'var(--ink-faint)' }}>Hecho con Motion.dev + Observable Plot · Infografías Design System · 2026</div>
+        <p style={{ fontFamily:'var(--font-body)', fontSize:12, color:'var(--ink-faint)', marginTop:8, lineHeight:1.6, maxWidth:'58ch', margin:'8px auto 0' }}>
+          Fuentes: Fisiología del Ejercicio y Biomecánica Aplicada (Gemini, 2026) · Runlovers · American Lung Association · Runners Connect · Ivy Rehab · Bompa — Periodización del Entrenamiento
+        </p>
+      </div>
+    </>
+  );
+}
+
+function SeriesProgress() {
+  return <ProgressDots total={6} current={1} accent="action" label="01 / 06" />;
+}
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Infografia />);
+ReactDOM.createRoot(document.getElementById('series-progress')).render(<SeriesProgress />);
+
+const pf = document.getElementById('pf');
+function onScroll() {
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  pf.style.transform = `scaleX(${max > 0 ? h.scrollTop / max : 0})`;
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
+</body>
+</html>
