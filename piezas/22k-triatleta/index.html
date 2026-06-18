@@ -393,6 +393,156 @@ const discData=[];
   if(g>0) discData.push({semana:w,disciplina:'Gimnasio',horas:+(g/60).toFixed(2)});
 });
 
+/* ── WEEK-BY-WEEK DATA (22K) ──────────────────────────────── */
+const weeks22kData = [
+  { num:1, fase:'Base', accent:'concept',
+    tip:'Establece el ritmo de Zona 2 en el fondo. Si puedes hablar en frases completas, vas bien. El tempo del miércoles es la primera referencia de umbral.',
+    r1:{ tipo:'Tempo', km:6, dur:42, estr:'1.5K cal + 3K Tempo (6:40 min/km) + 1.5K enf' },
+    r2:{ tipo:'Fondo Z2', km:8, dur:62, estr:'8K continuo en Zona 2 (7:45 min/km)' },
+    swim:'50 min c/u · Técnica crol (Mar) + Aeróbico continuo (Jue)',
+    gym:'45 min c/u · Tren superior (Lun) + Tren inferior (Vie)', totalH:'4h 54'
+  },
+  { num:2, fase:'Base', accent:'concept',
+    tip:'Primeros intervalos de 800m. La recuperación de 90s es activa (trote suave) — no te pares. El objetivo es mantener 5:50 en todos los 800m.',
+    r1:{ tipo:'Intervalos 800m', km:7, dur:46, estr:'1.5K cal + 4×800m (5:50 min/km, recup 90s trote) + 1.5K enf' },
+    r2:{ tipo:'Fondo Z2', km:10, dur:77, estr:'10K continuo en Zona 2 (7:45 min/km)' },
+    swim:'50 min c/u · Técnica + intervalos (Mar) + Fraccionados (Jue)',
+    gym:'45 min c/u · Tren superior (Lun) + Tren inferior (Vie)', totalH:'5h 33'
+  },
+  { num:3, fase:'Base', accent:'concept',
+    tip:'El Tempo de 4K es el más largo hasta ahora. Mantén 6:40 min/km constante — no empieces más rápido pensando que aguantarás. El ritmo uniforme es el objetivo.',
+    r1:{ tipo:'Tempo', km:8, dur:55, estr:'2K cal + 4K Tempo (6:40 min/km) + 2K enf' },
+    r2:{ tipo:'Fondo Z2', km:12, dur:93, estr:'12K continuo en Zona 2 (7:45 min/km)' },
+    swim:'50 min c/u · Drills específicos (Mar) + Resistencia continua (Jue)',
+    gym:'45 min c/u · Tren superior (Lun) + Tren inferior (Vie)', totalH:'6h 18'
+  },
+  { num:4, fase:'Descarga', accent:'data',
+    tip:'Semana de descarga — el cuerpo asimila las 3 semanas de base. No hay que ir rápido ni forzar. El tejido conectivo se adapta más lento que el cardiovascular.',
+    r1:{ tipo:'Recovery Z2', km:5, dur:39, estr:'5K suave de recuperación en Zona 2 (7:45 min/km)' },
+    r2:{ tipo:'Trote regenerativo', km:8, dur:62, estr:'8K trote conversacional regenerativo (7:45 min/km)' },
+    swim:'40 min c/u · Natación suave (Mar) + Soltura en agua (Jue)',
+    gym:'30 min c/u · Core y estiramientos (Lun) + Movilidad articular (Vie)', totalH:'4h 21'
+  },
+  { num:5, fase:'Desarrollo', accent:'data',
+    tip:'5×800m con 2 min de recuperación (más largo que en S2). El volumen del miércoles sube. La recuperación más larga permite mantener la calidad en todos los intervalos.',
+    r1:{ tipo:'Intervalos 800m', km:8, dur:53, estr:'2K cal + 5×800m (5:50 min/km, recup 2 min) + 2K enf' },
+    r2:{ tipo:'Fondo Z2', km:14, dur:108, estr:'14K resistencia progresiva en Zona 2 (7:45 min/km)' },
+    swim:'55 min c/u · Técnica y velocidad (Mar) + Series de umbral (Jue)',
+    gym:'50 min c/u · Tren superior (Lun) + Tren inferior (Vie)', totalH:'6h 51'
+  },
+  { num:6, fase:'Desarrollo', accent:'data',
+    tip:'5K de Tempo — la sesión de calidad más larga hasta ahora. Si en el km 4 vas bien, considera acelerar ligeramente los últimos 500m para sentir el ritmo de carrera objetivo.',
+    r1:{ tipo:'Tempo', km:9, dur:61, estr:'2K cal + 5K Tempo (6:40 min/km) + 2K enf' },
+    r2:{ tipo:'Fondo Z2', km:15, dur:116, estr:'15K sostenido en Zona 2 (7:45 min/km)' },
+    swim:'55 min c/u · Fraccionados rápidos (Mar) + Fondo continuo (Jue)',
+    gym:'50 min c/u · Tren superior (Lun) + Tren inferior (Vie)', totalH:'7h 07'
+  },
+  { num:7, fase:'Desarrollo', accent:'data',
+    tip:'Intervalos de 1600m (1 milla) a 6:15 min/km — más lentos que los 800m pero mucho más largos. La recuperación de 3 min es activa. Aquí se eleva el umbral de verdad.',
+    r1:{ tipo:'Intervalos 1600m', km:9, dur:59, estr:'2K cal + 3×1600m (6:15 min/km, recup 3 min trote) + 2K enf' },
+    r2:{ tipo:'Fondo Z2', km:16, dur:124, estr:'16K sostenido en Zona 2 (7:45 min/km)' },
+    swim:'55 min c/u · Resistencia aeróbica (Mar) + Test de umbral (Jue)',
+    gym:'50 min c/u · Tren superior (Lun) + Tren inferior (Vie)', totalH:'7h 13'
+  },
+  { num:8, fase:'Descarga', accent:'data',
+    tip:'Segunda descarga del plan. El cuerpo necesita esta ventana — el tejido conectivo progresa más lento que el cardiovascular. No añadir ni una zancada extra.',
+    r1:{ tipo:'Recovery Z2', km:6, dur:46, estr:'6K suave de recuperación en Zona 2 (7:45 min/km)' },
+    r2:{ tipo:'Trote regenerativo', km:10, dur:77, estr:'10K trote conversacional regenerativo (7:45 min/km)' },
+    swim:'40 min c/u · Natación técnica (Mar) + Recuperación activa (Jue)',
+    gym:'30 min c/u · Core y movilidad (Lun) + Descarga miofascial (Vie)', totalH:'4h 43'
+  },
+  { num:9, fase:'Pico', accent:'attention',
+    tip:'El Tempo más largo del plan: 6K. En el fondo del sábado (18K) introduces la ingesta de gel desde el min 45. Esta semana es el primer ensayo de la estrategia nutricional.',
+    r1:{ tipo:'Tempo', km:10, dur:68, estr:'2K cal + 6K Tempo (6:40 min/km) + 2K enf' },
+    r2:{ tipo:'Fondo largo Z2', km:18, dur:139, estr:'18K de larga duración en Zona 2 (7:45 min/km)' },
+    swim:'60 min c/u · Combinación de estilos (Mar) + Series de fondo (Jue)',
+    gym:'55 min c/u · Tren superior (Lun) + Tren inferior (Vie)', totalH:'7h 57'
+  },
+  { num:10, fase:'Pico', accent:'attention',
+    tip:'Semana cumbre. El fondo del sábado es 20K con los últimos 5K a ritmo de carrera (6:50 min/km) — el ensayo metabólico definitivo. Aquí el cuerpo aprende a llegar a meta.',
+    r1:{ tipo:'Intervalos 1000m', km:10, dur:66, estr:'2K cal + 4×1000m (5:55 min/km, recup 3 min) + 2K enf' },
+    r2:{ tipo:'Fondo combinado', km:20, dur:155, estr:'15K Z2 (7:45 min/km) + 5K finales a ritmo objetivo (6:50 min/km)' },
+    swim:'60 min c/u · Técnica e intervalos (Mar) + Trabajo con aletas (Jue)',
+    gym:'55 min c/u · Tren superior (Lun) + Tren inferior (Vie)', totalH:'8h 11'
+  },
+  { num:11, fase:'Taper', accent:'alert',
+    tip:'Reducción del 40% del volumen. Las ganancias ya están hechas — ahora se elimina la fatiga. No ir más rápido de lo prescrito aunque "sientas" más energía. Es la trampa del taper.',
+    r1:{ tipo:'Tempo (taper)', km:7, dur:48, estr:'2K cal + 3K Tempo (6:40 min/km) + 2K enf' },
+    r2:{ tipo:'Fondo reducido', km:12, dur:93, estr:'12K reducción de volumen en Zona 2 (7:45 min/km)' },
+    swim:'45 min c/u · Natación regenerativa (Mar) + Soltura en agua (Jue)',
+    gym:'40 min c/u · Core y movilidad (Lun) + Fuerza ligera mantenimiento (Vie)', totalH:'5h 11'
+  },
+  { num:12, fase:'Carrera ★', accent:'alert',
+    tip:'Miércoles: activación suave de 4K, no más. Resto de la semana: descanso, hidratación y carga de carbohidratos. El día de la carrera: sal a 6:55 los primeros 5K, aunque sientas que puedes más.',
+    r1:{ tipo:'Activación', km:4, dur:30, estr:'Trote activación + 3×100m progresivos (Mié)' },
+    r2:{ tipo:'COMPETICIÓN ★', km:22, dur:150, estr:'22K · ritmo objetivo 6:45–6:55 min/km (Dom)' },
+    swim:'30 min · Natación muy suave de soltura (Mar solamente)',
+    gym:'Sin sesiones — descanso y carga de hidratos', totalH:'3h 30'
+  },
+];
+
+function WeekNavigator22k() {
+  const [sel, setSel] = React.useState(1);
+  const w = weeks22kData[sel - 1];
+  const isRace = sel === 12;
+  const SessionRow = ({ s, dia, label }) => (
+    <div style={{ background:'var(--paper)', border:'1px solid var(--border)', borderRadius:'var(--radius-md)', padding:'12px 14px', display:'flex', flexDirection:'column', gap:6 }}>
+      <div style={{ display:'flex', justifyContent:'space-between', alignItems:'center', flexWrap:'wrap', gap:4 }}>
+        <span style={{ fontFamily:'var(--font-mono)', fontSize:10, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:`var(--${w.accent}-deep)` }}>{dia} · {label}</span>
+        <span style={{ display:'flex', gap:10 }}>
+          <span style={{ fontFamily:'var(--font-mono)', fontSize:10, color:'var(--text-muted)' }}>{s.km} km</span>
+          <span style={{ fontFamily:'var(--font-mono)', fontSize:10, color:'var(--text-muted)' }}>{s.dur} min</span>
+        </span>
+      </div>
+      <span style={{ fontFamily:'var(--font-mono)', fontSize:10, fontWeight:700, letterSpacing:'0.08em', textTransform:'uppercase', color:`var(--${w.accent})`, background:`var(--${w.accent}-tint)`, padding:'2px 8px', borderRadius:'var(--radius-pill)', width:'fit-content' }}>{s.tipo}</span>
+      <p style={{ fontFamily:'var(--font-body)', fontSize:13, lineHeight:1.45, color:'var(--text-body)', margin:0 }}>{s.estr}</p>
+    </div>
+  );
+  return (
+    <div style={{ display:'flex', flexDirection:'column', gap:16 }}>
+      <div style={{ display:'flex', gap:6, flexWrap:'wrap', alignItems:'center' }}>
+        {weeks22kData.map(wd=>(
+          <button key={wd.num} onClick={()=>setSel(wd.num)}
+            style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:13, width:40, height:40, borderRadius:'var(--radius-md)', border:`2px solid ${sel===wd.num?`var(--${wd.accent})`:'var(--border)'}`, background:sel===wd.num?`var(--${wd.accent}-tint)`:'var(--surface-card)', color:sel===wd.num?`var(--${wd.accent}-deep)`:'var(--text-muted)', cursor:'pointer', transition:'all 140ms' }}>
+            {wd.num===12?'★':wd.num}
+          </button>
+        ))}
+        <div style={{ display:'flex', alignItems:'center', marginLeft:4, gap:6, flexWrap:'wrap' }}>
+          {[['concept','Base'],['data','Desarrollo'],['attention','Pico'],['alert','Taper/★']].map(([a,l])=>(
+            <span key={a} style={{ display:'flex', alignItems:'center', gap:4, fontFamily:'var(--font-mono)', fontSize:10, color:`var(--${a}-deep)` }}>
+              <span style={{ width:8, height:8, borderRadius:2, background:`var(--${a})`, display:'inline-block' }}/>{l}
+            </span>
+          ))}
+        </div>
+      </div>
+      <div style={{ background:'var(--surface-card)', border:`1px solid var(--${w.accent})`, borderRadius:'var(--radius-lg)', padding:'20px 22px', display:'flex', flexDirection:'column', gap:12, boxShadow:'var(--shadow-sm)' }}>
+        <div style={{ display:'flex', alignItems:'center', gap:10, flexWrap:'wrap' }}>
+          <span style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize:28, letterSpacing:'-0.02em', color:`var(--${w.accent}-deep)` }}>Semana {w.num}</span>
+          <span style={{ fontFamily:'var(--font-mono)', fontSize:11, fontWeight:600, letterSpacing:'0.08em', textTransform:'uppercase', background:`var(--${w.accent}-tint)`, color:`var(--${w.accent}-deep)`, padding:'3px 10px', borderRadius:'var(--radius-pill)' }}>{w.fase}</span>
+          <span style={{ marginLeft:'auto', fontFamily:'var(--font-mono)', fontSize:11, color:'var(--text-muted)' }}>Vol. semanal: {w.totalH}</span>
+        </div>
+        <div style={{ background:`var(--${w.accent}-tint)`, borderRadius:'var(--radius-sm)', padding:'10px 14px', borderLeft:`3px solid var(--${w.accent}-deep)` }}>
+          <p style={{ fontFamily:'var(--font-body)', fontSize:14, lineHeight:1.55, color:'var(--text-strong)', margin:0 }}>💡 {w.tip}</p>
+        </div>
+        <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+          <SessionRow s={w.r1} dia={isRace?'Miércoles':'Miércoles'} label={isRace?'Activación':'Run 1 · Calidad'} />
+          <SessionRow s={w.r2} dia={isRace?'Domingo ★':'Sábado'} label={isRace?'COMPETICIÓN 22K':'Run 2 · Fondo largo'} />
+        </div>
+        <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:10 }}>
+          <div style={{ background:'var(--paper)', border:'1px solid var(--border)', borderRadius:'var(--radius-md)', padding:'12px 14px' }}>
+            <p style={{ fontFamily:'var(--font-mono)', fontSize:10, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--data-deep)', marginBottom:4 }}>🏊 Natación · Mar + Jue</p>
+            <p style={{ fontFamily:'var(--font-body)', fontSize:13, lineHeight:1.45, color:'var(--text-body)', margin:0 }}>{w.swim}</p>
+          </div>
+          <div style={{ background:'var(--paper)', border:'1px solid var(--border)', borderRadius:'var(--radius-md)', padding:'12px 14px' }}>
+            <p style={{ fontFamily:'var(--font-mono)', fontSize:10, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:'var(--concept-deep)', marginBottom:4 }}>🏋️ Gimnasio · Lun + Vie</p>
+            <p style={{ fontFamily:'var(--font-body)', fontSize:13, lineHeight:1.45, color:'var(--text-body)', margin:0 }}>{w.gym}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 /* ── INFOGRAPHIC ──────────────────────────────────────────── */
 function Infografia() {
   const DATA      = cssVar('--data');
@@ -699,6 +849,18 @@ function Infografia() {
               </div>
             </div>
           </div>
+        </Reveal>
+      </section>
+
+      {/* ── GUÍA SEMANAL ─────────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="data">Tu plan semana a semana</Kicker>
+          <H2>Selecciona la semana y ve a entrenar</H2>
+          <Lead>Cada semana: tipo de calidad del miércoles, fondo del sábado, natación y gimnasio. El volumen total semanal para planificar el resto de tu vida alrededor del entrenamiento.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <WeekNavigator22k />
         </Reveal>
       </section>
 
