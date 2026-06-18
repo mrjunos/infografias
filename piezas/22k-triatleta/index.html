@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>22K en 12 semanas · Triatleta · Infografías</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap" />
+  <style>
+    :root {
+      --paper:          #FBF7F1;
+      --paper-sunk:     #F4EEE4;
+      --surface:        #FFFDFA;
+      --surface-2:      #F8F2E9;
+      --border:         #EBE3D7;
+      --border-strong:  #DCD1C0;
+      --ink:            #3B3540;
+      --ink-soft:       #6B636F;
+      --ink-faint:      #9A9099;
+      --deep:           #262029;
+      --ghost:          #F3EDE4;
+
+      --concept:        #B59ED0; --concept-tint: #EDE4F4; --concept-deep: #6E5891;
+      --data:           #92ABD0; --data-tint:    #E4EAF3; --data-deep:    #4F6489;
+      --action:         #A0C4A8; --action-tint:  #E6F0E6; --action-deep:  #5C8266;
+      --attention:      #E8C485; --attention-tint:#F8EFD9; --attention-deep:#A77F3C;
+      --alert:          #DD9A8B; --alert-tint:   #F6E2DC; --alert-deep:   #A65C4C;
+
+      --brand: var(--data); --brand-deep: var(--data-deep); --brand-tint: var(--data-tint);
+      --surface-card: var(--surface); --text-strong: var(--ink);
+      --text-body: var(--ink-soft); --text-muted: var(--ink-faint);
+
+      --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+      --font-body:    'Spectral', Georgia, serif;
+      --font-mono:    'JetBrains Mono', 'SF Mono', Menlo, monospace;
+
+      --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+      --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px;
+      --space-16:64px; --space-20:80px; --space-24:96px;
+      --pad-card: var(--space-6); --pad-card-lg: var(--space-8);
+      --container-story: 720px;
+
+      --radius-xs:6px; --radius-sm:10px; --radius-md:16px;
+      --radius-lg:22px; --radius-xl:30px; --radius-pill:999px;
+
+      --shadow-sm: 0 2px 6px rgba(74,58,44,.06), 0 1px 2px rgba(74,58,44,.05);
+      --shadow-md: 0 6px 20px rgba(74,58,44,.08), 0 2px 6px rgba(74,58,44,.05);
+      --shadow-lg: 0 18px 48px rgba(74,58,44,.12), 0 6px 16px rgba(74,58,44,.06);
+
+      --ease-out: cubic-bezier(0.22,1,0.36,1);
+      --ease-in-out: cubic-bezier(0.65,0,0.35,1);
+      --dur-fast:140ms; --dur-base:240ms; --dur-slow:420ms;
+    }
+    @media (prefers-reduced-motion:reduce) {
+      :root { --dur-fast:0ms; --dur-base:0ms; --dur-slow:0ms; }
+    }
+    *,*::before,*::after { box-sizing:border-box; margin:0; padding:0; }
+    html { scroll-behavior:smooth; }
+    body {
+      background:var(--paper); color:var(--ink);
+      font-family:var(--font-body); font-size:16px;
+      line-height:1.65; -webkit-font-smoothing:antialiased;
+    }
+    .stage { max-width:var(--container-story); margin:0 auto; padding:0 24px; }
+    .section { padding:var(--space-16) 0; border-bottom:1px solid var(--border); }
+    .section:last-child { border-bottom:none; }
+    .topbar {
+      position:sticky; top:0; z-index:20;
+      background:color-mix(in oklch, var(--paper) 88%, transparent);
+      backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+      border-bottom:1px solid var(--border);
+    }
+    .topbar-inner {
+      max-width:var(--container-story); margin:0 auto;
+      padding:12px 24px; display:flex; align-items:center;
+      justify-content:space-between; gap:16px;
+    }
+    .brand {
+      display:flex; align-items:center; gap:10px;
+      font-family:var(--font-display); font-weight:800;
+      font-size:17px; letter-spacing:-0.02em; color:var(--ink);
+      text-decoration:none;
+    }
+    .brand-seal {
+      width:22px; height:22px; border-radius:50%;
+      background:var(--data); position:relative; flex-shrink:0;
+    }
+    .brand-seal::after {
+      content:""; position:absolute; inset:5px;
+      border-radius:50%; border:1.5px solid var(--paper);
+    }
+    .progress-bar {
+      position:fixed; left:0; right:0; top:0; height:3px;
+      background:var(--data); transform-origin:0 50%;
+      transform:scaleX(0); z-index:30;
+    }
+    .scroll-cue {
+      display:inline-flex; align-items:center; gap:8px;
+      font-family:var(--font-mono); font-size:11px;
+      letter-spacing:0.1em; text-transform:uppercase;
+      color:var(--ink-faint); margin-top:40px;
+    }
+    @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+    .scroll-cue-arrow { animation:bob 1.6s var(--ease-in-out) infinite; }
+    .reveal { opacity:0; transform:translateY(24px); }
+    .eyebrow {
+      font-family:var(--font-mono); font-size:12px; font-weight:600;
+      letter-spacing:0.14em; text-transform:uppercase; color:var(--data-deep);
+    }
+    .three-col { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; }
+    .two-col   { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+    .chartcard {
+      background:var(--surface-card); border:1px solid var(--border);
+      border-radius:var(--radius-lg); box-shadow:var(--shadow-md); padding:24px 26px;
+    }
+    .chartcard .ttl {
+      font-family:var(--font-display); font-weight:700; font-size:20px;
+      letter-spacing:-0.01em; color:var(--text-strong); margin:0 0 2px;
+    }
+    .chartcard .sub {
+      font-family:var(--font-mono); font-size:10px; letter-spacing:0.1em;
+      text-transform:uppercase; color:var(--text-muted); margin:0 0 18px;
+    }
+    .chartcard .note {
+      font-family:var(--font-body); font-style:italic; font-size:14px;
+      color:var(--text-body); margin:16px 0 0; max-width:60ch;
+    }
+    .footer { text-align:center; padding:var(--space-16) 0 var(--space-24); }
+    @media (max-width:560px) {
+      .three-col { grid-template-columns:1fr 1fr; }
+      .two-col { grid-template-columns:1fr; }
+    }
+    @media (prefers-reduced-motion:reduce) {
+      .reveal { opacity:1 !important; transform:none !important; }
+      .scroll-cue-arrow { animation:none; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="progress-bar" id="pf"></div>
+<div class="topbar">
+  <div class="topbar-inner">
+    <a class="brand" href="../../">
+      <div class="brand-seal"></div>
+      infografías<span style="color:var(--data)">.</span>
+    </a>
+    <div id="series-progress"></div>
+  </div>
+</div>
+
+<main class="stage" id="root"></main>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16/dist/plot.umd.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.js"></script>
+
+<script type="text/babel">
+const M = window.Motion || {};
+const P = window.Plot;
+const cssVar = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+
+/* ── DESIGN SYSTEM COMPONENTS ─────────────────────────────── */
+
+function Badge({ children, accent='data', variant='soft', dot=false, style={} }) {
+  const tint=`var(--${accent}-tint)`, deep=`var(--${accent}-deep)`, base=`var(--${accent})`;
+  const vs = {
+    soft:   { background:tint, color:deep, border:'1px solid transparent' },
+    solid:  { background:base, color:'#fff', border:'1px solid transparent' },
+    outline:{ background:'transparent', color:deep, border:`1px solid ${base}` },
+  };
+  return (
+    <span style={{ display:'inline-flex', alignItems:'center', gap:6, fontFamily:'var(--font-mono)', fontSize:11, fontWeight:500, letterSpacing:'0.1em', textTransform:'uppercase', padding:'4px 10px', borderRadius:'var(--radius-pill)', whiteSpace:'nowrap', ...vs[variant], ...style }}>
+      {dot && <span style={{ width:6, height:6, borderRadius:'50%', background:variant==='solid'?'#fff':base }} />}
+      {children}
+    </span>
+  );
+}
+
+function Card({ children, accent=null, edge=false, elevation='sm', padding='var(--pad-card)', interactive=false, style={}, ...rest }) {
+  const [hov,setHov]=React.useState(false);
+  const shad={ none:'none', sm:'var(--shadow-sm)', md:'var(--shadow-md)', lg:'var(--shadow-lg)' };
+  const lift=interactive&&hov;
+  return (
+    <div onMouseEnter={()=>interactive&&setHov(true)} onMouseLeave={()=>interactive&&setHov(false)}
+      style={{ position:'relative', background:'var(--surface-card)', borderRadius:'var(--radius-lg)', boxShadow:lift?shad.md:shad[elevation], border:'1px solid var(--border)', padding, overflow:'hidden', transform:lift?'translateY(-2px)':'translateY(0)', transition:'transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out)', ...style }} {...rest}>
+      {edge&&accent&&<span style={{ position:'absolute', left:0, top:0, bottom:0, width:4, background:`var(--${accent})` }} />}
+      {children}
+    </div>
+  );
+}
+
+function StatBadge({ value, unit='', label='', prefix='', accent='data', size='md', align='left', style={} }) {
+  const deep=`var(--${accent}-deep)`;
+  const s={ sm:{fig:36,unit:16,label:12}, md:{fig:56,unit:20,label:13}, lg:{fig:72,unit:24,label:14} }[size]||{fig:56,unit:20,label:13};
+  return (
+    <div style={{ display:'flex', flexDirection:'column', alignItems:align==='center'?'center':'flex-start', textAlign:align, gap:4, ...style }}>
+      <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize:s.fig, lineHeight:1, letterSpacing:'-0.03em', color:deep, fontVariantNumeric:'tabular-nums', display:'flex', alignItems:'baseline', gap:4 }}>
+        {prefix&&<span style={{ fontSize:s.unit, fontWeight:600 }}>{prefix}</span>}
+        {value}
+        {unit&&<span style={{ fontFamily:'var(--font-mono)', fontSize:s.unit, fontWeight:500, color:`var(--${accent})` }}>{unit}</span>}
+      </div>
+      {label&&<div style={{ fontFamily:'var(--font-body)', fontSize:s.label, color:'var(--text-body)', lineHeight:1.4, maxWidth:'24ch' }}>{label}</div>}
+    </div>
+  );
+}
+
+function DataCard({ role=null, roleLabel='', icon=null, title, children, footer=null, elevation='sm', style={} }) {
+  const accent=role||'data';
+  return (
+    <div style={{ position:'relative', background:'var(--surface-card)', borderRadius:'var(--radius-lg)', boxShadow:elevation==='none'?'none':`var(--shadow-${elevation})`, border:'1px solid var(--border)', padding:'var(--pad-card-lg)', display:'flex', flexDirection:'column', gap:14, ...style }}>
+      <div style={{ display:'flex', alignItems:'center', gap:12, justifyContent:'space-between' }}>
+        {roleLabel?<Badge accent={accent} dot>{roleLabel}</Badge>:<span/>}
+        {icon&&<span style={{ display:'inline-flex', alignItems:'center', justifyContent:'center', width:40, height:40, borderRadius:'var(--radius-md)', background:`var(--${accent}-tint)`, color:`var(--${accent}-deep)`, fontSize:20 }}>{icon}</span>}
+      </div>
+      <h3 style={{ margin:0, fontFamily:'var(--font-display)', fontWeight:700, fontSize:22, lineHeight:1.2, letterSpacing:'-0.01em', color:'var(--text-strong)' }}>{title}</h3>
+      {children&&<div style={{ fontFamily:'var(--font-body)', fontSize:16, lineHeight:1.6, color:'var(--text-body)' }}>{children}</div>}
+      {footer&&<div style={{ marginTop:2, paddingTop:14, borderTop:'1px solid var(--border)', fontFamily:'var(--font-mono)', fontSize:12, color:'var(--text-muted)', letterSpacing:'0.02em' }}>{footer}</div>}
+    </div>
+  );
+}
+
+function ComparisonGrid({ left, right, style={} }) {
+  const Col=({ data })=>{
+    const a=data.accent||'data';
+    return (
+      <div style={{ background:`var(--${a}-tint)`, borderRadius:'var(--radius-md)', border:`1px solid color-mix(in oklch, var(--${a}) 30%, transparent)`, padding:'var(--pad-card)', display:'flex', flexDirection:'column', gap:12 }}>
+        <div style={{ display:'flex', alignItems:'center', gap:8 }}>
+          {data.icon&&<span style={{ fontSize:18 }}>{data.icon}</span>}
+          <span style={{ fontFamily:'var(--font-mono)', fontSize:12, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:`var(--${a}-deep)` }}>{data.title}</span>
+        </div>
+        <ul style={{ margin:0, padding:0, listStyle:'none', display:'flex', flexDirection:'column', gap:8 }}>
+          {(data.items||[]).map((it,i)=>(
+            <li key={i} style={{ display:'flex', gap:8, alignItems:'flex-start', fontFamily:'var(--font-body)', fontSize:15, lineHeight:1.5, color:'var(--text-strong)' }}>
+              <span style={{ color:`var(--${a}-deep)`, flexShrink:0, marginTop:1 }}>{data.bullet||'•'}</span>
+              <span>{it}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
+  return (
+    <div style={{ display:'grid', gridTemplateColumns:'1fr 1fr', gap:14, alignItems:'stretch', ...style }}>
+      <Col data={left}/><Col data={right}/>
+    </div>
+  );
+}
+
+function TimelineRow({ index=null, marker=null, title, children, accent='data', last=false, style={} }) {
+  return (
+    <div style={{ display:'grid', gridTemplateColumns:'44px 1fr', gap:16, ...style }}>
+      <div style={{ display:'flex', flexDirection:'column', alignItems:'center' }}>
+        <span style={{ flexShrink:0, width:36, height:36, borderRadius:'50%', background:`var(--${accent}-tint)`, color:`var(--${accent}-deep)`, border:`1.5px solid var(--${accent})`, display:'flex', alignItems:'center', justifyContent:'center', fontFamily:'var(--font-display)', fontWeight:700, fontSize:15 }}>
+          {marker!=null?marker:index}
+        </span>
+        {!last&&<span style={{ flex:1, width:2, marginTop:4, background:`linear-gradient(var(--${accent}), var(--border))`, minHeight:24 }} />}
+      </div>
+      <div style={{ paddingBottom:last?0:28 }}>
+        <h4 style={{ margin:'6px 0 6px', fontFamily:'var(--font-display)', fontWeight:700, fontSize:18, color:'var(--text-strong)', letterSpacing:'-0.01em' }}>{title}</h4>
+        {children&&<div style={{ fontFamily:'var(--font-body)', fontSize:15, lineHeight:1.6, color:'var(--text-body)' }}>{children}</div>}
+      </div>
+    </div>
+  );
+}
+
+function Checkpoint({ question, answer, accent='attention', prompt='Toca para revelar', style={} }) {
+  const [open,setOpen]=React.useState(false);
+  return (
+    <div style={{ background:'var(--surface-card)', border:`1px solid var(--${accent})`, borderRadius:'var(--radius-lg)', padding:'var(--pad-card-lg)', boxShadow:'var(--shadow-sm)', ...style }}>
+      <div style={{ display:'inline-flex', alignItems:'center', gap:6, fontFamily:'var(--font-mono)', fontSize:11, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:`var(--${accent}-deep)`, marginBottom:10 }}>
+        <span style={{ fontSize:14 }}>?</span> Checkpoint
+      </div>
+      <p style={{ margin:'0 0 16px', fontFamily:'var(--font-display)', fontWeight:700, fontSize:20, lineHeight:1.3, color:'var(--text-strong)' }}>{question}</p>
+      {!open
+        ?<button onClick={()=>setOpen(true)} style={{ display:'inline-flex', alignItems:'center', gap:8, background:`var(--${accent}-tint)`, color:`var(--${accent}-deep)`, border:'none', fontFamily:'var(--font-display)', fontWeight:600, fontSize:14, padding:'10px 18px', borderRadius:'var(--radius-pill)', cursor:'pointer', transition:'background var(--dur-base) var(--ease-out)' }}>
+          {prompt} <span aria-hidden="true">↓</span>
+        </button>
+        :<div style={{ background:`var(--${accent}-tint)`, borderRadius:'var(--radius-md)', padding:'14px 16px', fontFamily:'var(--font-body)', fontSize:16, lineHeight:1.6, color:'var(--text-strong)', borderLeft:`3px solid var(--${accent})` }}>
+          {answer}
+        </div>
+      }
+    </div>
+  );
+}
+
+function ProgressDots({ total=5, current=1, accent='data', label='' }) {
+  return (
+    <div style={{ display:'flex', alignItems:'center', gap:10 }}>
+      <div style={{ display:'flex', gap:5 }}>
+        {Array.from({length:total}).map((_,i)=>(
+          <span key={i} style={{ width:i+1===current?18:8, height:8, borderRadius:'var(--radius-pill)', background:i+1===current?`var(--${accent}-deep)`:i+1<current?`var(--${accent})`:'var(--border)', transition:`all var(--dur-base) var(--ease-out)` }} />
+        ))}
+      </div>
+      {label&&<span style={{ fontFamily:'var(--font-mono)', fontSize:11, color:'var(--ink-faint)', letterSpacing:'0.08em' }}>{label}</span>}
+    </div>
+  );
+}
+
+function Reveal({ children, delay=0, y=24 }) {
+  const ref=React.useRef(null);
+  React.useEffect(()=>{
+    const el=ref.current;
+    if(!el||!M.inView||!M.animate){if(el){el.style.opacity=1;el.style.transform='none';}return;}
+    const stop=M.inView(el,()=>{
+      M.animate(el,{opacity:[0,1],transform:[`translateY(${y}px)`,'translateY(0px)']},{type:'spring',stiffness:260,damping:22,delay});
+    },{margin:'-80px'});
+    return stop;
+  },[]);
+  return <div ref={ref} className="reveal">{children}</div>;
+}
+
+function PlotFigure({ options, ariaLabel='' }) {
+  const ref=React.useRef(null);
+  React.useEffect(()=>{
+    if(!ref.current||!P)return;
+    const chart=P.plot(options);
+    if(ariaLabel)chart.setAttribute('aria-label',ariaLabel);
+    ref.current.innerHTML='';
+    ref.current.appendChild(chart);
+    return()=>{if(ref.current)ref.current.innerHTML='';};
+  },[options]);
+  return <div ref={ref}/>;
+}
+
+function Kicker({ children, accent='data' }) {
+  return <p style={{ fontFamily:'var(--font-mono)', fontSize:12, letterSpacing:'0.12em', textTransform:'uppercase', color:`var(--${accent}-deep)`, margin:'0 0 10px', fontWeight:600 }}>{children}</p>;
+}
+function H2({ children }) {
+  return <h2 style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:'clamp(22px,4vw,32px)', lineHeight:1.15, letterSpacing:'-0.02em', color:'var(--ink)', margin:'0 0 8px', textWrap:'balance' }}>{children}</h2>;
+}
+function Lead({ children, style={} }) {
+  return <p style={{ fontFamily:'var(--font-body)', fontSize:16, lineHeight:1.65, color:'var(--ink-soft)', maxWidth:'58ch', margin:'0 0 20px', ...style }}>{children}</p>;
+}
+
+/* ── DATA ─────────────────────────────────────────────────── */
+
+// Long-run km per week (sábado)
+const longRunData = [
+  {semana:1,km:8},{semana:2,km:10},{semana:3,km:12},{semana:4,km:8},
+  {semana:5,km:14},{semana:6,km:15},{semana:7,km:16},{semana:8,km:10},
+  {semana:9,km:18},{semana:10,km:20},{semana:11,km:12},{semana:12,km:22},
+];
+
+// Total weekly training hours (from plan table)
+const weeklyLoad = [
+  {semana:1, horas:4.9,  fase:'Adaptación'},
+  {semana:2, horas:5.55, fase:'Adaptación'},
+  {semana:3, horas:6.3,  fase:'Adaptación'},
+  {semana:4, horas:4.35, fase:'Descarga'},
+  {semana:5, horas:6.85, fase:'Desarrollo'},
+  {semana:6, horas:7.12, fase:'Desarrollo'},
+  {semana:7, horas:7.22, fase:'Desarrollo'},
+  {semana:8, horas:4.72, fase:'Descarga'},
+  {semana:9, horas:7.95, fase:'Pico'},
+  {semana:10,horas:8.18, fase:'Pico'},
+  {semana:11,horas:5.18, fase:'Taper'},
+  {semana:12,horas:3.5,  fase:'Carrera'},
+];
+
+// Riegel degradation: pace (min/km decimal) vs distance (km)
+const riegelData = [
+  {dist:5,  pace:6.0,   tipo:'Marca registrada'},
+  {dist:10, pace:6.6,   tipo:'Marca registrada'},
+  {dist:22, pace:6.917, tipo:'Objetivo Riegel (10K)'},
+];
+// Curve points for the fitted line
+const riegelCurve = [5,7,10,13,16,19,22].map(d=>({
+  dist:d, pace: 6.6 * Math.pow(d/10, 0.06)
+}));
+
+// Training zones: pace range (min/km decimal)
+const zoneData = [
+  {zona:'Z4/5 — VO₂ max · Intervalos',  paceMin:5.833, paceMax:6.0,   accent:'alert'},
+  {zona:'Z3/4 — Tempo / Umbral',         paceMin:6.583, paceMax:6.75,  accent:'attention'},
+  {zona:'Z2 — Fondo aeróbico (base)',     paceMin:7.5,   paceMax:8.0,   accent:'data'},
+];
+
+// Stacked discipline breakdown per week (minutes)
+const discData=[];
+[
+  [104,100,90],[123,100,90],[148,100,90],[101,80,60],
+  [161,110,100],[177,110,100],[183,110,100],[123,80,60],
+  [207,120,110],[221,120,110],[141,90,80],[180,30,0],
+].forEach(([r,s,g],i)=>{
+  const w=i+1;
+  if(r>0) discData.push({semana:w,disciplina:'Carrera',horas:+(r/60).toFixed(2)});
+  if(s>0) discData.push({semana:w,disciplina:'Natación',horas:+(s/60).toFixed(2)});
+  if(g>0) discData.push({semana:w,disciplina:'Gimnasio',horas:+(g/60).toFixed(2)});
+});
+
+/* ── INFOGRAPHIC ──────────────────────────────────────────── */
+function Infografia() {
+  const DATA      = cssVar('--data');
+  const DATA_DEEP = cssVar('--data-deep');
+  const DATA_TINT = cssVar('--data-tint');
+  const CONCEPT   = cssVar('--concept');
+  const CONCEPT_D = cssVar('--concept-deep');
+  const ATTENTION = cssVar('--attention');
+  const ATTN_D    = cssVar('--attention-deep');
+  const ALERT     = cssVar('--alert');
+  const ALERT_D   = cssVar('--alert-deep');
+  const ACTION    = cssVar('--action');
+  const ACTION_D  = cssVar('--action-deep');
+  const RULE      = cssVar('--ink-faint');
+  const BORDER    = cssVar('--border');
+
+  // Phase colors for weekly load chart
+  const phaseColor = f => f==='Adaptación'?CONCEPT:f==='Desarrollo'?DATA:f==='Pico'?ATTENTION:f==='Descarga'?ACTION:ALERT;
+
+  /* Chart 1: Long run progression */
+  const longRunOpts = React.useMemo(()=>({
+    height:230, marginLeft:46,
+    x:{ label:'semana →', ticks:12 },
+    y:{ label:'↑ km (fondo largo)', grid:true },
+    marks:[
+      P.areaY(longRunData,{ x:'semana', y:'km', fill:DATA, fillOpacity:0.13, curve:'catmull-rom' }),
+      P.lineY(longRunData,{ x:'semana', y:'km', stroke:DATA_DEEP, strokeWidth:2.5, curve:'catmull-rom' }),
+      P.dot(longRunData,{ x:'semana', y:'km', fill:d=>d.semana===12?ALERT_D:DATA_DEEP, r:d=>d.semana===12?6:3.5 }),
+      P.ruleX([10.5],{ stroke:RULE, strokeDasharray:'3,4' }),
+      P.text([{semana:10.5,km:11,t:'Taper'}],{ x:'semana', y:'km', text:'t', dx:-6, textAnchor:'end', fill:RULE, fontSize:11, fontWeight:600 }),
+      P.ruleY([22],{ stroke:ALERT_D, strokeDasharray:'4,3' }),
+      P.text([{semana:4.5,km:22.8,t:'22 km · meta'}],{ x:'semana', y:'km', text:'t', fill:ALERT_D, fontSize:11, fontWeight:600 }),
+    ],
+  }),[DATA,DATA_DEEP,RULE,ALERT_D]);
+
+  /* Chart 2: Weekly load stacked by discipline */
+  const discOpts = React.useMemo(()=>({
+    height:240, marginLeft:46,
+    x:{ label:'semana →', ticks:12 },
+    y:{ label:'↑ horas / semana', grid:true },
+    color:{ legend:true, domain:['Carrera','Natación','Gimnasio'], range:[DATA_DEEP, DATA, DATA_TINT] },
+    marks:[
+      P.barY(discData,{ x:'semana', y:'horas', fill:'disciplina', order:['Gimnasio','Natación','Carrera'] }),
+      P.ruleY([0]),
+      P.ruleX([3.5],{ stroke:RULE, strokeDasharray:'3,4', strokeWidth:1 }),
+      P.ruleX([7.5],{ stroke:RULE, strokeDasharray:'3,4', strokeWidth:1 }),
+      P.ruleX([10.5],{ stroke:RULE, strokeDasharray:'3,4', strokeWidth:1 }),
+    ],
+  }),[DATA,DATA_DEEP,DATA_TINT,RULE]);
+
+  /* Chart 3: Riegel pace degradation */
+  const riegelOpts = React.useMemo(()=>({
+    height:210, marginLeft:52,
+    x:{ label:'distancia (km) →', grid:true },
+    y:{ label:'↑ ritmo (min/km)', reverse:false, domain:[5.6,8.2],
+        tickFormat: d => { const m=Math.floor(d); const s=Math.round((d-m)*60); return `${m}:${s.toString().padStart(2,'0')}`; } },
+    marks:[
+      P.lineY(riegelCurve,{ x:'dist', y:'pace', stroke:CONCEPT, strokeWidth:1.5, strokeDasharray:'4,3', curve:'natural' }),
+      P.dot(riegelData,{ x:'dist', y:'pace', fill:d=>d.tipo==='Marca registrada'?DATA_DEEP:ALERT_D, r:5, symbol:'circle' }),
+      P.text(riegelData,{ x:'dist', y:'pace', text:d=>d.dist===5?'5K · 6:00':d.dist===10?'10K · 6:36':'22K · 6:55 (meta)', dy:-12, fontSize:11, fontWeight:600, fill:d=>d.tipo==='Marca registrada'?DATA_DEEP:ALERT_D }),
+      P.ruleY([6.75,6.917],{ stroke:ALERT, strokeDasharray:'2,3', strokeWidth:1 }),
+    ],
+  }),[DATA_DEEP,CONCEPT,ALERT,ALERT_D]);
+
+  /* Chart 4: Training zones (horizontal pace ranges) */
+  const zoneOpts = React.useMemo(()=>({
+    height:130, marginLeft:220,
+    x:{ label:'ritmo (min/km) →', domain:[5.5,8.3],
+        tickFormat: d => { const m=Math.floor(d); const s=Math.round((d-m)*60); return `${m}:${s.toString().padStart(2,'0')}`; } },
+    y:{ label:null },
+    color:{ legend:false, domain:zoneData.map(z=>z.zona), range:[ALERT_D, ATTN_D, DATA_DEEP] },
+    marks:[
+      P.barX(zoneData.map(z=>({...z,paceLabel:z.zona})),{ x1:'paceMin', x2:'paceMax', y:'zona', fill:'zona', rx:4 }),
+      P.ruleX([0]),
+      P.ruleX([6.833],{ stroke:ALERT, strokeDasharray:'3,3', strokeWidth:1.5 }),
+      P.text([{x:6.833,y:'Z3/4 — Tempo / Umbral',t:'Objetivo 22K'}],{ x:'x', y:'y', text:'t', dy:-18, fontSize:10, fontWeight:600, fill:ALERT_D }),
+    ],
+  }),[DATA_DEEP,ATTN_D,ALERT_D,ALERT]);
+
+  const h1Style = { fontFamily:'var(--font-display)', fontWeight:800, fontSize:'clamp(36px,8vw,64px)', lineHeight:1.02, letterSpacing:'-0.03em', color:'var(--ink)', margin:'14px 0 0', textWrap:'balance' };
+
+  return (
+    <>
+      {/* ── HERO ──────────────────────────────────────────── */}
+      <section className="section" style={{ paddingTop:'var(--space-20)', borderBottom:'none' }}>
+        <Reveal>
+          <span style={{ display:'inline-block', width:46, height:46, borderRadius:'50%', background:'var(--data)', position:'relative', boxShadow:'var(--shadow-sm)' }}>
+            <span style={{ position:'absolute', inset:11, borderRadius:'50%', border:'2.5px solid var(--paper)', display:'block' }} />
+          </span>
+          <div className="eyebrow" style={{ marginTop:20 }}>Serie · Resistencia · 02</div>
+          <h1 style={h1Style}>
+            22K en 12 semanas:<br />
+            <em style={{ fontStyle:'normal', color:'var(--data-deep)' }}>el plan del triatleta</em>
+          </h1>
+          <p style={{ fontFamily:'var(--font-body)', fontSize:19, lineHeight:1.6, color:'var(--ink-soft)', maxWidth:'54ch', margin:'20px 0 0' }}>
+            Para atletas que ya corren, nadan y pedalean. Un plan híbrido de 6 días semanales — con zonas de intensidad calibradas mediante el Modelo de Riegel y una estrategia nutricional para no chocar contra el muro de los 90 minutos.
+          </p>
+          <div className="scroll-cue"><span className="scroll-cue-arrow">↓</span> Desplázate para analizar</div>
+        </Reveal>
+      </section>
+
+      {/* ── PERFIL DE LA ATLETA ───────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker>Punto de partida</Kicker>
+          <H2>Las marcas que definen el plan</H2>
+          <Lead>El perfil fisiológico revela velocidad de base bien desarrollada en distancias cortas, con un déficit de eficiencia aeróbica al aumentar la distancia. Eso es exactamente lo que entrenamos.</Lead>
+        </Reveal>
+        <div className="three-col" style={{ marginTop:16 }}>
+          {[
+            { val:'30:00', unit:'', label:'5K · ritmo 6:00 min/km', accent:'concept', sub:'Velocidad de base' },
+            { val:'1:06:00', unit:'', label:'10K · ritmo 6:36 min/km', accent:'data', sub:'Resistencia media' },
+            { val:'2h28–32',unit:'', label:'22K objetivo · 6:45–6:55 min/km', accent:'attention', sub:'Meta del plan' },
+          ].map((d,i)=>(
+            <Reveal key={i} delay={i*0.07}>
+              <div style={{ background:'var(--surface-card)', border:'1px solid var(--border)', borderRadius:'var(--radius-lg)', padding:'20px 16px', boxShadow:'var(--shadow-sm)' }}>
+                <p style={{ fontFamily:'var(--font-mono)', fontSize:10, letterSpacing:'0.1em', textTransform:'uppercase', color:`var(--${d.accent}-deep)`, marginBottom:6 }}>{d.sub}</p>
+                <div style={{ fontFamily:'var(--font-display)', fontWeight:800, fontSize:'clamp(24px,4vw,32px)', lineHeight:1, letterSpacing:'-0.02em', color:`var(--${d.accent}-deep)` }}>{d.val}</div>
+                <p style={{ fontFamily:'var(--font-body)', fontSize:12, lineHeight:1.4, color:'var(--ink-soft)', marginTop:6 }}>{d.label}</p>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
+      {/* ── CHART 3: RIEGEL ───────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="concept">Modelo de Riegel</Kicker>
+          <H2>La matemática del ritmo objetivo</H2>
+          <Lead>La ecuación de Riegel calcula la pérdida de velocidad relativa al aumentar la distancia. La marca de 10K predice el 22K con mayor fidelidad que la de 5K — porque el mecanismo metabólico es más cercano a la duración real de la prueba.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <div className="chartcard">
+            <p className="ttl">Degradación de ritmo según Modelo de Riegel</p>
+            <p className="sub">min/km · predicción desde 5K y 10K → objetivo 22K</p>
+            <PlotFigure options={riegelOpts} ariaLabel="Curva de Riegel mostrando degradación de ritmo con la distancia" />
+            <p className="note">La curva discontinua es el ajuste de Riegel (T₂ = T₁ × (D₂/D₁)^1.06). La zona sombreada a 22K muestra el rango objetivo conservador de 6:45 a 6:55 min/km — diseñado para no acumular fatiga ácida prematura.</p>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── CHART 4: ZONAS DE ENTRENAMIENTO ──────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker>Las zonas de intensidad</Kicker>
+          <H2>Tres ritmos. Tres objetivos fisiológicos.</H2>
+          <Lead>Cada sesión tiene un objetivo metabólico preciso. Confundirlos — ir "medio rápido" todo el tiempo — es el error clásico que impide progresar y genera sobreentrenamiento.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <div className="chartcard">
+            <p className="ttl">Zonas de entrenamiento y sus rangos de ritmo</p>
+            <p className="sub">min/km · la línea punteada marca el ritmo objetivo de carrera</p>
+            <PlotFigure options={zoneOpts} ariaLabel="Rangos de ritmo por zona de entrenamiento" />
+            <p className="note">El 80% del tiempo debe ser Z2 (fondo aeróbico, 7:30–8:00 min/km). La intensidad alta solo en miércoles. Ir en zona "gris" Z3 todo el tiempo es lo que más limita el progreso.</p>
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div style={{ display:'flex', flexDirection:'column', gap:10, marginTop:14 }}>
+            {[
+              { zona:'Z2 — Fondo Aeróbico', ritmo:'7:30–8:00 min/km', dur:'60–155 min', obj:'Biogénesis mitocondrial, oxidación de grasas, tejido conectivo', accent:'data' },
+              { zona:'Z3/4 — Tempo / Umbral', ritmo:'6:35–6:45 min/km', dur:'45–60 min', obj:'Elevación del umbral de lactato, aclaramiento del ácido láctico', accent:'attention' },
+              { zona:'Z4/5 — Intervalos / VO₂ max', ritmo:'5:50–6:00 min/km', dur:'45–55 min', obj:'Incremento del VO₂ max, volumen sistólico, fibras tipo IIa', accent:'alert' },
+            ].map((z,i)=>(
+              <div key={i} style={{ display:'flex', gap:14, alignItems:'flex-start', background:`var(--${z.accent}-tint)`, borderRadius:'var(--radius-md)', padding:'14px 16px', border:`1px solid color-mix(in oklch, var(--${z.accent}) 30%, transparent)` }}>
+                <div style={{ flexShrink:0, minWidth:0 }}>
+                  <p style={{ fontFamily:'var(--font-mono)', fontSize:10, fontWeight:600, letterSpacing:'0.1em', textTransform:'uppercase', color:`var(--${z.accent}-deep)`, margin:'0 0 3px' }}>{z.zona}</p>
+                  <p style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:17, color:`var(--${z.accent}-deep)`, lineHeight:1, margin:0 }}>{z.ritmo}</p>
+                  <p style={{ fontFamily:'var(--font-mono)', fontSize:10, color:`var(--${z.accent}-deep)`, marginTop:3, opacity:.75 }}>{z.dur}</p>
+                </div>
+                <p style={{ fontFamily:'var(--font-body)', fontSize:13, lineHeight:1.5, color:'var(--ink-soft)', margin:0, flex:1, paddingTop:2 }}>{z.obj}</p>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── SEMANA TIPO ───────────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker>Distribución semanal</Kicker>
+          <H2>6 días de entrenamiento, 1 de supercompensación</H2>
+          <Lead>La calidad del miércoles requiere piernas frescas. Por eso la natación del martes — bajo impacto — actúa como recuperación activa antes del esfuerzo de velocidad.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <div style={{ display:'grid', gridTemplateColumns:'repeat(7,1fr)', gap:8 }}>
+            {[
+              { dia:'Lun', tipo:'Gimnasio', sub:'Tren superior + core', accent:'concept' },
+              { dia:'Mar', tipo:'Natación', sub:'Técnica y base', accent:'data' },
+              { dia:'Mié', tipo:'Carrera 1', sub:'Calidad / Tempo', accent:'attention' },
+              { dia:'Jue', tipo:'Natación', sub:'Resistencia', accent:'data' },
+              { dia:'Vie', tipo:'Gimnasio', sub:'Tren inferior', accent:'concept' },
+              { dia:'Sáb', tipo:'Carrera 2', sub:'Fondo largo Z2', accent:'action' },
+              { dia:'Dom', tipo:'Descanso', sub:'Supercompensación', accent:'alert' },
+            ].map((d,i)=>(
+              <div key={i} style={{ background:`var(--${d.accent}-tint)`, border:`1px solid color-mix(in oklch, var(--${d.accent}) 30%, transparent)`, borderRadius:'var(--radius-md)', padding:'12px 8px', textAlign:'center', display:'flex', flexDirection:'column', gap:4 }}>
+                <span style={{ fontFamily:'var(--font-mono)', fontSize:10, fontWeight:600, letterSpacing:'0.12em', textTransform:'uppercase', color:`var(--${d.accent}-deep)` }}>{d.dia}</span>
+                <span style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:12, color:'var(--ink)', lineHeight:1.2 }}>{d.tipo}</span>
+                <span style={{ fontFamily:'var(--font-body)', fontSize:11, color:'var(--ink-faint)', lineHeight:1.3 }}>{d.sub}</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── CHART 1: FONDO LARGO ──────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker>La progresión del fondo</Kicker>
+          <H2>De 8 km a 22 km: los dientes de sierra de la periodización</H2>
+          <Lead>Las caídas de las semanas 4 y 8 no son retrocesos — son descargas deliberadas donde el tejido conectivo asimila la carga acumulada. El cuerpo mejora en el descanso, no en el esfuerzo.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <div className="chartcard">
+            <p className="ttl">Kilómetros del fondo largo semanal</p>
+            <p className="sub">sábado · Zona 2 · 7:45 min/km · semana 12 = carrera</p>
+            <PlotFigure options={longRunOpts} ariaLabel="Progresión del fondo largo semanal de 8 a 22 km" />
+            <p className="note">La semana 10 llega a 20K — incluyendo los últimos 5K a ritmo de carrera objetivo (6:50 min/km). Ese simulacro es el ensayo metabólico que el cerebro necesita para el día real.</p>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── CHART 2: VOLUMEN POR DISCIPLINA ──────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker>El volumen total</Kicker>
+          <H2>Hasta 8 horas semanales en el pico</H2>
+          <Lead>Las tres disciplinas se distribuyen para maximizar adaptaciones cardiovasculares sin sobrecargar las articulaciones. La natación y el gimnasio amortiguan el impacto de la carrera.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <div className="chartcard">
+            <p className="ttl">Volumen semanal estimado por disciplina</p>
+            <p className="sub">horas · carrera · natación · gimnasio · las líneas marcan cambios de mesociclo</p>
+            <PlotFigure options={discOpts} ariaLabel="Volumen semanal desglosado por disciplina a lo largo de 12 semanas" />
+            <p className="note">El volumen pico alcanza ~8 horas en la semana 10. El taper de las semanas 11–12 elimina la fatiga acumulada sin perder las adaptaciones — las ganancias ya están hechas.</p>
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div style={{ display:'flex', gap:8, flexWrap:'wrap', marginTop:14 }}>
+            {[['Adaptación','sem 1–4','concept'],['Desarrollo','sem 5–8','data'],['Pico','sem 9–10','attention'],['Taper','sem 11–12','alert']].map(([f,s,a])=>(
+              <div key={f} style={{ display:'flex', alignItems:'center', gap:6, background:`var(--${a}-tint)`, borderRadius:'var(--radius-pill)', padding:'5px 12px' }}>
+                <span style={{ width:8, height:8, borderRadius:'50%', background:`var(--${a}-deep)` }} />
+                <span style={{ fontFamily:'var(--font-mono)', fontSize:10, color:`var(--${a}-deep)`, fontWeight:600, letterSpacing:'0.08em' }}>{f} · {s}</span>
+              </div>
+            ))}
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── LOS 4 MESOCICLOS ──────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="concept">Los cuatro mesociclos</Kicker>
+          <H2>Cada bloque tiene un objetivo fisiológico diferente</H2>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <Card elevation="sm" padding="var(--space-8)">
+            <TimelineRow index={1} accent="concept" title="Adaptación Funcional · sem 1–4 · fondo hasta 12K">
+              Se estabilizan los ritmos de tempo cortos y se acostumbra el tejido conectivo al volumen híbrido. La semana 4 es descarga activa indispensable: sin ella, el build siguiente arranca sobre fatiga y el riesgo de lesión se multiplica.
+            </TimelineRow>
+            <TimelineRow index={2} accent="data" title="Desarrollo y Umbral · sem 5–8 · fondo hasta 16K">
+              Se introducen repeticiones de 800m y 1600m. El umbral de lactato sube con intervalos precisos el miércoles. La semana 8 vuelve a bajar el volumen: el tejido conectivo progresa más lento que el cardiovascular y necesita esta ventana.
+            </TimelineRow>
+            <TimelineRow index={3} accent="attention" title="Pico Metodológico · sem 9–10 · fondo 18K y 20K">
+              Máxima exigencia. La semana 10 incluye los últimos 5K del fondo largo a ritmo de carrera objetivo — el ensayo metabólico que enseña al cuerpo a gestionar el glucógeno en la fase final. Se introduce la ingesta de carbohidratos en carrera.
+            </TimelineRow>
+            <TimelineRow marker="✓" accent="alert" title="Taper Exponencial · sem 11–12 → Competición" last>
+              Reducción del 40–60% del volumen manteniendo intensidad de activación. No se gana forma en estas dos semanas — solo se elimina la fatiga. Los niveles de glucógeno muscular alcanzan su máximo. La semana 12: un trote de activación el miércoles y descanso total hasta la carrera.
+            </TimelineRow>
+          </Card>
+        </Reveal>
+      </section>
+
+      {/* ── NUTRICIÓN ─────────────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="attention">El combustible</Kicker>
+          <H2>El muro de los 90 minutos</H2>
+          <Lead>A partir de los 90 minutos de esfuerzo continuo, las reservas de glucógeno muscular empiezan a agotarse. En un 22K a 6:55 min/km, eso ocurre aproximadamente en el kilómetro 13. Sin reposición, el ritmo cae en los últimos 9 km.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <div style={{ display:'flex', flexDirection:'column', gap:12 }}>
+            <DataCard role="attention" roleLabel="Estrategia" icon="◉"
+              title="30–60 g de carbohidratos por hora · desde el minuto 45"
+              footer="Modelo de Riegel · Sports Nutrition Journal · ensayado en semanas 9 y 10"
+              elevation="md">
+              <p style={{ margin:0 }}>Usar geles con relación glucosa:fructosa (2:1 o 1:1) para absorción rápida sin molestia gástrica. Siempre con agua — nunca con bebida deportiva, para evitar hiperosmolaridad y ralentización del vaciado gástrico.</p>
+            </DataCard>
+            <div style={{ background:'var(--data-tint)', border:'1px solid color-mix(in oklch, var(--data) 30%, transparent)', borderRadius:'var(--radius-md)', padding:'var(--pad-card)' }}>
+              <p style={{ fontFamily:'var(--font-mono)', fontSize:11, fontWeight:600, letterSpacing:'0.08em', textTransform:'uppercase', color:'var(--data-deep)', marginBottom:10 }}>Protocolo de carrera</p>
+              <div style={{ display:'flex', flexDirection:'column', gap:6 }}>
+                {[
+                  ['km 0','Salida controlada — primer 5K al menos 10 s/km más lento que objetivo. El glucógeno es finito.'],
+                  ['km 4–5','Primer gel. No esperes a sentir que lo necesitas — para entonces ya es tarde.'],
+                  ['km 9–10','Segundo gel. Revisar ritmo: si va más rápido que 6:45, aflojar voluntariamente.'],
+                  ['km 13–14','Tercer gel si duración supera 90 min. Este es el momento crítico donde la mayoría pierde el ritmo.'],
+                  ['km 17+','Los últimos 5K son de gestión mental y cadencia — no de energía si la estrategia fue correcta.'],
+                ].map(([h,t])=>(
+                  <div key={h} style={{ display:'flex', gap:12, alignItems:'flex-start' }}>
+                    <span style={{ fontFamily:'var(--font-mono)', fontSize:12, fontWeight:700, color:'var(--data-deep)', minWidth:48, paddingTop:1 }}>{h}</span>
+                    <span style={{ fontFamily:'var(--font-body)', fontSize:14, lineHeight:1.5, color:'var(--ink-soft)' }}>{t}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── SEÑALES DE ALARMA ─────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="alert">Señales de alarma</Kicker>
+          <H2>Dolor normal vs. señal de sobrecarga</H2>
+          <Lead>El cuerpo distingue entre fatiga adaptativa y daño tisular. Confundirlos es la causa más común de lesión en corredores que progresan rápido.</Lead>
+        </Reveal>
+        <Reveal delay={0.06}>
+          <ComparisonGrid
+            left={{ title:'Normal — continúa', accent:'action', icon:'✓', bullet:'✓', items:[
+              'Agujetas bilaterales y difusas (ambas piernas por igual)',
+              'Fatiga muscular que cede con el calentamiento',
+              'Molestia que disminuye o desaparece al avanzar los kilómetros',
+              'Cansancio general que mejora con el descanso nocturno',
+            ]}}
+            right={{ title:'Alarma — para ya', accent:'alert', icon:'✕', bullet:'✕', items:[
+              'Dolor unilateral localizado (solo un lado, un punto específico)',
+              'Dolor que aumenta progresivamente con los kilómetros',
+              'Zancada que pierde simetría — compensas sin querer',
+              'Molestia que persiste al día siguiente en reposo',
+            ]}}
+          />
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div style={{ background:'var(--data-tint)', border:'1px solid color-mix(in oklch, var(--data) 40%, transparent)', borderRadius:'var(--radius-md)', padding:'var(--pad-card)', marginTop:14 }}>
+            <p style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:15, color:'var(--data-deep)', marginBottom:6 }}>Protocolo ante señal de alarma</p>
+            <p style={{ fontFamily:'var(--font-body)', fontSize:15, lineHeight:1.5, color:'var(--ink-soft)', margin:0 }}>Suprime el impacto de carrera inmediatamente y reemplaza la sesión de fondo por natación. El gasto cardíaco y la capacidad aeróbica se mantienen en el agua mientras los tejidos blandos se recuperan. Reinicia el running con volumen reducido solo cuando la zancada sea completamente simétrica.</p>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* ── CHECKPOINT ────────────────────────────────────── */}
+      <section className="section">
+        <Reveal>
+          <Kicker accent="attention">Checkpoint · Generación activa</Kicker>
+          <Checkpoint
+            question="¿Por qué la marca de 10K predice mejor el 22K que la de 5K, según el Modelo de Riegel?"
+            answer="Porque el mecanismo metabólico dominante en el 10K (aeróbico de larga duración, oxidación de glucógeno bajo lactato moderado) es mucho más cercano al de un esfuerzo de 2h30 que el de un 5K (donde el sistema anaeróbico aporta una fracción significativa). El 5K sobreestima la velocidad aeróbica de fondo. La proyección desde 10K da 6:55 min/km vs 6:33 desde 5K — y elegir el objetivo conservador protege de empezar a un ritmo insostenible."
+            accent="attention"
+          />
+        </Reveal>
+      </section>
+
+      {/* ── CIERRE ────────────────────────────────────────── */}
+      <section className="section" style={{ borderBottom:'none' }}>
+        <Reveal>
+          <Card accent="data" edge elevation="lg" padding="var(--space-10)">
+            <Kicker accent="data">Lo que te llevas</Kicker>
+            <h2 style={{ fontFamily:'var(--font-display)', fontWeight:700, fontSize:'clamp(22px,4vw,30px)', lineHeight:1.15, letterSpacing:'-0.02em', color:'var(--ink)', margin:'12px 0 16px', textWrap:'balance' }}>
+              12 semanas de periodización inteligente. Un 22K sin sorpresas.
+            </h2>
+            <div style={{ display:'flex', flexDirection:'column', gap:9, marginBottom:24 }}>
+              {[
+                ['◉','data','Riegel desde el 10K marca el objetivo: 6:45–6:55 min/km → 2h28–32. Empezar más rápido es el único error que no se puede corregir a mitad de carrera'],
+                ['✓','concept','80% del tiempo en Z2 (7:30–8:00 min/km). Solo el miércoles hay calidad. Zona "gris" todo el tiempo bloquea las adaptaciones'],
+                ['✓','data','2 fondos + 2 nataciones + 2 gimnasios por semana — el cruce entre disciplinas protege las articulaciones y acelera la recuperación'],
+                ['✓','attention','Gel desde el minuto 45 de carrera — no esperes sentir que lo necesitas. A los 90 min el glucógeno ya empieza a agotarse'],
+                ['✕','alert','Dolor unilateral localizado = para ya y reemplaza por natación. La simetría de la zancada es el indicador más fiable de salud del tejido'],
+                ['✓','action','El taper de las semanas 11–12 no es descanso optativo — es donde se cosecha todo lo sembrado en 10 semanas de trabajo'],
+              ].map(([icon,accent,text],i)=>(
+                <div key={i} style={{ display:'flex', gap:10, alignItems:'flex-start' }}>
+                  <span style={{ color:`var(--${accent}-deep)`, fontWeight:700, flexShrink:0, paddingTop:1 }}>{icon}</span>
+                  <span style={{ fontFamily:'var(--font-body)', fontSize:15, lineHeight:1.5, color:'var(--ink-soft)' }}>{text}</span>
+                </div>
+              ))}
+            </div>
+            <div style={{ display:'flex', gap:12, flexWrap:'wrap', alignItems:'center' }}>
+              <Badge accent="data" dot>Episodio completado</Badge>
+              <span style={{ fontFamily:'var(--font-mono)', fontSize:11, color:'var(--ink-faint)', letterSpacing:'0.06em' }}>
+                Siguiente: Natación técnica para triatletas →
+              </span>
+            </div>
+          </Card>
+        </Reveal>
+      </section>
+
+      <div className="footer">
+        <div className="eyebrow" style={{ color:'var(--ink-faint)' }}>Hecho con Motion.dev + Observable Plot · Infografías Design System · 2026</div>
+        <p style={{ fontFamily:'var(--font-body)', fontSize:12, color:'var(--ink-faint)', marginTop:8, lineHeight:1.6, maxWidth:'58ch', margin:'8px auto 0' }}>
+          Fuentes: Planificación Fisiología del Ejercicio para Triatlón (Gemini, 2026) · Modelo de Riegel (1977) · TrainingPeaks · MyProCoach · Brigham and Women's Hospital Running Injury Prevention
+        </p>
+      </div>
+    </>
+  );
+}
+
+function SeriesProgress(){ return <ProgressDots total={6} current={2} accent="data" label="02 / 06" />; }
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Infografia />);
+ReactDOM.createRoot(document.getElementById('series-progress')).render(<SeriesProgress />);
+
+const pf=document.getElementById('pf');
+function onScroll(){
+  const h=document.documentElement;
+  const max=h.scrollHeight-h.clientHeight;
+  pf.style.transform=`scaleX(${max>0?h.scrollTop/max:0})`;
+}
+window.addEventListener('scroll',onScroll,{passive:true});
+onScroll();
+</script>
+</body>
+</html>
