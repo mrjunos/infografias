@@ -21,6 +21,9 @@
       --action:       #A0C4A8;
       --action-tint:  #E6F0E6;
       --action-deep:  #5C8266;
+      --data:         #92ABD0;
+      --data-tint:    #E4EAF3;
+      --data-deep:    #4F6489;
       --font-display: 'Bricolage Grotesque', system-ui, sans-serif;
       --font-body:    'Spectral', Georgia, serif;
       --font-mono:    'JetBrains Mono', monospace;
@@ -132,6 +135,7 @@
       width: fit-content;
     }
     .card-badge.action { background: var(--action-tint); color: var(--action-deep); }
+    .card-badge.data   { background: var(--data-tint);   color: var(--data-deep);   }
     .card-num {
       font-family: var(--font-display); font-weight: 800;
       font-size: 13px; color: var(--ink-faint); letter-spacing: -0.01em;
@@ -159,6 +163,7 @@
       transition: transform 200ms cubic-bezier(0.22,1,0.36,1);
     }
     .card-arrow.action { color: var(--action-deep); }
+    .card-arrow.data   { color: var(--data-deep);   }
     .card:hover .card-arrow { transform: translateX(4px); }
 
     /* Coming soon card */
@@ -228,6 +233,20 @@
       </div>
     </a>
 
+    <a class="card" href="piezas/22k-triatleta/">
+      <span class="card-edge" style="background:var(--data)"></span>
+      <div style="display:flex;align-items:center;justify-content:space-between">
+        <span class="card-badge data"><span style="width:5px;height:5px;border-radius:50%;background:var(--data);display:inline-block"></span>Entrenamiento</span>
+        <span class="card-num">#003</span>
+      </div>
+      <h2>22K en 12 semanas: el plan del triatleta</h2>
+      <p>Para quien ya corre, nada y va al gimnasio. Modelo de Riegel, zonas de intensidad calibradas, periodización de 4 mesociclos y estrategia nutricional para no chocar contra el muro de los 90 minutos.</p>
+      <div class="card-footer">
+        <span class="card-series">Resistencia aeróbica · Triatlón</span>
+        <span class="card-arrow data">→</span>
+      </div>
+    </a>
+
   </div>
 </section>
 
@@ -239,7 +258,7 @@
       <span class="card-edge"></span>
       <div style="display:flex;align-items:center;justify-content:space-between">
         <span class="card-badge">Próximamente</span>
-        <span class="card-num">#003</span>
+        <span class="card-num">#004</span>
       </div>
       <h2>El espaciado óptimo</h2>
       <p>Cómo funciona la memoria a largo plazo y por qué estudiar menos (pero más seguido) fija más que una sesión larga.</p>
@@ -252,7 +271,7 @@
       <span class="card-edge"></span>
       <div style="display:flex;align-items:center;justify-content:space-between">
         <span class="card-badge">Próximamente</span>
-        <span class="card-num">#004</span>
+        <span class="card-num">#005</span>
       </div>
       <h2>El efecto de generación</h2>
       <p>Por qué recordar activamente supera a releer — y cómo diseñar cualquier estudio o lectura alrededor de este principio.</p>
