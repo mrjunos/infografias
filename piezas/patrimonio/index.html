@@ -4,7 +4,7 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Infografía — De cero a mil millones en cinco años</title>
-<meta name="description" content="Plan financiero: de cero a 1.000 millones de patrimonio neto conjunto en 5 años, manteniendo los empleos y construyendo un activo digital." />
+<meta name="description" content="Plan financiero con datos: de cero a 1.000 millones de patrimonio neto conjunto en 5 años. Tablas de sensibilidad, tasa de retorno requerida y proyección a 5 años." />
 
 <!-- ============================================================
      Design tokens — Infografías Design System (inline)
@@ -16,84 +16,51 @@
 @import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 :root {
-  /* ---- Warm neutrals ---- */
-  --paper:        #FAF6EF;
-  --paper-sunk:   #F2EBDF;
-  --surface:      #FFFEFB;
-  --surface-2:    #F6EFE5;
-  --border:       #ECE3D5;
-  --border-strong:#DBCFBD;
-  --ink:          #3A343F;
-  --ink-soft:     #6C6470;
-  --ink-faint:    #9D9399;
-  --deep:         #241E27;
-  --deep-2:       #322A35;
-  --ghost:        #F4EEE6;
-  --ghost-soft:   #CBC2BD;
-
-  /* ---- Semantic hues (cognitive roles) ---- */
-  --concept:       #B7A4D2; --concept-tint:  #EEE8F3; --concept-deep:  #6B5887;
-  --data:          #9CB2CE; --data-tint:     #E7ECF2; --data-deep:     #4E6486;
-  --action:        #A6C3AB; --action-tint:   #E8F0E8; --action-deep:   #5B7F64;
-  --attention:     #E6C58C; --attention-tint:#F8F0DB; --attention-deep:#9C7837;
-  --alert:         #DC9E8E; --alert-tint:    #F5E5DE; --alert-deep:    #A05A4B;
-
-  --brand: var(--concept); --brand-deep: var(--concept-deep); --brand-tint: var(--concept-tint);
-  --bg: var(--paper); --bg-sunk: var(--paper-sunk); --surface-card: var(--surface);
-  --text-strong: var(--ink); --text-body: var(--ink-soft); --text-muted: var(--ink-faint);
-  --text-on-brand: #FFFFFF;
-  --focus-ring: color-mix(in oklch, var(--concept) 55%, white);
-
-  /* ---- Type ---- */
-  --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
-  --font-body:    'Spectral', Georgia, 'Times New Roman', serif;
-  --font-mono:    'JetBrains Mono', 'SF Mono', Menlo, monospace;
-  --measure: 65ch;
-
-  /* ---- Spacing ---- */
+  --paper:#FAF6EF; --paper-sunk:#F2EBDF; --surface:#FFFEFB; --surface-2:#F6EFE5;
+  --border:#ECE3D5; --border-strong:#DBCFBD;
+  --ink:#3A343F; --ink-soft:#6C6470; --ink-faint:#9D9399;
+  --deep:#241E27; --deep-2:#322A35; --ghost:#F4EEE6; --ghost-soft:#CBC2BD;
+  --concept:#B7A4D2; --concept-tint:#EEE8F3; --concept-deep:#6B5887;
+  --data:#9CB2CE; --data-tint:#E7ECF2; --data-deep:#4E6486;
+  --action:#A6C3AB; --action-tint:#E8F0E8; --action-deep:#5B7F64;
+  --attention:#E6C58C; --attention-tint:#F8F0DB; --attention-deep:#9C7837;
+  --alert:#DC9E8E; --alert-tint:#F5E5DE; --alert-deep:#A05A4B;
+  --brand:var(--concept); --brand-deep:var(--concept-deep); --brand-tint:var(--concept-tint);
+  --bg:var(--paper); --bg-sunk:var(--paper-sunk); --surface-card:var(--surface);
+  --text-strong:var(--ink); --text-body:var(--ink-soft); --text-muted:var(--ink-faint);
+  --text-on-brand:#FFFFFF; --focus-ring:color-mix(in oklch, var(--concept) 55%, white);
+  --font-display:'Bricolage Grotesque','Segoe UI',system-ui,sans-serif;
+  --font-body:'Spectral',Georgia,'Times New Roman',serif;
+  --font-mono:'JetBrains Mono','SF Mono',Menlo,monospace;
+  --measure:65ch;
   --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
   --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
   --space-20:80px; --space-24:96px; --space-32:128px;
-  --pad-card: var(--space-6); --pad-card-lg: var(--space-8);
-  --container-story: 720px; --container-wide: 1040px;
-
-  /* ---- Radii ---- */
+  --pad-card:var(--space-6); --pad-card-lg:var(--space-8);
+  --container-story:720px; --container-wide:1040px;
   --radius-xs:6px; --radius-sm:10px; --radius-md:16px; --radius-lg:22px; --radius-xl:30px; --radius-pill:999px;
-
-  /* ---- Warm shadows ---- */
-  --shadow-xs: 0 1px 2px rgba(74,58,44,0.05);
-  --shadow-sm: 0 2px 6px rgba(74,58,44,0.06), 0 1px 2px rgba(74,58,44,0.05);
-  --shadow-md: 0 6px 20px rgba(74,58,44,0.08), 0 2px 6px rgba(74,58,44,0.05);
-  --shadow-lg: 0 18px 48px rgba(74,58,44,0.12), 0 6px 16px rgba(74,58,44,0.06);
-  --ring-soft: inset 0 0 0 1px var(--border);
-
-  /* ---- Motion ---- */
-  --ease-out: cubic-bezier(0.22,1,0.36,1);
-  --ease-in-out: cubic-bezier(0.65,0,0.35,1);
-  --ease-emph: cubic-bezier(0.16,1,0.3,1);
+  --shadow-xs:0 1px 2px rgba(74,58,44,0.05);
+  --shadow-sm:0 2px 6px rgba(74,58,44,0.06), 0 1px 2px rgba(74,58,44,0.05);
+  --shadow-md:0 6px 20px rgba(74,58,44,0.08), 0 2px 6px rgba(74,58,44,0.05);
+  --shadow-lg:0 18px 48px rgba(74,58,44,0.12), 0 6px 16px rgba(74,58,44,0.06);
+  --ring-soft:inset 0 0 0 1px var(--border);
+  --ease-out:cubic-bezier(0.22,1,0.36,1); --ease-in-out:cubic-bezier(0.65,0,0.35,1); --ease-emph:cubic-bezier(0.16,1,0.3,1);
   --dur-fast:140ms; --dur-base:240ms; --dur-slow:420ms; --stagger:70ms;
-
-  /* ---- Charts ---- */
-  --chart-1: var(--data); --chart-2: var(--concept); --chart-3: var(--action);
-  --chart-4: var(--attention); --chart-5: var(--alert);
-  --chart-seq-0: var(--data-tint);
-  --chart-seq-1: color-mix(in oklch, var(--data) 55%, white);
-  --chart-seq-2: var(--data);
-  --chart-seq-3: color-mix(in oklch, var(--data) 70%, var(--data-deep));
-  --chart-seq-4: var(--data-deep);
-  --chart-div-lo: var(--alert); --chart-div-mid: var(--paper-sunk); --chart-div-hi: var(--action);
-  --chart-grid: color-mix(in oklch, var(--ink) 8%, transparent);
-  --chart-axis: var(--border-strong); --chart-label: var(--ink-soft);
-  --chart-title: var(--ink); --chart-rule: var(--ink-faint); --chart-ink: var(--ink);
+  --chart-1:var(--data); --chart-2:var(--concept); --chart-3:var(--action); --chart-4:var(--attention); --chart-5:var(--alert);
+  --chart-seq-0:var(--data-tint);
+  --chart-seq-1:color-mix(in oklch, var(--data) 55%, white);
+  --chart-seq-2:var(--data);
+  --chart-seq-3:color-mix(in oklch, var(--data) 70%, var(--data-deep));
+  --chart-seq-4:var(--data-deep);
+  --chart-div-lo:var(--alert); --chart-div-mid:var(--paper-sunk); --chart-div-hi:var(--action);
+  --chart-grid:color-mix(in oklch, var(--ink) 8%, transparent);
+  --chart-axis:var(--border-strong); --chart-label:var(--ink-soft);
+  --chart-title:var(--ink); --chart-rule:var(--ink-faint); --chart-ink:var(--ink);
 }
-@media (prefers-reduced-motion: reduce){
-  :root { --dur-fast:0ms; --dur-base:0ms; --dur-slow:0ms; --stagger:0ms; }
-}
+@media (prefers-reduced-motion: reduce){ :root { --dur-fast:0ms; --dur-base:0ms; --dur-slow:0ms; --stagger:0ms; } }
 </style>
 
-<!-- ============================================================
-     Page styles
-     ============================================================ -->
+<!-- Page styles -->
 <style>
   * { box-sizing: border-box; }
   html, body { margin: 0; background: var(--paper); }
@@ -133,9 +100,32 @@
             color: var(--concept-deep); font-size: clamp(56px, 12vw, 104px); }
   .bignum .u { font-size: .4em; color: var(--ink-faint); font-weight: 700; }
   .chartcap { font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--ink-soft);
-              margin-top: 12px; max-width: 60ch; }
+              margin-top: 14px; max-width: 60ch; }
   .note { font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; color: var(--ink-faint);
-          margin-top: 10px; }
+          margin-top: 10px; line-height: 1.5; }
+  /* data tables */
+  .tablewrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .dtable { width: 100%; border-collapse: collapse; font-family: var(--font-body); font-size: 15px; min-width: 360px; }
+  .dtable th { font-family: var(--font-mono); font-size: 11px; font-weight: 600; letter-spacing: .06em;
+               text-transform: uppercase; color: var(--ink-faint); text-align: left; padding: 10px 12px;
+               border-bottom: 1px solid var(--border-strong); white-space: nowrap; }
+  .dtable th.num { text-align: right; }
+  .dtable td { padding: 10px 12px; border-bottom: 1px solid var(--border); color: var(--ink-soft); }
+  .dtable td.num { text-align: right; font-family: var(--font-mono); font-variant-numeric: tabular-nums;
+                   color: var(--ink); white-space: nowrap; }
+  .dtable tr:last-child td { border-bottom: none; }
+  .dtable tr.sub td { background: var(--paper-sunk); color: var(--ink); font-weight: 600; }
+  .dtable tr.total td { font-weight: 800; color: var(--ink); border-top: 2px solid var(--border-strong); border-bottom: none; }
+  .dtable td.hl { color: var(--concept-deep); font-weight: 800; }
+  .dtable caption { caption-side: top; text-align: left; font-family: var(--font-mono); font-size: 11px;
+                    letter-spacing: .06em; text-transform: uppercase; color: var(--ink-faint); padding: 0 12px 12px; }
+  /* metric grid */
+  .metrics { display: grid; grid-template-columns: repeat(auto-fit, minmax(128px, 1fr)); gap: 14px; }
+  .metric { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; }
+  .metric .v { font-family: var(--font-display); font-weight: 800; font-size: 30px; color: var(--concept-deep);
+               letter-spacing: -.02em; line-height: 1; font-variant-numeric: tabular-nums; }
+  .metric .l { font-family: var(--font-mono); font-size: 10px; color: var(--ink-faint); margin-top: 8px;
+               letter-spacing: .06em; text-transform: uppercase; line-height: 1.4; }
   .footer { text-align: center; padding: var(--space-16) 0 var(--space-24); }
   .footer a { color: var(--concept-deep); text-decoration: none; }
   .progressfixed { position: fixed; left: 0; right: 0; top: 0; height: 3px; background: var(--concept);
@@ -168,7 +158,6 @@
      ============================================================ -->
 <script>
 (() => {
-
 const __ds_ns = (window.InfografAsDesignSystem_5de142 = window.InfografAsDesignSystem_5de142 || {});
 const __ds_scope = {};
 (__ds_ns.__errors = __ds_ns.__errors || []);
@@ -180,12 +169,8 @@ function dsVar(name, fallback) {
   const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
   return v || fallback;
 }
-function chartColors() {
-  return [dsVar('--data', '#9CB2CE'), dsVar('--concept', '#B7A4D2'), dsVar('--action', '#A6C3AB'), dsVar('--attention', '#E6C58C'), dsVar('--alert', '#DC9E8E')];
-}
-function disciplineColors() {
-  return { swim: dsVar('--tri-swim', '#9CB2CE'), bike: dsVar('--tri-bike', '#E6C58C'), run: dsVar('--tri-run', '#DC9E8E'), total: dsVar('--tri-total', '#B7A4D2'), recovery: dsVar('--tri-recovery', '#A6C3AB') };
-}
+function chartColors() { return [dsVar('--data', '#9CB2CE'), dsVar('--concept', '#B7A4D2'), dsVar('--action', '#A6C3AB'), dsVar('--attention', '#E6C58C'), dsVar('--alert', '#DC9E8E')]; }
+function disciplineColors() { return { swim: dsVar('--tri-swim', '#9CB2CE'), bike: dsVar('--tri-bike', '#E6C58C'), run: dsVar('--tri-run', '#DC9E8E'), total: dsVar('--tri-total', '#B7A4D2'), recovery: dsVar('--tri-recovery', '#A6C3AB') }; }
 function sequentialRange() { return [dsVar('--chart-seq-0', '#E7ECF2'), dsVar('--chart-seq-4', '#4E6486')]; }
 function divergingRange() { return [dsVar('--chart-div-lo', '#DC9E8E'), dsVar('--chart-div-mid', '#F2EBDF'), dsVar('--chart-div-hi', '#A6C3AB')]; }
 function withDsTheme(options = {}) {
@@ -193,11 +178,9 @@ function withDsTheme(options = {}) {
   const mono = dsVar('--font-mono', "'JetBrains Mono', monospace");
   const userColor = options.color || {};
   const hasColorScale = userColor.range || userColor.scheme || userColor.domain && userColor.range;
-  return {
-    marginTop: 18, marginRight: 18, marginBottom: 38, marginLeft: 48, ...options,
+  return { marginTop: 18, marginRight: 18, marginBottom: 38, marginLeft: 48, ...options,
     style: { background: 'transparent', color: label, fontFamily: mono, fontSize: '12px', overflow: 'visible', ...(options.style || {}) },
-    color: hasColorScale ? userColor : { range: chartColors(), ...userColor }
-  };
+    color: hasColorScale ? userColor : { range: chartColors(), ...userColor } };
 }
 Object.assign(__ds_scope, { dsVar, chartColors, disciplineColors, sequentialRange, divergingRange, withDsTheme });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "chartTheme.js", error: String((e && e.message) || e) }); }
@@ -210,10 +193,7 @@ function PlotFigure({ options, theme = true, ariaLabel = '', fallback = 'Cargand
   React.useEffect(() => {
     if (ready || typeof window === 'undefined') return;
     let n = 0;
-    const id = setInterval(() => {
-      if (window.Plot) { setReady(true); clearInterval(id); }
-      else if (++n > 80) clearInterval(id);
-    }, 50);
+    const id = setInterval(() => { if (window.Plot) { setReady(true); clearInterval(id); } else if (++n > 80) clearInterval(id); }, 50);
     return () => clearInterval(id);
   }, [ready]);
   React.useEffect(() => {
@@ -222,19 +202,12 @@ function PlotFigure({ options, theme = true, ariaLabel = '', fallback = 'Cargand
     if (!Plot || !host || !options) return;
     const opts = theme ? __ds_scope.withDsTheme(options) : options;
     let fig;
-    try {
-      fig = Plot.plot(opts);
-      if (ariaLabel) fig.setAttribute('aria-label', ariaLabel);
-      host.replaceChildren(fig);
-    } catch (err) {
-      host.textContent = 'No se pudo renderizar el gráfico.';
-      console.error('[PlotFigure]', err);
-    }
+    try { fig = Plot.plot(opts); if (ariaLabel) fig.setAttribute('aria-label', ariaLabel); host.replaceChildren(fig); }
+    catch (err) { host.textContent = 'No se pudo renderizar el gráfico.'; console.error('[PlotFigure]', err); }
     return () => { if (fig) fig.remove(); };
   }, [options, theme, ariaLabel, ready]);
   return React.createElement("figure", { ref, className, role: "img", "aria-label": ariaLabel || undefined,
-    style: { margin: 0, width: '100%', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', fontSize: 12, ...style } },
-    !ready ? fallback : null);
+    style: { margin: 0, width: '100%', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', fontSize: 12, ...style } }, !ready ? fallback : null);
 }
 Object.assign(__ds_scope, { PlotFigure });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "PlotFigure.jsx", error: String((e && e.message) || e) }); }
@@ -243,11 +216,7 @@ Object.assign(__ds_scope, { PlotFigure });
 try { (() => {
 function Badge({ children, accent = 'concept', variant = 'soft', dot = false, style = {} }) {
   const base = `var(--${accent})`, deep = `var(--${accent}-deep)`, tint = `var(--${accent}-tint)`;
-  const variants = {
-    soft: { background: tint, color: deep, border: '1px solid transparent' },
-    solid: { background: base, color: '#fff', border: '1px solid transparent' },
-    outline: { background: 'transparent', color: deep, border: `1px solid ${base}` }
-  };
+  const variants = { soft: { background: tint, color: deep, border: '1px solid transparent' }, solid: { background: base, color: '#fff', border: '1px solid transparent' }, outline: { background: 'transparent', color: deep, border: `1px solid ${base}` } };
   return React.createElement("span", { style: { display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '4px 10px', borderRadius: 'var(--radius-pill)', whiteSpace: 'nowrap', ...variants[variant], ...style } },
     dot && React.createElement("span", { style: { width: 6, height: 6, borderRadius: '50%', background: variant === 'solid' ? '#fff' : base } }), children);
 }
@@ -423,30 +392,6 @@ function CountUp({ value, decimals = 0, duration = 1100, delay = 0, prefix = '',
 Object.assign(__ds_scope, { CountUp });
 })(); } catch (e) { __ds_ns.__errors.push({ path: "CountUp.jsx", error: String((e && e.message) || e) }); }
 
-// Reveal (DS) — not used by the page (page defines its own Motion.dev Reveal) but kept for parity
-try { (() => {
-function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
-function Reveal({ children, as: Tag = 'div', delay = 0, y = 24, duration = 620, once = true, margin = 60, style = {}, className = '', ...rest }) {
-  const ref = React.useRef(null);
-  React.useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if (reduce) { el.style.opacity = '1'; el.style.transform = 'none'; return; }
-    const show = () => {
-      const anim = el.animate([{ opacity: 0, transform: `translateY(${y}px)` }, { opacity: 1, transform: 'translateY(0)' }], { duration, delay: delay * 1000, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'both' });
-      const settle = () => { try { anim.cancel(); } catch (e) {} el.style.opacity = '1'; el.style.transform = 'none'; };
-      anim.addEventListener('finish', settle);
-      setTimeout(settle, delay * 1000 + duration + 280);
-    };
-    const hide = () => { el.style.opacity = '0'; el.style.transform = `translateY(${y}px)`; };
-    return __ds_scope.onEnterViewport(el, show, { once, margin, onLeave: once ? null : hide });
-  }, [delay, y, duration, once, margin]);
-  return React.createElement(Tag, _extends({ ref, className, style: { opacity: 0, transform: `translateY(${y}px)`, willChange: 'opacity, transform', ...style } }, rest), children);
-}
-Object.assign(__ds_scope, { Reveal });
-})(); } catch (e) { __ds_ns.__errors.push({ path: "Reveal.jsx", error: String((e && e.message) || e) }); }
-
 __ds_ns.PlotFigure = __ds_scope.PlotFigure;
 __ds_ns.Badge = __ds_scope.Badge;
 __ds_ns.Button = __ds_scope.Button;
@@ -458,8 +403,6 @@ __ds_ns.ProgressDots = __ds_scope.ProgressDots;
 __ds_ns.StatBadge = __ds_scope.StatBadge;
 __ds_ns.TimelineRow = __ds_scope.TimelineRow;
 __ds_ns.CountUp = __ds_scope.CountUp;
-__ds_ns.Reveal = __ds_scope.Reveal;
-
 })();
 </script>
 
@@ -471,7 +414,7 @@ const { Button, Badge, Card, StatBadge, DataCard, TimelineRow, ComparisonGrid, C
 const M = window.Motion || {};
 const Plot = window.Plot;
 
-// Scroll-linked spring reveal — Motion.dev inView + animate (stagger narrativo)
+// Scroll-linked spring reveal — Motion.dev inView + animate
 function Reveal({ children, delay = 0, y = 24 }) {
   const ref = React.useRef(null);
   React.useEffect(() => {
@@ -486,68 +429,96 @@ function Reveal({ children, delay = 0, y = 24 }) {
   return <div ref={ref} className="reveal">{children}</div>;
 }
 
-// ---- Chart 1: monthly budget (one stacked horizontal bar) ----
+// --- Data table (mono headers, tabular nums, accent highlight) ---
+function Table({ caption, head, rows }) {
+  return (
+    <div className="tablewrap">
+      <table className="dtable">
+        {caption && <caption>{caption}</caption>}
+        <thead><tr>{head.map((h, i) => <th key={i} className={h.n ? 'num' : ''}>{h.t}</th>)}</tr></thead>
+        <tbody>
+          {rows.map((r, i) => (
+            <tr key={i} className={r.c || ''}>
+              {r.d.map((c, j) => {
+                const obj = c && typeof c === 'object';
+                const cls = [head[j].n ? 'num' : '', obj && c.h ? 'hl' : ''].filter(Boolean).join(' ');
+                return <td key={j} className={cls}>{obj ? c.t : c}</td>;
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+// --- Metric grid (small KPI tiles) ---
+function MetricGrid({ items }) {
+  return <div className="metrics">{items.map((m, i) => (
+    <div className="metric" key={i}><div className="v">{m.v}</div><div className="l">{m.l}</div></div>
+  ))}</div>;
+}
+
+// --- Chart 1: monthly budget (one stacked horizontal bar) ---
 function BudgetChart() {
-  const data = [
-    { cat: 'Arriendo', val: 5 },
-    { cat: 'Vida cómoda', val: 8 },
-    { cat: 'Ahorro / inversión', val: 7 },
-  ];
+  const data = [{ cat: 'Arriendo', val: 5 }, { cat: 'Vida cómoda', val: 8 }, { cat: 'Ahorro / inversión', val: 7 }];
   const options = React.useMemo(() => ({
-    height: 150, marginTop: 30, marginBottom: 40, marginLeft: 10, marginRight: 10,
+    height: 140, marginTop: 28, marginBottom: 40, marginLeft: 10, marginRight: 10,
     x: { label: 'millones COP / mes →', domain: [0, 20], grid: true, ticks: 5 },
     y: { axis: null },
-    color: { legend: true, domain: ['Arriendo', 'Vida cómoda', 'Ahorro / inversión'],
-             range: ['var(--chart-1)', 'var(--chart-4)', 'var(--chart-3)'] },
+    color: { legend: true, domain: ['Arriendo', 'Vida cómoda', 'Ahorro / inversión'], range: ['var(--chart-1)', 'var(--chart-4)', 'var(--chart-3)'] },
     marks: [
-      Plot.barX(data, { x: 'val', fill: 'cat', y: () => 'mes',
-        order: ['Arriendo', 'Vida cómoda', 'Ahorro / inversión'], rx: 3, insetRight: 1 }),
-      Plot.text(data, Plot.stackX({ order: ['Arriendo', 'Vida cómoda', 'Ahorro / inversión'] },
-        { x: 'val', y: () => 'mes', text: d => d.val + 'M', fill: 'var(--paper)',
-          fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 13 })),
+      Plot.barX(data, { x: 'val', fill: 'cat', y: () => 'mes', order: ['Arriendo', 'Vida cómoda', 'Ahorro / inversión'], rx: 3, insetRight: 1 }),
+      Plot.text(data, Plot.stackX({ order: ['Arriendo', 'Vida cómoda', 'Ahorro / inversión'] }, { x: 'val', y: () => 'mes', z: 'cat', text: d => d.val + 'M', fill: 'var(--paper)', fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 13 })),
       Plot.ruleX([0]),
     ],
   }), []);
   return <PlotFigure options={options} ariaLabel="Distribución del ingreso mensual conjunto de 20 millones" />;
 }
 
-// ---- Chart 2: 5-year net-worth projection (two lines + target) ----
+// --- Chart 2: 5-year net-worth projection (two lines + target) ---
 function ProjectionChart() {
   const proj = [
-    { anio: 0, serie: 'Solo salario', valor: 0 },
-    { anio: 1, serie: 'Solo salario', valor: 89 },
-    { anio: 2, serie: 'Solo salario', valor: 193 },
-    { anio: 3, serie: 'Solo salario', valor: 316 },
-    { anio: 4, serie: 'Solo salario', valor: 458 },
-    { anio: 5, serie: 'Solo salario', valor: 622 },
-    { anio: 0, serie: 'Salario + negocio', valor: 0 },
-    { anio: 1, serie: 'Salario + negocio', valor: 89 },
-    { anio: 2, serie: 'Salario + negocio', valor: 219 },
-    { anio: 3, serie: 'Salario + negocio', valor: 407 },
-    { anio: 4, serie: 'Salario + negocio', valor: 674 },
-    { anio: 5, serie: 'Salario + negocio', valor: 1039 },
+    { anio: 0, serie: 'Solo salario', valor: 0 }, { anio: 1, serie: 'Solo salario', valor: 89 }, { anio: 2, serie: 'Solo salario', valor: 193 }, { anio: 3, serie: 'Solo salario', valor: 316 }, { anio: 4, serie: 'Solo salario', valor: 458 }, { anio: 5, serie: 'Solo salario', valor: 622 },
+    { anio: 0, serie: 'Salario + negocio', valor: 0 }, { anio: 1, serie: 'Salario + negocio', valor: 89 }, { anio: 2, serie: 'Salario + negocio', valor: 219 }, { anio: 3, serie: 'Salario + negocio', valor: 407 }, { anio: 4, serie: 'Salario + negocio', valor: 674 }, { anio: 5, serie: 'Salario + negocio', valor: 1039 },
   ];
-  const ends = [
-    { anio: 5, valor: 622, t: '622M', serie: 'Solo salario' },
-    { anio: 5, valor: 1039, t: '1.039M', serie: 'Salario + negocio' },
-  ];
+  const ends = [{ anio: 5, valor: 622, t: '622M', serie: 'Solo salario' }, { anio: 5, valor: 1039, t: '1.039M', serie: 'Salario + negocio' }];
   const options = React.useMemo(() => ({
     height: 320, marginTop: 24, marginLeft: 44, marginRight: 56, marginBottom: 36,
     x: { label: 'año →', domain: [0, 5], ticks: [0, 1, 2, 3, 4, 5], tickFormat: d => d },
     y: { label: '↑ patrimonio (millones COP)', domain: [0, 1120], grid: true, ticks: 5 },
-    color: { legend: true, domain: ['Solo salario', 'Salario + negocio'],
-             range: ['var(--chart-1)', 'var(--chart-3)'] },
+    color: { legend: true, domain: ['Solo salario', 'Salario + negocio'], range: ['var(--chart-1)', 'var(--chart-3)'] },
     marks: [
       Plot.ruleY([1000], { stroke: 'var(--chart-4)', strokeDasharray: '3,5', strokeWidth: 1.5 }),
-      Plot.text([{ anio: 0.05, valor: 1000 }], { x: 'anio', y: 'valor', text: () => 'meta · 1.000M',
-        dy: -8, textAnchor: 'start', fill: 'var(--chart-4)', fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600 }),
+      Plot.text([{ anio: 0.05, valor: 1000 }], { x: 'anio', y: 'valor', text: () => 'meta · 1.000M', dy: -8, textAnchor: 'start', fill: 'var(--chart-4)', fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600 }),
       Plot.lineY(proj, { x: 'anio', y: 'valor', z: 'serie', stroke: 'serie', strokeWidth: 2.6, curve: 'catmull-rom' }),
       Plot.dot(proj, { x: 'anio', y: 'valor', z: 'serie', fill: 'serie', r: 3 }),
-      Plot.text(ends, { x: 'anio', y: 'valor', text: 't', dx: 8, textAnchor: 'start',
-        fill: 'serie', fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 13 }),
+      Plot.text(ends, { x: 'anio', y: 'valor', text: 't', dx: 8, textAnchor: 'start', fill: 'serie', fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 13 }),
     ],
   }), []);
   return <PlotFigure options={options} ariaLabel="Proyección del patrimonio neto a cinco años en dos escenarios" />;
+}
+
+// --- Chart 3: contributions vs compound growth (stacked bars per year) ---
+function GrowthChart() {
+  const rows = [
+    { anio: 1, tipo: 'Tu aporte', val: 84 }, { anio: 1, tipo: 'Interés', val: 5 },
+    { anio: 2, tipo: 'Tu aporte', val: 198 }, { anio: 2, tipo: 'Interés', val: 21 },
+    { anio: 3, tipo: 'Tu aporte', val: 354 }, { anio: 3, tipo: 'Interés', val: 53 },
+    { anio: 4, tipo: 'Tu aporte', val: 564 }, { anio: 4, tipo: 'Interés', val: 110 },
+    { anio: 5, tipo: 'Tu aporte', val: 840 }, { anio: 5, tipo: 'Interés', val: 199 },
+  ];
+  const options = React.useMemo(() => ({
+    height: 300, marginTop: 20, marginLeft: 44, marginRight: 16, marginBottom: 36,
+    x: { label: 'año →' },
+    y: { label: '↑ millones COP', grid: true },
+    color: { legend: true, domain: ['Tu aporte', 'Interés'], range: ['var(--chart-1)', 'var(--chart-3)'] },
+    marks: [
+      Plot.barY(rows, { x: 'anio', y: 'val', fill: 'tipo', order: ['Tu aporte', 'Interés'], insetTop: 0.5 }),
+      Plot.ruleY([0]),
+    ],
+  }), []);
+  return <PlotFigure options={options} ariaLabel="Aporte acumulado frente a crecimiento por interés, por año" />;
 }
 
 function Infografia() {
@@ -559,12 +530,12 @@ function Infografia() {
           <span className="seal"></span>
           <div className="eyebrow" style={{ marginTop: 20 }}>Serie · Libertad Financiera · 01</div>
           <h1 className="h1">De cero a <em style={{fontStyle:'normal', color:'var(--concept-deep)'}}>mil millones</em> en cinco años</h1>
-          <p className="lead">Dos salarios, una meta grande y cero ahorrado hoy. Esto es lo que la aritmética exige — y por qué el sueldo solo no basta, pero el plan sí alcanza.</p>
-          <div className="scrollcue"><span className="arrow">↓</span> Desplázate para ver el plan</div>
+          <p className="lead">Dos salarios, una meta grande y cero ahorrado hoy. Con números: cuánto ahorrar, qué interés haría falta, y por qué el sueldo solo no basta — pero el plan sí alcanza.</p>
+          <div className="scrollcue"><span className="arrow">↓</span> Desplázate para ver los números</div>
         </Reveal>
       </section>
 
-      {/* THE GOAL vs THE INCOME */}
+      {/* STARTING POINT */}
       <section className="section">
         <Reveal>
           <p className="kicker">El punto de partida</p>
@@ -573,26 +544,116 @@ function Infografia() {
             <StatBadge value={<CountUp value={1000} />} unit="M" label="patrimonio neto conjunto, meta a 5 años." accent="concept" size="lg" />
           </div>
         </Reveal>
-      </section>
-
-      {/* REALITY CHECK */}
-      <section className="section">
-        <Reveal>
-          <p className="kicker">Reality check</p>
-          <h2 className="h2">¿Alcanza solo con ahorrar el sueldo?</h2>
-          <p className="p" style={{ marginBottom: 24 }}>Invertir todo el excedente del salario durante 5 años, a un rendimiento razonable, llega hasta aquí — y no más:</p>
-        </Reveal>
         <Reveal delay={0.05}>
-          <div style={{ textAlign: 'center', padding: 'var(--space-6) 0' }}>
-            <div className="bignum"><CountUp value={62} /><span className="u">% de la meta</span></div>
-            <p className="note">≈ 622M de 1.000M · solo motor salario</p>
+          <div style={{ marginTop: 28 }}>
+            <MetricGrid items={[
+              { v: <CountUp value={5} />, l: 'años de horizonte' },
+              { v: <CountUp value={0} />, l: 'ahorrado hoy' },
+              { v: <><CountUp value={35} />%</>, l: 'tasa de ahorro' },
+              { v: <CountUp value={60} />, l: 'meses para ejecutar' },
+            ]} />
           </div>
         </Reveal>
+      </section>
+
+      {/* BUDGET */}
+      <section className="section">
+        <Reveal>
+          <p className="kicker">El presupuesto</p>
+          <h2 className="h2">A dónde va cada peso</h2>
+          <p className="p" style={{ marginBottom: 24 }}>Ahorro como primer gasto: 7M se apartan el día de pago. Los 13M restantes sostienen una vida cómoda, no austera.</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <Card elevation="sm" padding="var(--space-8)">
+            <Table
+              head={[{ t: 'Categoría' }, { t: 'COP / mes', n: true }, { t: '%', n: true }]}
+              rows={[
+                { d: ['Arriendo (2,5M c/u)', '5.000.000', '25%'] },
+                { d: ['Mercado y casa', '1.500.000', '7,5%'] },
+                { d: ['Salir, ocio, restaurantes', '1.500.000', '7,5%'] },
+                { d: ['Transporte', '1.000.000', '5%'] },
+                { d: ['Servicios, internet, celulares', '800.000', '4%'] },
+                { d: ['Salud, seguros, gym', '700.000', '3,5%'] },
+                { d: ['Personal, ropa, suscripciones', '800.000', '4%'] },
+                { d: ['Estudios de psicología (ella)', '1.000.000', '5%'] },
+                { d: ['Colchón / imprevistos', '700.000', '3,5%'] },
+                { d: ['Gastos de vida', '13.000.000', '65%'], c: 'sub' },
+                { d: [{ t: 'Ahorro / inversión', h: true }, { t: '7.000.000', h: true }, { t: '35%', h: true }], c: 'total' },
+              ]}
+            />
+            <div style={{ marginTop: 18 }}><BudgetChart /></div>
+            <p className="chartcap">Págate primero. La vida vive de lo que queda — y queda margen real para disfrutar.</p>
+          </Card>
+        </Reveal>
+      </section>
+
+      {/* THE INTEREST QUESTION */}
+      <section className="section">
+        <Reveal>
+          <p className="kicker">La pregunta del millón</p>
+          <h2 className="h2">¿Qué interés necesita el fondo?</h2>
+          <p className="p" style={{ marginBottom: 24 }}>Aportando 7M fijos cada mes durante 60 meses, esto es lo que rinde el fondo según su retorno anual. La última columna es el patrimonio final.</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <Card elevation="sm" padding="var(--space-8)">
+            <Table
+              caption="Aporte fijo de 7M/mes · 60 meses"
+              head={[{ t: 'Retorno anual' }, { t: 'Factor 60m', n: true }, { t: '7M/mes →', n: true }]}
+              rows={[
+                { d: ['6 %', '69,8×', '489 M'] },
+                { d: ['8 %', '73,5×', '514 M'] },
+                { d: ['10 %', '77,4×', '542 M'] },
+                { d: [{ t: '11 % · base del plan', h: true }, { t: '79,5×', h: true }, { t: '557 M', h: true }], c: 'sub' },
+                { d: ['12 %', '81,7×', '572 M'] },
+                { d: ['14 %', '86,2×', '603 M'] },
+                { d: ['16 %', '91,0×', '637 M'] },
+              ]}
+            />
+            <p className="chartcap">Ni siquiera al 16% anual —optimista y arriesgado— el aporte fijo de 7M llega a 1.000M. El interés ayuda, pero no hace magia en 5 años.</p>
+          </Card>
+        </Reveal>
         <Reveal delay={0.1}>
-          <DataCard role="alert" roleLabel="La brecha" icon="◑"
-            title="El salario es necesario, pero insuficiente" footer="VF anualidad · i=11% nominal · n=60 meses" elevation="md">
-            Para llegar a 1.000M solo invirtiendo harían falta ~12,2M de aporte cada mes. Imposible con 20M de ingreso y los costos de vida. El 38% restante tiene que venir de otro lado.
+          <div style={{ marginTop: 20 }}>
+            <Table
+              caption="Retorno requerido si SOLO se ahorra el salario (7M fijos)"
+              head={[{ t: 'Meta a 5 años' }, { t: 'Factor', n: true }, { t: 'Retorno requerido', n: true }]}
+              rows={[
+                { d: ['500 M', '71,4×', '~ 7 %'] },
+                { d: ['600 M', '85,7×', '~ 14 %'] },
+                { d: ['700 M', '100×', '~ 19 %'] },
+                { d: ['850 M', '121×', '~ 26 %'] },
+                { d: [{ t: '1.000 M', h: true }, { t: '143×', h: true }, { t: '~ 32 % · irreal', h: true }], c: 'total' },
+              ]}
+            />
+          </div>
+        </Reveal>
+        <Reveal delay={0.15}>
+          <DataCard role="alert" roleLabel="La conclusión" icon="◑" title="Pedirle 32% anual al fondo es irreal" footer="VF anualidad · n=60 · aporte fijo 7M" elevation="md">
+            Un 32% anual sostenido durante 5 años no existe como estrategia seria (ni Buffett promedió eso). La palanca no es exprimir el interés: es subir el aporte. Y subir el aporte sin bajar calidad de vida solo sale de un ingreso nuevo.
           </DataCard>
+        </Reveal>
+      </section>
+
+      {/* CONTRIBUTION SIDE */}
+      <section className="section">
+        <Reveal>
+          <p className="kicker">El otro lado de la ecuación</p>
+          <h2 className="h2">Cuánto habría que aportar (al 11%)</h2>
+          <p className="p" style={{ marginBottom: 24 }}>Fijando un retorno realista del 11%, este es el aporte mensual que exige cada meta a 5 años.</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <Table
+            head={[{ t: 'Meta a 5 años' }, { t: 'Aporte mensual', n: true }, { t: 'Aporte total', n: true }]}
+            rows={[
+              { d: ['500 M', '6,3 M', '378 M'] },
+              { d: [{ t: '622 M · porción salario', h: true }, { t: '7,8 M', h: true }, { t: '468 M', h: true }], c: 'sub' },
+              { d: ['750 M', '9,4 M', '564 M'] },
+              { d: [{ t: '1.000 M', h: true }, { t: '12,6 M', h: true }, { t: '756 M', h: true }], c: 'total' },
+            ]}
+          />
+        </Reveal>
+        <Reveal delay={0.1}>
+          <p className="note" style={{ marginTop: 14 }}>12,6M de aporte mensual supera lo que deja el salario tras arriendo y vida. Por eso el sueldo solo no llega — y por eso aparece el segundo motor.</p>
         </Reveal>
       </section>
 
@@ -615,22 +676,7 @@ function Infografia() {
         </Reveal>
       </section>
 
-      {/* BUDGET */}
-      <section className="section">
-        <Reveal>
-          <p className="kicker">El presupuesto</p>
-          <h2 className="h2">35% de ahorro, sin vida austera</h2>
-          <p className="p" style={{ marginBottom: 24 }}>De 20M, el ahorro se aparta primero. Lo demás se vive sin culpa: queda margen real para salir, viajar y disfrutar.</p>
-        </Reveal>
-        <Reveal delay={0.05}>
-          <Card elevation="sm" padding="var(--space-8)">
-            <BudgetChart />
-            <p className="chartcap">Pagarse primero: 7M van a inversión apenas entra el sueldo. Los 13M restantes cubren arriendo y una vida cómoda, no restringida.</p>
-          </Card>
-        </Reveal>
-      </section>
-
-      {/* PROJECTION — the centerpiece */}
+      {/* PROJECTION */}
       <section className="section">
         <Reveal>
           <p className="kicker">La proyección</p>
@@ -640,9 +686,65 @@ function Infografia() {
         <Reveal delay={0.05}>
           <Card elevation="md" padding="var(--space-8)">
             <ProjectionChart />
-            <p className="chartcap">Con solo salario el patrimonio se estanca en ~622M. Sumando un negocio que escala a ~14M/mes de utilidad reinvertida hacia el año 5, la curva cruza la meta: ~1.039M.</p>
-            <p className="note">Supuestos: 11% nominal anual · aportes crecientes · utilidad de negocio neta de impuestos. Proyección, no garantía.</p>
+            <p className="chartcap">Solo salario se estanca en ~622M. Con un negocio que escala a ~14M/mes reinvertidos hacia el año 5, la curva cruza la meta: ~1.039M.</p>
           </Card>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <div style={{ marginTop: 20 }}>
+            <Table
+              caption="Patrimonio a fin de año · millones COP"
+              head={[{ t: 'Año' }, { t: 'Ap. salario', n: true }, { t: 'Ap. negocio', n: true }, { t: 'Solo salario', n: true }, { t: 'Sal.+negocio', n: true }]}
+              rows={[
+                { d: ['1', '84', '—', '89', '89'] },
+                { d: ['2', '90', '24', '193', '219'] },
+                { d: ['3', '96', '60', '316', '407'] },
+                { d: ['4', '102', '108', '458', '674'] },
+                { d: [{ t: '5' }, { t: '108' }, { t: '168' }, { t: '622' }, { t: '1.039', h: true }], c: 'total' },
+              ]}
+            />
+          </div>
+        </Reveal>
+      </section>
+
+      {/* CONTRIBUTION VS INTEREST */}
+      <section className="section">
+        <Reveal>
+          <p className="kicker">El interés compuesto</p>
+          <h2 className="h2">¿Cuánto pones tú y cuánto el interés?</h2>
+          <p className="p" style={{ marginBottom: 24 }}>El patrimonio del escenario combinado, partido entre lo que aportas y lo que crece solo.</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <Card elevation="sm" padding="var(--space-8)">
+            <GrowthChart />
+            <p className="chartcap">El interés suma 5M el año 1 y 199M el año 5: es exponencial, pero su gran efecto llega después de 2031. En este plazo corto, el grueso del patrimonio es aporte — razón de más para no detenerse en la meta.</p>
+          </Card>
+        </Reveal>
+      </section>
+
+      {/* THE BUSINESS RAMP */}
+      <section className="section">
+        <Reveal>
+          <p className="kicker">El motor que cierra la brecha</p>
+          <h2 className="h2">Qué tiene que facturar el negocio</h2>
+          <p className="p" style={{ marginBottom: 24 }}>La rampa de utilidad que lleva ~360M al portafolio entre los años 2 y 5. Empieza pequeña: el año 1 es solo validar.</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <Table
+            caption="Utilidad del negocio · COP/mes y aporte anual al portafolio"
+            head={[{ t: 'Año' }, { t: 'Utilidad bruta/mes', n: true }, { t: 'A inversión/mes', n: true }, { t: 'Al año', n: true }]}
+            rows={[
+              { d: ['1', 'validación', '—', '—'] },
+              { d: ['2', '~ 3 M', '~ 2 M', '24 M'] },
+              { d: ['3', '~ 7 M', '~ 5 M', '60 M'] },
+              { d: ['4', '~ 13 M', '~ 9 M', '108 M'] },
+              { d: [{ t: '5' }, { t: '~ 20 M' }, { t: '~ 14 M' }, { t: '168 M', h: true }], c: 'total' },
+            ]}
+          />
+        </Reveal>
+        <Reveal delay={0.1}>
+          <DataCard role="concept" roleLabel="Aclaración" icon="◎" title="360M en 4 años, no de la nada" footer="~70% de la utilidad va a inversión; el resto, impuestos y reinversión" elevation="md">
+            No es un salto: es una rampa que empieza chiquita y se reinvierte casi completa, porque la vida ya la paga el salario. Y el negocio, además, tiene valor de venta propio — upside no contado en la proyección.
+          </DataCard>
         </Reveal>
       </section>
 
@@ -670,10 +772,8 @@ function Infografia() {
         </Reveal>
         <Reveal delay={0.05}>
           <ComparisonGrid
-            left={{ title: 'Ilusión', accent: 'alert', icon: '✕', bullet: '✕',
-                    items: ['Esperar a que suba el sueldo', 'Buscar la idea perfecta antes de empezar', 'Invertir solo lo que sobra'] }}
-            right={{ title: 'Realidad', accent: 'action', icon: '✓', bullet: '✓',
-                    items: ['Construir un activo digital propio', 'Validar pequeño y barato, ya', 'Automatizar el ahorro primero'] }}
+            left={{ title: 'Ilusión', accent: 'alert', icon: '✕', bullet: '✕', items: ['Esperar a que suba el sueldo', 'Buscar un fondo que rinda 30%', 'Invertir solo lo que sobra'] }}
+            right={{ title: 'Realidad', accent: 'action', icon: '✓', bullet: '✓', items: ['Construir un activo digital propio', 'Subir el aporte, no exprimir el interés', 'Automatizar el ahorro primero'] }}
           />
         </Reveal>
       </section>
@@ -683,8 +783,8 @@ function Infografia() {
         <Reveal>
           <p className="kicker">Checkpoint</p>
           <Checkpoint
-            question="¿Por qué dos sueldos altos no bastan para 1.000M en 5 años?"
-            answer="Porque el interés compuesto sobre 7M/mes, en 60 meses, multiplica por ~81 el aporte mensual — pero eso tope en ~622M. La meta exige más capital del que un salario fijo puede apartar. Solo un activo que crece aparte cierra la brecha."
+            question="Con un fondo al 11%, ¿basta con ahorrar el sueldo?"
+            answer="No. Al 11%, 7M fijos rinden 557M y escalando a 9M llegan a ~622M: el 62% de la meta. Para que el fondo solo llegue a 1.000M tendría que rendir ~32% anual cada año durante 5 años — algo que no existe. La diferencia la pone un ingreso nuevo, no un interés mejor."
             accent="attention"
           />
         </Reveal>
@@ -702,6 +802,9 @@ function Infografia() {
               <Badge accent="action" dot>Plan trazado</Badge>
             </div>
           </Card>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <p className="note" style={{ marginTop: 18 }}>Supuestos: 11% nominal anual · aportes crecientes · utilidad del negocio neta de impuestos. Cifras en COP. Es una proyección con supuestos, no una garantía.</p>
         </Reveal>
       </section>
 
