@@ -1,0 +1,731 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Infografía — De cero a mil millones en cinco años</title>
+<meta name="description" content="Plan financiero: de cero a 1.000 millones de patrimonio neto conjunto en 5 años, manteniendo los empleos y construyendo un activo digital." />
+
+<!-- ============================================================
+     Design tokens — Infografías Design System (inline)
+     Fuente: proyecto Claude Design "Infografías Design System".
+     Pieza autocontenida (sin bundle externo) para GitHub Pages.
+     ============================================================ -->
+<style>
+/* fonts (Google Fonts) — debe ir primero */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400..800&family=Spectral:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=JetBrains+Mono:wght@400;500;600&display=swap');
+
+:root {
+  /* ---- Warm neutrals ---- */
+  --paper:        #FAF6EF;
+  --paper-sunk:   #F2EBDF;
+  --surface:      #FFFEFB;
+  --surface-2:    #F6EFE5;
+  --border:       #ECE3D5;
+  --border-strong:#DBCFBD;
+  --ink:          #3A343F;
+  --ink-soft:     #6C6470;
+  --ink-faint:    #9D9399;
+  --deep:         #241E27;
+  --deep-2:       #322A35;
+  --ghost:        #F4EEE6;
+  --ghost-soft:   #CBC2BD;
+
+  /* ---- Semantic hues (cognitive roles) ---- */
+  --concept:       #B7A4D2; --concept-tint:  #EEE8F3; --concept-deep:  #6B5887;
+  --data:          #9CB2CE; --data-tint:     #E7ECF2; --data-deep:     #4E6486;
+  --action:        #A6C3AB; --action-tint:   #E8F0E8; --action-deep:   #5B7F64;
+  --attention:     #E6C58C; --attention-tint:#F8F0DB; --attention-deep:#9C7837;
+  --alert:         #DC9E8E; --alert-tint:    #F5E5DE; --alert-deep:    #A05A4B;
+
+  --brand: var(--concept); --brand-deep: var(--concept-deep); --brand-tint: var(--concept-tint);
+  --bg: var(--paper); --bg-sunk: var(--paper-sunk); --surface-card: var(--surface);
+  --text-strong: var(--ink); --text-body: var(--ink-soft); --text-muted: var(--ink-faint);
+  --text-on-brand: #FFFFFF;
+  --focus-ring: color-mix(in oklch, var(--concept) 55%, white);
+
+  /* ---- Type ---- */
+  --font-display: 'Bricolage Grotesque', 'Segoe UI', system-ui, sans-serif;
+  --font-body:    'Spectral', Georgia, 'Times New Roman', serif;
+  --font-mono:    'JetBrains Mono', 'SF Mono', Menlo, monospace;
+  --measure: 65ch;
+
+  /* ---- Spacing ---- */
+  --space-1:4px; --space-2:8px; --space-3:12px; --space-4:16px; --space-5:20px;
+  --space-6:24px; --space-8:32px; --space-10:40px; --space-12:48px; --space-16:64px;
+  --space-20:80px; --space-24:96px; --space-32:128px;
+  --pad-card: var(--space-6); --pad-card-lg: var(--space-8);
+  --container-story: 720px; --container-wide: 1040px;
+
+  /* ---- Radii ---- */
+  --radius-xs:6px; --radius-sm:10px; --radius-md:16px; --radius-lg:22px; --radius-xl:30px; --radius-pill:999px;
+
+  /* ---- Warm shadows ---- */
+  --shadow-xs: 0 1px 2px rgba(74,58,44,0.05);
+  --shadow-sm: 0 2px 6px rgba(74,58,44,0.06), 0 1px 2px rgba(74,58,44,0.05);
+  --shadow-md: 0 6px 20px rgba(74,58,44,0.08), 0 2px 6px rgba(74,58,44,0.05);
+  --shadow-lg: 0 18px 48px rgba(74,58,44,0.12), 0 6px 16px rgba(74,58,44,0.06);
+  --ring-soft: inset 0 0 0 1px var(--border);
+
+  /* ---- Motion ---- */
+  --ease-out: cubic-bezier(0.22,1,0.36,1);
+  --ease-in-out: cubic-bezier(0.65,0,0.35,1);
+  --ease-emph: cubic-bezier(0.16,1,0.3,1);
+  --dur-fast:140ms; --dur-base:240ms; --dur-slow:420ms; --stagger:70ms;
+
+  /* ---- Charts ---- */
+  --chart-1: var(--data); --chart-2: var(--concept); --chart-3: var(--action);
+  --chart-4: var(--attention); --chart-5: var(--alert);
+  --chart-seq-0: var(--data-tint);
+  --chart-seq-1: color-mix(in oklch, var(--data) 55%, white);
+  --chart-seq-2: var(--data);
+  --chart-seq-3: color-mix(in oklch, var(--data) 70%, var(--data-deep));
+  --chart-seq-4: var(--data-deep);
+  --chart-div-lo: var(--alert); --chart-div-mid: var(--paper-sunk); --chart-div-hi: var(--action);
+  --chart-grid: color-mix(in oklch, var(--ink) 8%, transparent);
+  --chart-axis: var(--border-strong); --chart-label: var(--ink-soft);
+  --chart-title: var(--ink); --chart-rule: var(--ink-faint); --chart-ink: var(--ink);
+}
+@media (prefers-reduced-motion: reduce){
+  :root { --dur-fast:0ms; --dur-base:0ms; --dur-slow:0ms; --stagger:0ms; }
+}
+</style>
+
+<!-- ============================================================
+     Page styles
+     ============================================================ -->
+<style>
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--paper); }
+  body { font-family: var(--font-body); color: var(--ink); }
+  .stage { max-width: var(--container-story); margin: 0 auto; padding: 0 24px; }
+  .section { padding: var(--space-16) 0; }
+  .eyebrow { font-family: var(--font-mono); font-size: 12px; font-weight: 600;
+             letter-spacing: .14em; text-transform: uppercase; color: var(--concept-deep); }
+  .h1 { font-family: var(--font-display); font-weight: 800; font-size: clamp(40px, 8vw, 72px);
+        line-height: 1.02; letter-spacing: -.03em; color: var(--ink); margin: 14px 0 0; text-wrap: balance; }
+  .h2 { font-family: var(--font-display); font-weight: 700; font-size: clamp(26px, 5vw, 36px);
+        line-height: 1.15; letter-spacing: -.02em; color: var(--ink); margin: 0 0 6px; text-wrap: balance; }
+  .lead { font-family: var(--font-body); font-size: 19px; line-height: 1.6; color: var(--ink-soft);
+          max-width: 56ch; margin: 18px 0 0; }
+  .kicker { font-family: var(--font-mono); font-size: 12px; letter-spacing: .12em; text-transform: uppercase;
+            color: var(--ink-faint); margin: 0 0 10px; }
+  .p { font-family: var(--font-body); font-size: 17px; line-height: 1.65; color: var(--ink-soft); max-width: 58ch; }
+  .reveal { opacity: 0; transform: translateY(24px); }
+  .seal { width: 46px; height: 46px; border-radius: 50%; background: var(--concept); position: relative;
+          box-shadow: var(--shadow-sm); display: inline-block; }
+  .seal::after { content: ""; position: absolute; inset: 11px; border-radius: 50%; border: 2.5px solid var(--paper); }
+  .topbar { position: sticky; top: 0; z-index: 20; background: color-mix(in oklch, var(--paper) 88%, transparent);
+            backdrop-filter: blur(10px); border-bottom: 1px solid var(--border); }
+  .topbar .inner { max-width: var(--container-story); margin: 0 auto; padding: 12px 24px;
+                   display: flex; align-items: center; justify-content: space-between; gap: 16px; }
+  .brand { display: flex; align-items: center; gap: 10px; font-family: var(--font-display);
+           font-weight: 800; font-size: 18px; letter-spacing: -.02em; }
+  .brand .s { width: 22px; height: 22px; border-radius: 50%; background: var(--concept); position: relative; }
+  .brand .s::after { content:""; position:absolute; inset:5px; border-radius:50%; border:1.5px solid var(--paper); }
+  .scrollcue { font-family: var(--font-mono); font-size: 11px; letter-spacing: .1em; text-transform: uppercase;
+               color: var(--ink-faint); display: inline-flex; align-items: center; gap: 8px; margin-top: 40px; }
+  .scrollcue .arrow { animation: bob 1.6s var(--ease-in-out) infinite; }
+  @keyframes bob { 0%,100%{transform:translateY(0)} 50%{transform:translateY(5px)} }
+  .statrow { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .duo { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+  .bignum { font-family: var(--font-display); font-weight: 800; letter-spacing: -.03em; line-height: 1;
+            color: var(--concept-deep); font-size: clamp(56px, 12vw, 104px); }
+  .bignum .u { font-size: .4em; color: var(--ink-faint); font-weight: 700; }
+  .chartcap { font-family: var(--font-body); font-style: italic; font-size: 15px; color: var(--ink-soft);
+              margin-top: 12px; max-width: 60ch; }
+  .note { font-family: var(--font-mono); font-size: 11px; letter-spacing: .04em; color: var(--ink-faint);
+          margin-top: 10px; }
+  .footer { text-align: center; padding: var(--space-16) 0 var(--space-24); }
+  .footer a { color: var(--concept-deep); text-decoration: none; }
+  .progressfixed { position: fixed; left: 0; right: 0; top: 0; height: 3px; background: var(--concept);
+                   transform-origin: 0 50%; transform: scaleX(0); z-index: 30; }
+  @media (max-width: 560px){ .statrow, .duo { grid-template-columns: 1fr; } }
+  @media (prefers-reduced-motion: reduce){ .reveal { opacity:1 !important; transform:none !important; } .scrollcue .arrow{animation:none;} }
+</style>
+</head>
+<body>
+<div class="progressfixed" id="pf"></div>
+<div class="topbar">
+  <div class="inner">
+    <div class="brand"><span class="s"></span> infografías<span style="color:var(--concept)">.</span></div>
+    <div id="series-progress"></div>
+  </div>
+</div>
+
+<main class="stage" id="root"></main>
+
+<!-- libs: d3 + Observable Plot (charts), React, Babel, Motion.dev -->
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@observablehq/plot@0.6.16/dist/plot.umd.min.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/motion@10.18.0/dist/motion.js"></script>
+
+<!-- ============================================================
+     Design System bundle (inline) — InfografAsDesignSystem_5de142
+     ============================================================ -->
+<script>
+(() => {
+
+const __ds_ns = (window.InfografAsDesignSystem_5de142 = window.InfografAsDesignSystem_5de142 || {});
+const __ds_scope = {};
+(__ds_ns.__errors = __ds_ns.__errors || []);
+
+// chartTheme
+try { (() => {
+function dsVar(name, fallback) {
+  if (typeof window === 'undefined' || typeof getComputedStyle === 'undefined') return fallback;
+  const v = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+  return v || fallback;
+}
+function chartColors() {
+  return [dsVar('--data', '#9CB2CE'), dsVar('--concept', '#B7A4D2'), dsVar('--action', '#A6C3AB'), dsVar('--attention', '#E6C58C'), dsVar('--alert', '#DC9E8E')];
+}
+function disciplineColors() {
+  return { swim: dsVar('--tri-swim', '#9CB2CE'), bike: dsVar('--tri-bike', '#E6C58C'), run: dsVar('--tri-run', '#DC9E8E'), total: dsVar('--tri-total', '#B7A4D2'), recovery: dsVar('--tri-recovery', '#A6C3AB') };
+}
+function sequentialRange() { return [dsVar('--chart-seq-0', '#E7ECF2'), dsVar('--chart-seq-4', '#4E6486')]; }
+function divergingRange() { return [dsVar('--chart-div-lo', '#DC9E8E'), dsVar('--chart-div-mid', '#F2EBDF'), dsVar('--chart-div-hi', '#A6C3AB')]; }
+function withDsTheme(options = {}) {
+  const label = dsVar('--chart-label', '#6C6470');
+  const mono = dsVar('--font-mono', "'JetBrains Mono', monospace");
+  const userColor = options.color || {};
+  const hasColorScale = userColor.range || userColor.scheme || userColor.domain && userColor.range;
+  return {
+    marginTop: 18, marginRight: 18, marginBottom: 38, marginLeft: 48, ...options,
+    style: { background: 'transparent', color: label, fontFamily: mono, fontSize: '12px', overflow: 'visible', ...(options.style || {}) },
+    color: hasColorScale ? userColor : { range: chartColors(), ...userColor }
+  };
+}
+Object.assign(__ds_scope, { dsVar, chartColors, disciplineColors, sequentialRange, divergingRange, withDsTheme });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "chartTheme.js", error: String((e && e.message) || e) }); }
+
+// PlotFigure
+try { (() => {
+function PlotFigure({ options, theme = true, ariaLabel = '', fallback = 'Cargando gráfico…', className = '', style = {} }) {
+  const ref = React.useRef(null);
+  const [ready, setReady] = React.useState(typeof window !== 'undefined' && !!window.Plot);
+  React.useEffect(() => {
+    if (ready || typeof window === 'undefined') return;
+    let n = 0;
+    const id = setInterval(() => {
+      if (window.Plot) { setReady(true); clearInterval(id); }
+      else if (++n > 80) clearInterval(id);
+    }, 50);
+    return () => clearInterval(id);
+  }, [ready]);
+  React.useEffect(() => {
+    const Plot = typeof window !== 'undefined' ? window.Plot : null;
+    const host = ref.current;
+    if (!Plot || !host || !options) return;
+    const opts = theme ? __ds_scope.withDsTheme(options) : options;
+    let fig;
+    try {
+      fig = Plot.plot(opts);
+      if (ariaLabel) fig.setAttribute('aria-label', ariaLabel);
+      host.replaceChildren(fig);
+    } catch (err) {
+      host.textContent = 'No se pudo renderizar el gráfico.';
+      console.error('[PlotFigure]', err);
+    }
+    return () => { if (fig) fig.remove(); };
+  }, [options, theme, ariaLabel, ready]);
+  return React.createElement("figure", { ref, className, role: "img", "aria-label": ariaLabel || undefined,
+    style: { margin: 0, width: '100%', fontFamily: 'var(--font-mono)', color: 'var(--text-muted)', fontSize: 12, ...style } },
+    !ready ? fallback : null);
+}
+Object.assign(__ds_scope, { PlotFigure });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "PlotFigure.jsx", error: String((e && e.message) || e) }); }
+
+// Badge
+try { (() => {
+function Badge({ children, accent = 'concept', variant = 'soft', dot = false, style = {} }) {
+  const base = `var(--${accent})`, deep = `var(--${accent}-deep)`, tint = `var(--${accent}-tint)`;
+  const variants = {
+    soft: { background: tint, color: deep, border: '1px solid transparent' },
+    solid: { background: base, color: '#fff', border: '1px solid transparent' },
+    outline: { background: 'transparent', color: deep, border: `1px solid ${base}` }
+  };
+  return React.createElement("span", { style: { display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 500, letterSpacing: '0.1em', textTransform: 'uppercase', padding: '4px 10px', borderRadius: 'var(--radius-pill)', whiteSpace: 'nowrap', ...variants[variant], ...style } },
+    dot && React.createElement("span", { style: { width: 6, height: 6, borderRadius: '50%', background: variant === 'solid' ? '#fff' : base } }), children);
+}
+Object.assign(__ds_scope, { Badge });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "Badge.jsx", error: String((e && e.message) || e) }); }
+
+// Button
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function Button({ children, variant = 'primary', size = 'md', accent = 'concept', icon = null, iconRight = null, disabled = false, onClick, type = 'button', style = {}, ...rest }) {
+  const [hover, setHover] = React.useState(false);
+  const [press, setPress] = React.useState(false);
+  const base = `var(--${accent})`, deep = `var(--${accent}-deep)`, tint = `var(--${accent}-tint)`;
+  const sizes = { sm: { fontSize: 13, padding: '7px 14px', radius: 'var(--radius-sm)', gap: 6 }, md: { fontSize: 15, padding: '11px 20px', radius: 'var(--radius-md)', gap: 8 }, lg: { fontSize: 17, padding: '15px 28px', radius: 'var(--radius-md)', gap: 10 } };
+  const s = sizes[size] || sizes.md;
+  const variants = {
+    primary: { background: hover ? deep : base, color: '#fff', border: '1px solid transparent', boxShadow: hover ? 'var(--shadow-md)' : 'var(--shadow-sm)' },
+    secondary: { background: tint, color: deep, border: '1px solid transparent', boxShadow: 'none' },
+    outline: { background: hover ? tint : 'transparent', color: deep, border: `1px solid var(--${accent})`, boxShadow: 'none' },
+    ghost: { background: hover ? tint : 'transparent', color: deep, border: '1px solid transparent', boxShadow: 'none' }
+  };
+  return React.createElement("button", _extends({ type, disabled, onClick, onMouseEnter: () => setHover(true), onMouseLeave: () => { setHover(false); setPress(false); }, onMouseDown: () => setPress(true), onMouseUp: () => setPress(false),
+    style: { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', gap: s.gap, fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: s.fontSize, letterSpacing: '0.005em', padding: s.padding, borderRadius: s.radius, cursor: disabled ? 'not-allowed' : 'pointer', opacity: disabled ? 0.45 : 1, transform: press && !disabled ? 'scale(0.97)' : 'scale(1)', transition: 'transform var(--dur-fast) var(--ease-out), background var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out)', whiteSpace: 'nowrap', ...variants[variant], ...style } }, rest),
+    icon && React.createElement("span", { style: { display: 'inline-flex' } }, icon), children, iconRight && React.createElement("span", { style: { display: 'inline-flex' } }, iconRight));
+}
+Object.assign(__ds_scope, { Button });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "Button.jsx", error: String((e && e.message) || e) }); }
+
+// Card
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function Card({ children, accent = null, edge = false, elevation = 'sm', padding = 'var(--pad-card)', interactive = false, style = {}, ...rest }) {
+  const [hover, setHover] = React.useState(false);
+  const shadows = { none: 'none', sm: 'var(--shadow-sm)', md: 'var(--shadow-md)', lg: 'var(--shadow-lg)' };
+  const lift = interactive && hover;
+  return React.createElement("div", _extends({ onMouseEnter: () => interactive && setHover(true), onMouseLeave: () => interactive && setHover(false),
+    style: { position: 'relative', background: 'var(--surface-card)', borderRadius: 'var(--radius-lg)', boxShadow: lift ? shadows.md : shadows[elevation], border: '1px solid var(--border)', padding, overflow: 'hidden', transform: lift ? 'translateY(-2px)' : 'translateY(0)', transition: 'transform var(--dur-base) var(--ease-out), box-shadow var(--dur-base) var(--ease-out)', ...style } }, rest),
+    edge && accent && React.createElement("span", { style: { position: 'absolute', left: 0, top: 0, bottom: 0, width: 4, background: `var(--${accent})` } }), children);
+}
+Object.assign(__ds_scope, { Card });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "Card.jsx", error: String((e && e.message) || e) }); }
+
+// Checkpoint
+try { (() => {
+function Checkpoint({ question, answer, accent = 'attention', prompt = 'Toca para revelar', style = {} }) {
+  const [open, setOpen] = React.useState(false);
+  const base = `var(--${accent})`, deep = `var(--${accent}-deep)`, tint = `var(--${accent}-tint)`;
+  return React.createElement("div", { style: { background: 'var(--surface-card)', border: `1px solid ${base}`, borderRadius: 'var(--radius-lg)', padding: 'var(--pad-card-lg)', boxShadow: 'var(--shadow-sm)', ...style } },
+    React.createElement("div", { style: { display: 'inline-flex', alignItems: 'center', gap: 6, fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: deep, marginBottom: 10 } }, React.createElement("span", { style: { fontSize: 14 } }, "?"), " Checkpoint"),
+    React.createElement("p", { style: { margin: '0 0 16px', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 20, lineHeight: 1.3, color: 'var(--text-strong)' } }, question),
+    !open ? React.createElement("button", { onClick: () => setOpen(true), style: { display: 'inline-flex', alignItems: 'center', gap: 8, background: tint, color: deep, border: 'none', fontFamily: 'var(--font-display)', fontWeight: 600, fontSize: 14, padding: '10px 18px', borderRadius: 'var(--radius-pill)', cursor: 'pointer', transition: 'background var(--dur-base) var(--ease-out)' }, onMouseEnter: e => e.currentTarget.style.background = `color-mix(in oklch, ${base} 28%, white)`, onMouseLeave: e => e.currentTarget.style.background = tint }, prompt, " ", React.createElement("span", { "aria-hidden": "true" }, "↓"))
+    : React.createElement("div", { style: { background: tint, borderRadius: 'var(--radius-md)', padding: '14px 16px', fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.6, color: 'var(--text-strong)', borderLeft: `3px solid ${base}` } }, answer));
+}
+Object.assign(__ds_scope, { Checkpoint });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "Checkpoint.jsx", error: String((e && e.message) || e) }); }
+
+// ComparisonGrid
+try { (() => {
+function ComparisonGrid({ left, right, style = {} }) {
+  const Column = ({ data }) => {
+    const accent = data.accent || 'concept';
+    return React.createElement("div", { style: { background: `var(--${accent}-tint)`, borderRadius: 'var(--radius-md)', border: `1px solid color-mix(in oklch, var(--${accent}) 30%, transparent)`, padding: 'var(--pad-card)', display: 'flex', flexDirection: 'column', gap: 12 } },
+      React.createElement("div", { style: { display: 'flex', alignItems: 'center', gap: 8 } }, data.icon && React.createElement("span", { style: { fontSize: 18 } }, data.icon), React.createElement("span", { style: { fontFamily: 'var(--font-mono)', fontSize: 12, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase', color: `var(--${accent}-deep)` } }, data.title)),
+      React.createElement("ul", { style: { margin: 0, padding: 0, listStyle: 'none', display: 'flex', flexDirection: 'column', gap: 8 } }, (data.items || []).map((it, i) => React.createElement("li", { key: i, style: { display: 'flex', gap: 8, alignItems: 'flex-start', fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.5, color: 'var(--text-strong)' } }, React.createElement("span", { style: { color: `var(--${accent}-deep)`, flexShrink: 0, marginTop: 1 } }, data.bullet || '•'), React.createElement("span", null, it)))));
+  };
+  return React.createElement("div", { style: { display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14, alignItems: 'stretch', ...style } }, React.createElement(Column, { data: left }), React.createElement(Column, { data: right }));
+}
+Object.assign(__ds_scope, { ComparisonGrid });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ComparisonGrid.jsx", error: String((e && e.message) || e) }); }
+
+// DataCard
+try { (() => {
+function DataCard({ role = null, roleLabel = '', icon = null, title, children, footer = null, elevation = 'sm', style = {} }) {
+  const accent = role || 'concept';
+  return React.createElement("div", { style: { position: 'relative', background: 'var(--surface-card)', borderRadius: 'var(--radius-lg)', boxShadow: elevation === 'none' ? 'none' : `var(--shadow-${elevation})`, border: '1px solid var(--border)', padding: 'var(--pad-card-lg)', display: 'flex', flexDirection: 'column', gap: 14, ...style } },
+    React.createElement("div", { style: { display: 'flex', alignItems: 'center', gap: 12, justifyContent: 'space-between' } }, roleLabel ? React.createElement(__ds_scope.Badge, { accent, dot: true }, roleLabel) : React.createElement("span", null), icon && React.createElement("span", { style: { display: 'inline-flex', alignItems: 'center', justifyContent: 'center', width: 40, height: 40, borderRadius: 'var(--radius-md)', background: `var(--${accent}-tint)`, color: `var(--${accent}-deep)`, fontSize: 20 } }, icon)),
+    React.createElement("h3", { style: { margin: 0, fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 22, lineHeight: 1.2, letterSpacing: '-0.01em', color: 'var(--text-strong)' } }, title),
+    children && React.createElement("div", { style: { fontFamily: 'var(--font-body)', fontSize: 16, lineHeight: 1.6, color: 'var(--text-body)' } }, children),
+    footer && React.createElement("div", { style: { marginTop: 2, paddingTop: 14, borderTop: '1px solid var(--border)', fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-muted)', letterSpacing: '0.02em' } }, footer));
+}
+Object.assign(__ds_scope, { DataCard });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "DataCard.jsx", error: String((e && e.message) || e) }); }
+
+// ProgressDots
+try { (() => {
+function ProgressDots({ total = 5, current = 1, accent = 'concept', variant = 'dots', label = '', style = {} }) {
+  const base = `var(--${accent})`, tint = `var(--${accent}-tint)`;
+  return React.createElement("div", { style: { display: 'flex', alignItems: 'center', gap: 12, ...style } },
+    variant === 'bar' ? React.createElement("div", { style: { flex: 1, height: 6, borderRadius: 'var(--radius-pill)', background: 'var(--paper-sunk)', overflow: 'hidden', minWidth: 80 } }, React.createElement("div", { style: { width: `${Math.min(100, current / total * 100)}%`, height: '100%', background: base, borderRadius: 'var(--radius-pill)', transition: 'width var(--dur-slow) var(--ease-emph)' } }))
+    : React.createElement("div", { style: { display: 'flex', gap: 7 } }, Array.from({ length: total }).map((_, i) => { const done = i < current; const active = i === current - 1; return React.createElement("span", { key: i, style: { width: active ? 22 : 8, height: 8, borderRadius: 'var(--radius-pill)', background: done ? base : tint, transition: 'all var(--dur-base) var(--ease-out)' } }); })),
+    label && React.createElement("span", { style: { fontFamily: 'var(--font-mono)', fontSize: 12, color: 'var(--text-muted)', letterSpacing: '0.04em', whiteSpace: 'nowrap' } }, label));
+}
+Object.assign(__ds_scope, { ProgressDots });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "ProgressDots.jsx", error: String((e && e.message) || e) }); }
+
+// StatBadge
+try { (() => {
+function StatBadge({ value, unit = '', label = '', prefix = '', accent = 'data', size = 'md', align = 'left', style = {} }) {
+  const deep = `var(--${accent}-deep)`;
+  const sizes = { sm: { fig: 36, unit: 16, label: 12 }, md: { fig: 56, unit: 20, label: 13 }, lg: { fig: 84, unit: 28, label: 15 } };
+  const s = sizes[size] || sizes.md;
+  return React.createElement("div", { style: { display: 'flex', flexDirection: 'column', alignItems: align === 'center' ? 'center' : 'flex-start', textAlign: align, gap: 4, ...style } },
+    React.createElement("div", { style: { fontFamily: 'var(--font-display)', fontWeight: 800, fontSize: s.fig, lineHeight: 1, letterSpacing: '-0.03em', color: deep, fontVariantNumeric: 'tabular-nums', display: 'flex', alignItems: 'baseline', gap: 4 } }, prefix && React.createElement("span", { style: { fontSize: s.unit, fontWeight: 600 } }, prefix), value, unit && React.createElement("span", { style: { fontFamily: 'var(--font-mono)', fontSize: s.unit, fontWeight: 500, color: `var(--${accent})` } }, unit)),
+    label && React.createElement("div", { style: { fontFamily: 'var(--font-body)', fontSize: s.label, color: 'var(--text-body)', lineHeight: 1.4, maxWidth: '28ch' } }, label));
+}
+Object.assign(__ds_scope, { StatBadge });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "StatBadge.jsx", error: String((e && e.message) || e) }); }
+
+// TimelineRow
+try { (() => {
+function TimelineRow({ index = null, marker = null, title, children, accent = 'concept', last = false, style = {} }) {
+  const base = `var(--${accent})`, tint = `var(--${accent}-tint)`, deep = `var(--${accent}-deep)`;
+  return React.createElement("div", { style: { display: 'grid', gridTemplateColumns: '44px 1fr', gap: 16, ...style } },
+    React.createElement("div", { style: { display: 'flex', flexDirection: 'column', alignItems: 'center' } },
+      React.createElement("span", { style: { flexShrink: 0, width: 36, height: 36, borderRadius: '50%', background: tint, color: deep, border: `1.5px solid ${base}`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 15 } }, marker != null ? marker : index),
+      !last && React.createElement("span", { style: { flex: 1, width: 2, marginTop: 4, background: `linear-gradient(${base}, var(--border))`, minHeight: 24 } })),
+    React.createElement("div", { style: { paddingBottom: last ? 0 : 28 } },
+      React.createElement("h4", { style: { margin: '6px 0 6px', fontFamily: 'var(--font-display)', fontWeight: 700, fontSize: 18, color: 'var(--text-strong)', letterSpacing: '-0.01em' } }, title),
+      children && React.createElement("div", { style: { fontFamily: 'var(--font-body)', fontSize: 15, lineHeight: 1.6, color: 'var(--text-body)' } }, children)));
+}
+Object.assign(__ds_scope, { TimelineRow });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "TimelineRow.jsx", error: String((e && e.message) || e) }); }
+
+// inView
+try { (() => {
+function onEnterViewport(el, onEnter, opts = {}) {
+  if (!el || typeof window === 'undefined') return () => {};
+  const { once = true, margin = 40, onLeave = null } = opts;
+  let entered = false, stopped = false;
+  const vh = () => window.innerHeight || document.documentElement.clientHeight || 800;
+  const isVisible = () => { const r = el.getBoundingClientRect(); return r.height > 0 && r.top < vh() - margin && r.bottom > margin; };
+  const enter = () => { if (entered) return; entered = true; onEnter(); if (once) stop(); };
+  const leave = () => { if (!entered) return; entered = false; if (onLeave) onLeave(); };
+  const check = () => { if (stopped) return; if (isVisible()) enter(); else if (!once) leave(); };
+  let raf = 0;
+  const schedule = () => { cancelAnimationFrame(raf); raf = requestAnimationFrame(check); };
+  window.addEventListener('scroll', schedule, { passive: true, capture: true });
+  window.addEventListener('resize', schedule);
+  let ticks = 0;
+  const poll = setInterval(() => { check(); ticks += 1; if (entered && once || ticks > 30) { clearInterval(poll); if (!entered && el.getBoundingClientRect().top < vh()) enter(); } }, 150);
+  schedule();
+  function stop() { if (stopped) return; stopped = true; window.removeEventListener('scroll', schedule, { capture: true }); window.removeEventListener('resize', schedule); cancelAnimationFrame(raf); clearInterval(poll); }
+  return stop;
+}
+Object.assign(__ds_scope, { onEnterViewport });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "inView.js", error: String((e && e.message) || e) }); }
+
+// CountUp
+try { (() => {
+function CountUp({ value, decimals = 0, duration = 1100, delay = 0, prefix = '', suffix = '', locale = 'es-ES', separator = true, style = {}, className = '' }) {
+  const ref = React.useRef(null);
+  const target = Number(value) || 0;
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const fmt = n => prefix + n.toLocaleString(locale, { minimumFractionDigits: decimals, maximumFractionDigits: decimals, useGrouping: separator }) + suffix;
+    const reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    el.textContent = fmt(0);
+    if (reduce) { el.textContent = fmt(target); return; }
+    let raf = 0;
+    const easeOut = t => 1 - Math.pow(1 - t, 3);
+    const run = () => {
+      const t0 = performance.now() + delay;
+      const tick = now => { const p = Math.min(1, Math.max(0, (now - t0) / duration)); el.textContent = fmt(target * easeOut(p)); if (p < 1) raf = requestAnimationFrame(tick); else el.textContent = fmt(target); };
+      raf = requestAnimationFrame(tick);
+      setTimeout(() => { el.textContent = fmt(target); }, delay + duration + 280);
+    };
+    const stop = __ds_scope.onEnterViewport(el, run, { once: true, margin: 20 });
+    return () => { cancelAnimationFrame(raf); stop(); };
+  }, [target, decimals, duration, delay, prefix, suffix, locale, separator]);
+  return React.createElement("span", { ref, className, style: { fontVariantNumeric: 'tabular-nums', ...style } }, prefix, "0", suffix);
+}
+Object.assign(__ds_scope, { CountUp });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "CountUp.jsx", error: String((e && e.message) || e) }); }
+
+// Reveal (DS) — not used by the page (page defines its own Motion.dev Reveal) but kept for parity
+try { (() => {
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+function Reveal({ children, as: Tag = 'div', delay = 0, y = 24, duration = 620, once = true, margin = 60, style = {}, className = '', ...rest }) {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const reduce = typeof window !== 'undefined' && window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (reduce) { el.style.opacity = '1'; el.style.transform = 'none'; return; }
+    const show = () => {
+      const anim = el.animate([{ opacity: 0, transform: `translateY(${y}px)` }, { opacity: 1, transform: 'translateY(0)' }], { duration, delay: delay * 1000, easing: 'cubic-bezier(0.16, 1, 0.3, 1)', fill: 'both' });
+      const settle = () => { try { anim.cancel(); } catch (e) {} el.style.opacity = '1'; el.style.transform = 'none'; };
+      anim.addEventListener('finish', settle);
+      setTimeout(settle, delay * 1000 + duration + 280);
+    };
+    const hide = () => { el.style.opacity = '0'; el.style.transform = `translateY(${y}px)`; };
+    return __ds_scope.onEnterViewport(el, show, { once, margin, onLeave: once ? null : hide });
+  }, [delay, y, duration, once, margin]);
+  return React.createElement(Tag, _extends({ ref, className, style: { opacity: 0, transform: `translateY(${y}px)`, willChange: 'opacity, transform', ...style } }, rest), children);
+}
+Object.assign(__ds_scope, { Reveal });
+})(); } catch (e) { __ds_ns.__errors.push({ path: "Reveal.jsx", error: String((e && e.message) || e) }); }
+
+__ds_ns.PlotFigure = __ds_scope.PlotFigure;
+__ds_ns.Badge = __ds_scope.Badge;
+__ds_ns.Button = __ds_scope.Button;
+__ds_ns.Card = __ds_scope.Card;
+__ds_ns.Checkpoint = __ds_scope.Checkpoint;
+__ds_ns.ComparisonGrid = __ds_scope.ComparisonGrid;
+__ds_ns.DataCard = __ds_scope.DataCard;
+__ds_ns.ProgressDots = __ds_scope.ProgressDots;
+__ds_ns.StatBadge = __ds_scope.StatBadge;
+__ds_ns.TimelineRow = __ds_scope.TimelineRow;
+__ds_ns.CountUp = __ds_scope.CountUp;
+__ds_ns.Reveal = __ds_scope.Reveal;
+
+})();
+</script>
+
+<!-- ============================================================
+     The infographic
+     ============================================================ -->
+<script type="text/babel">
+const { Button, Badge, Card, StatBadge, DataCard, TimelineRow, ComparisonGrid, Checkpoint, ProgressDots, PlotFigure, CountUp } = window.InfografAsDesignSystem_5de142;
+const M = window.Motion || {};
+const Plot = window.Plot;
+
+// Scroll-linked spring reveal — Motion.dev inView + animate (stagger narrativo)
+function Reveal({ children, delay = 0, y = 24 }) {
+  const ref = React.useRef(null);
+  React.useEffect(() => {
+    const el = ref.current;
+    if (!el || !M.inView || !M.animate) { if (el) { el.style.opacity = 1; el.style.transform = 'none'; } return; }
+    const stop = M.inView(el, () => {
+      M.animate(el, { opacity: [0, 1], transform: ['translateY(' + y + 'px)', 'translateY(0px)'] },
+        { type: 'spring', stiffness: 260, damping: 22, delay });
+    }, { margin: '-80px' });
+    return stop;
+  }, []);
+  return <div ref={ref} className="reveal">{children}</div>;
+}
+
+// ---- Chart 1: monthly budget (one stacked horizontal bar) ----
+function BudgetChart() {
+  const data = [
+    { cat: 'Arriendo', val: 5 },
+    { cat: 'Vida cómoda', val: 8 },
+    { cat: 'Ahorro / inversión', val: 7 },
+  ];
+  const options = React.useMemo(() => ({
+    height: 150, marginTop: 30, marginBottom: 40, marginLeft: 10, marginRight: 10,
+    x: { label: 'millones COP / mes →', domain: [0, 20], grid: true, ticks: 5 },
+    y: { axis: null },
+    color: { legend: true, domain: ['Arriendo', 'Vida cómoda', 'Ahorro / inversión'],
+             range: ['var(--chart-1)', 'var(--chart-4)', 'var(--chart-3)'] },
+    marks: [
+      Plot.barX(data, { x: 'val', fill: 'cat', y: () => 'mes',
+        order: ['Arriendo', 'Vida cómoda', 'Ahorro / inversión'], rx: 3, insetRight: 1 }),
+      Plot.text(data, Plot.stackX({ order: ['Arriendo', 'Vida cómoda', 'Ahorro / inversión'] },
+        { x: 'val', y: () => 'mes', text: d => d.val + 'M', fill: 'var(--paper)',
+          fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 13 })),
+      Plot.ruleX([0]),
+    ],
+  }), []);
+  return <PlotFigure options={options} ariaLabel="Distribución del ingreso mensual conjunto de 20 millones" />;
+}
+
+// ---- Chart 2: 5-year net-worth projection (two lines + target) ----
+function ProjectionChart() {
+  const proj = [
+    { anio: 0, serie: 'Solo salario', valor: 0 },
+    { anio: 1, serie: 'Solo salario', valor: 89 },
+    { anio: 2, serie: 'Solo salario', valor: 193 },
+    { anio: 3, serie: 'Solo salario', valor: 316 },
+    { anio: 4, serie: 'Solo salario', valor: 458 },
+    { anio: 5, serie: 'Solo salario', valor: 622 },
+    { anio: 0, serie: 'Salario + negocio', valor: 0 },
+    { anio: 1, serie: 'Salario + negocio', valor: 89 },
+    { anio: 2, serie: 'Salario + negocio', valor: 219 },
+    { anio: 3, serie: 'Salario + negocio', valor: 407 },
+    { anio: 4, serie: 'Salario + negocio', valor: 674 },
+    { anio: 5, serie: 'Salario + negocio', valor: 1039 },
+  ];
+  const ends = [
+    { anio: 5, valor: 622, t: '622M', serie: 'Solo salario' },
+    { anio: 5, valor: 1039, t: '1.039M', serie: 'Salario + negocio' },
+  ];
+  const options = React.useMemo(() => ({
+    height: 320, marginTop: 24, marginLeft: 44, marginRight: 56, marginBottom: 36,
+    x: { label: 'año →', domain: [0, 5], ticks: [0, 1, 2, 3, 4, 5], tickFormat: d => d },
+    y: { label: '↑ patrimonio (millones COP)', domain: [0, 1120], grid: true, ticks: 5 },
+    color: { legend: true, domain: ['Solo salario', 'Salario + negocio'],
+             range: ['var(--chart-1)', 'var(--chart-3)'] },
+    marks: [
+      Plot.ruleY([1000], { stroke: 'var(--chart-4)', strokeDasharray: '3,5', strokeWidth: 1.5 }),
+      Plot.text([{ anio: 0.05, valor: 1000 }], { x: 'anio', y: 'valor', text: () => 'meta · 1.000M',
+        dy: -8, textAnchor: 'start', fill: 'var(--chart-4)', fontFamily: 'var(--font-mono)', fontSize: 11, fontWeight: 600 }),
+      Plot.lineY(proj, { x: 'anio', y: 'valor', z: 'serie', stroke: 'serie', strokeWidth: 2.6, curve: 'catmull-rom' }),
+      Plot.dot(proj, { x: 'anio', y: 'valor', z: 'serie', fill: 'serie', r: 3 }),
+      Plot.text(ends, { x: 'anio', y: 'valor', text: 't', dx: 8, textAnchor: 'start',
+        fill: 'serie', fontFamily: 'var(--font-mono)', fontWeight: 700, fontSize: 13 }),
+    ],
+  }), []);
+  return <PlotFigure options={options} ariaLabel="Proyección del patrimonio neto a cinco años en dos escenarios" />;
+}
+
+function Infografia() {
+  return (
+    <>
+      {/* HERO */}
+      <section className="section" style={{ paddingTop: 'var(--space-20)' }}>
+        <Reveal>
+          <span className="seal"></span>
+          <div className="eyebrow" style={{ marginTop: 20 }}>Serie · Libertad Financiera · 01</div>
+          <h1 className="h1">De cero a <em style={{fontStyle:'normal', color:'var(--concept-deep)'}}>mil millones</em> en cinco años</h1>
+          <p className="lead">Dos salarios, una meta grande y cero ahorrado hoy. Esto es lo que la aritmética exige — y por qué el sueldo solo no basta, pero el plan sí alcanza.</p>
+          <div className="scrollcue"><span className="arrow">↓</span> Desplázate para ver el plan</div>
+        </Reveal>
+      </section>
+
+      {/* THE GOAL vs THE INCOME */}
+      <section className="section">
+        <Reveal>
+          <p className="kicker">El punto de partida</p>
+          <div className="statrow">
+            <StatBadge value={<CountUp value={20} />} unit="M/mes" label="ingreso conjunto neto, libre de impuestos." accent="data" size="lg" />
+            <StatBadge value={<CountUp value={1000} />} unit="M" label="patrimonio neto conjunto, meta a 5 años." accent="concept" size="lg" />
+          </div>
+        </Reveal>
+      </section>
+
+      {/* REALITY CHECK */}
+      <section className="section">
+        <Reveal>
+          <p className="kicker">Reality check</p>
+          <h2 className="h2">¿Alcanza solo con ahorrar el sueldo?</h2>
+          <p className="p" style={{ marginBottom: 24 }}>Invertir todo el excedente del salario durante 5 años, a un rendimiento razonable, llega hasta aquí — y no más:</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <div style={{ textAlign: 'center', padding: 'var(--space-6) 0' }}>
+            <div className="bignum"><CountUp value={62} /><span className="u">% de la meta</span></div>
+            <p className="note">≈ 622M de 1.000M · solo motor salario</p>
+          </div>
+        </Reveal>
+        <Reveal delay={0.1}>
+          <DataCard role="alert" roleLabel="La brecha" icon="◑"
+            title="El salario es necesario, pero insuficiente" footer="VF anualidad · i=11% nominal · n=60 meses" elevation="md">
+            Para llegar a 1.000M solo invirtiendo harían falta ~12,2M de aporte cada mes. Imposible con 20M de ingreso y los costos de vida. El 38% restante tiene que venir de otro lado.
+          </DataCard>
+        </Reveal>
+      </section>
+
+      {/* TWO ENGINES */}
+      <section className="section">
+        <Reveal>
+          <p className="kicker">La estrategia</p>
+          <h2 className="h2">Dos motores, no uno</h2>
+          <p className="p" style={{ marginBottom: 24 }}>Mantener los empleos y, en paralelo, construir un activo digital. El salario sostiene la vida; el negocio cierra la brecha.</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <div className="duo">
+            <DataCard role="action" roleLabel="Motor 1" icon="◍" title="Invertir el excedente" elevation="sm">
+              7M/mes automatizados el día de pago, en cartera diversificada COP + global. Crece a ~9M/mes con el tiempo.
+            </DataCard>
+            <DataCard role="concept" roleLabel="Motor 2" icon="◎" title="Construir un activo digital" elevation="sm">
+              Producto digital validado en paralelo. Su utilidad se reinvierte casi completa — la vida ya vive del salario.
+            </DataCard>
+          </div>
+        </Reveal>
+      </section>
+
+      {/* BUDGET */}
+      <section className="section">
+        <Reveal>
+          <p className="kicker">El presupuesto</p>
+          <h2 className="h2">35% de ahorro, sin vida austera</h2>
+          <p className="p" style={{ marginBottom: 24 }}>De 20M, el ahorro se aparta primero. Lo demás se vive sin culpa: queda margen real para salir, viajar y disfrutar.</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <Card elevation="sm" padding="var(--space-8)">
+            <BudgetChart />
+            <p className="chartcap">Pagarse primero: 7M van a inversión apenas entra el sueldo. Los 13M restantes cubren arriendo y una vida cómoda, no restringida.</p>
+          </Card>
+        </Reveal>
+      </section>
+
+      {/* PROJECTION — the centerpiece */}
+      <section className="section">
+        <Reveal>
+          <p className="kicker">La proyección</p>
+          <h2 className="h2">El camino a los 1.000M</h2>
+          <p className="p" style={{ marginBottom: 24 }}>Dos trayectorias a 5 años. La diferencia entre llegar y quedarse a mitad de camino es el segundo motor.</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <Card elevation="md" padding="var(--space-8)">
+            <ProjectionChart />
+            <p className="chartcap">Con solo salario el patrimonio se estanca en ~622M. Sumando un negocio que escala a ~14M/mes de utilidad reinvertida hacia el año 5, la curva cruza la meta: ~1.039M.</p>
+            <p className="note">Supuestos: 11% nominal anual · aportes crecientes · utilidad de negocio neta de impuestos. Proyección, no garantía.</p>
+          </Card>
+        </Reveal>
+      </section>
+
+      {/* PHASED PLAN */}
+      <section className="section">
+        <Reveal>
+          <p className="kicker">El método</p>
+          <h2 className="h2">Tres fases, espaciadas</h2>
+          <p className="p" style={{ marginBottom: 28 }}>Como un producto: por fases, con métricas, validando antes de escalar.</p>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <Card elevation="sm" padding="var(--space-8)">
+            <TimelineRow index={1} accent="action" title="Cimientos · meses 1–12">Automatizar el ahorro, armar fondo de emergencia (~40M) y validar 1 idea digital con un MVP barato. Meta: primeros ingresos reales.</TimelineRow>
+            <TimelineRow index={2} accent="action" title="Construir · años 2–3">Llevar el primer producto a 3–6M/mes y reinvertir el 100%. Sistematizar para que no dependa de tu tiempo.</TimelineRow>
+            <TimelineRow marker="✓" accent="action" title="Escalar · años 4–5" last>El negocio supera al salario como motor: 14–20M/mes. Patrimonio ~1.000M + un activo con valor de venta propio.</TimelineRow>
+          </Card>
+        </Reveal>
+      </section>
+
+      {/* MYTH vs REALITY */}
+      <section className="section">
+        <Reveal>
+          <p className="kicker">Principio de contraste</p>
+          <h2 className="h2">Lo que parece riqueza y lo que la construye</h2>
+        </Reveal>
+        <Reveal delay={0.05}>
+          <ComparisonGrid
+            left={{ title: 'Ilusión', accent: 'alert', icon: '✕', bullet: '✕',
+                    items: ['Esperar a que suba el sueldo', 'Buscar la idea perfecta antes de empezar', 'Invertir solo lo que sobra'] }}
+            right={{ title: 'Realidad', accent: 'action', icon: '✓', bullet: '✓',
+                    items: ['Construir un activo digital propio', 'Validar pequeño y barato, ya', 'Automatizar el ahorro primero'] }}
+          />
+        </Reveal>
+      </section>
+
+      {/* CHECKPOINT */}
+      <section className="section">
+        <Reveal>
+          <p className="kicker">Checkpoint</p>
+          <Checkpoint
+            question="¿Por qué dos sueldos altos no bastan para 1.000M en 5 años?"
+            answer="Porque el interés compuesto sobre 7M/mes, en 60 meses, multiplica por ~81 el aporte mensual — pero eso tope en ~622M. La meta exige más capital del que un salario fijo puede apartar. Solo un activo que crece aparte cierra la brecha."
+            accent="attention"
+          />
+        </Reveal>
+      </section>
+
+      {/* CLOSE */}
+      <section className="section">
+        <Reveal>
+          <Card accent="concept" edge elevation="lg" padding="var(--space-10)">
+            <p className="kicker" style={{ marginBottom: 14 }}>Lo que te llevas</p>
+            <h2 className="h2" style={{ marginBottom: 16 }}>No necesitan ganar más. Necesitan construir un activo.</h2>
+            <p className="p" style={{ marginBottom: 24 }}>El salario ya hace su parte si lo automatizan hoy. El millón se decide en lo que construyan en paralelo — empezando pequeño, esta semana.</p>
+            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap', alignItems: 'center' }}>
+              <Button variant="primary" accent="concept" iconRight={<span>→</span>}>Siguiente: elegir tu primer producto digital</Button>
+              <Badge accent="action" dot>Plan trazado</Badge>
+            </div>
+          </Card>
+        </Reveal>
+      </section>
+
+      <div className="footer">
+        <div className="eyebrow" style={{ color: 'var(--ink-faint)' }}>Hecho con Motion.dev · <a href="../../">infografías</a></div>
+      </div>
+    </>
+  );
+}
+
+function SeriesProgress(){ return <ProgressDots total={5} current={1} accent="concept" label="1 / 5" />; }
+
+ReactDOM.createRoot(document.getElementById('root')).render(<Infografia />);
+ReactDOM.createRoot(document.getElementById('series-progress')).render(<SeriesProgress />);
+
+const pf = document.getElementById('pf');
+function onScroll(){
+  const h = document.documentElement;
+  const max = h.scrollHeight - h.clientHeight;
+  const p = max > 0 ? h.scrollTop / max : 0;
+  pf.style.transform = 'scaleX(' + p + ')';
+}
+window.addEventListener('scroll', onScroll, { passive: true });
+onScroll();
+</script>
+</body>
+</html>
